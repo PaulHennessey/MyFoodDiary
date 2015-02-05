@@ -30,16 +30,13 @@
         </div>
     }
 
-
-    <div class="editor-label">
-        @Html.LabelFor(model => model.ValuesArePerItem, "Values Are Per Item")
-    </div>
     <div class="editor-field">
-        @Html.EditorFor(model => model.ValuesArePerItem)
-        @Html.ValidationMessageFor(model => model.ValuesArePerItem)
+        @Html.RadioButtonFor(model => model.ValuesArePerItem, false) All values are per 100g serving.
     </div>
 
-    <div id="perItemDiv"></div>
+    <div class="editor-field">
+        @Html.RadioButtonFor(model => model.ValuesArePerItem, true) All values are per item.
+    </div>
 
     <p>
         <input type="submit" value="Save" />
