@@ -52,7 +52,8 @@ namespace MyFoodDiary.Controllers
                     { "Protein", 0.0},
                     { "Carbohydrates", 0.0},
                     { "Fat", 0.0},
-                    { "Calories", 0.0}
+                    { "Calories", 0.0},
+                    { "Alcohol", 0.0}
                 }
             };
 
