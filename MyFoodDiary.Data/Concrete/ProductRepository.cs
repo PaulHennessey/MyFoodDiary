@@ -140,6 +140,9 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters.Add(new SqlParameter("@ValuesArePerItem", SqlDbType.Bit));
                 cmd.Parameters["@ValuesArePerItem"].Value = product.ValuesArePerItem;
 
+                cmd.Parameters.Add(new SqlParameter("@ServingSize", SqlDbType.Int));
+                cmd.Parameters["@ServingSize"].Value = product.ServingSize;
+
                 cmd.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
                 cmd.Parameters["@userId"].Value = userId;
 
@@ -178,6 +181,9 @@ namespace MyFoodDiary.Data.Concrete
 
                 cmd.Parameters.Add(new SqlParameter("@ValuesArePerItem", SqlDbType.Bit));
                 cmd.Parameters["@ValuesArePerItem"].Value = product.ValuesArePerItem;
+
+                cmd.Parameters.Add(new SqlParameter("@ServingSize", SqlDbType.Int));
+                cmd.Parameters["@ServingSize"].Value = product.ServingSize;
 
                 connection.Open();
                 cmd.ExecuteNonQuery();

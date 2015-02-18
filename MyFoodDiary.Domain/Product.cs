@@ -10,6 +10,7 @@ namespace MyFoodDiary.Domain
         public string Name { get; set; }
         public Dictionary<string, double> Nutrients { get; set; }
         public bool ValuesArePerItem { get; set; }
+        public int ServingSize { get; set; }
 
         public override bool Equals(Object obj)
         {

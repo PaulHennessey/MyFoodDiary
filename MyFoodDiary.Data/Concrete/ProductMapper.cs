@@ -25,7 +25,8 @@ namespace MyFoodDiary.Data.Concrete
                     { "Alcohol", row.GetValue("Alcohol") }
                 },
 
-                ValuesArePerItem = !Convert.IsDBNull(row["ValuesArePerItem"]) && Convert.ToBoolean(row["ValuesArePerItem"])
+                ValuesArePerItem = !Convert.IsDBNull(row["ValuesArePerItem"]) && Convert.ToBoolean(row["ValuesArePerItem"]),
+                ServingSize = Convert.ToInt32(row["ServingSize"])
             };
         }
     }
