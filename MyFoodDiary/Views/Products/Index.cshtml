@@ -22,6 +22,12 @@
             Calories
         </th>
         <th>
+            Alcohol
+        </th>
+        <th>
+            Serving Size
+        </th>
+        <th>
         </th>
     </tr>
 
@@ -42,6 +48,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => product.Nutrients["Calories"])
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => product.Nutrients["Alcohol"])
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => product.ServingSize)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { code = product.Code })
