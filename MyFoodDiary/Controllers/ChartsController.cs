@@ -36,8 +36,6 @@ namespace MyFoodDiary.Controllers
         {
             User user = _userServices.GetUser(User.Identity.Name);
 
-            //start = start.AddDays(-6);
-
             List<Day> days = _foodItemServices.GetDays(start, end, user.Id).ToList();
             List<Product> products = _productServices.GetProducts(days).ToList();
             var viewModel = new BarChartViewModel();
