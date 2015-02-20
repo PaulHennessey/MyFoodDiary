@@ -46,6 +46,12 @@ namespace MyFoodDiary.Controllers
                 viewModel.ChartTitle = _chartServices.GetTitle(nutrient);
                 viewModel.BarData = _chartServices.CalculateTotalEnergyData(days, products);
             }
+            else if (nutrient.ToLower() == "alcohol")
+            {
+                viewModel.BarNames = _chartServices.GetBarNames(days);
+                viewModel.ChartTitle = _chartServices.GetTitle(nutrient);
+                viewModel.BarData = _chartServices.CalculateAlcoholByProduct(days, products);
+            }
             else
             {
                 viewModel.BarNames = _chartServices.GetBarNames(days);

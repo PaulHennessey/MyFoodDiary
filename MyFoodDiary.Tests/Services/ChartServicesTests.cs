@@ -773,6 +773,106 @@ namespace MyFoodDiary.Tests.Services
             CollectionAssert.AreEqual(expected, actual);
         }
 
+
+        [TestMethod]
+        public void CalculateAlcoholByProduct_OneDay_OneItem()
+        {
+            // arrange 
+            var foodItems = new List<FoodItem>
+            {
+                new FoodItem{FoodCode = "1", Quantity = 568}
+            };
+
+            var days = new List<Day>
+            {
+                new Day {Date = new DateTime(2015, 1, 19), Food = foodItems}
+            };
+
+            var products = new List<Product>
+            {
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Alcohol", 4.2}}, ServingSize = 0}
+            };
+
+            var expected = new List<double> { 2.4, 2.4 };
+
+            // act
+            List<double> actual = new ChartServices().CalculateAlcoholByProduct(days, products);
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void CalculateAlcoholByProduct_OneDay_MultipleItems()
+        {
+            // arrange 
+            var foodItems = new List<FoodItem>
+            {
+                new FoodItem{FoodCode = "1", Quantity = 568},
+                new FoodItem{FoodCode = "2", Quantity = 2}
+            };
+
+            var days = new List<Day>
+            {
+                new Day {Date = new DateTime(2015, 1, 19), Food = foodItems}
+            };
+
+            var products = new List<Product>
+            {
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Alcohol", 4.2}}, ServingSize = 0},
+                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Alcohol", 4.2}}, ServingSize = 568}
+            };
+
+            var expected = new List<double> { 2.4, 4.8, 7.2 };
+
+            // act
+            List<double> actual = new ChartServices().CalculateAlcoholByProduct(days, products);
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void CalculateAlcoholByProduct_MultipleDays_MultipleItems()
+        {
+            // arrange 
+            var foodItems1 = new List<FoodItem>
+            {
+                new FoodItem{FoodCode = "1", Quantity = 568},
+                new FoodItem{FoodCode = "2", Quantity = 1}
+            };
+
+            var foodItems2 = new List<FoodItem>
+            {
+                new FoodItem{FoodCode = "3", Quantity = 284},
+                new FoodItem{FoodCode = "4", Quantity = 3}
+            };
+
+            var days = new List<Day>
+            {
+                new Day {Date = new DateTime(2015, 1, 19), Food = foodItems1},
+                new Day {Date = new DateTime(2015, 1, 20), Food = foodItems2}
+            };
+
+            var products = new List<Product>
+            {
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Alcohol", 4.2}}, ServingSize = 0},
+                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Alcohol", 4.2}}, ServingSize = 568},
+                new Product{Code = "3", Nutrients = new Dictionary<string, double>{{"Alcohol", 4.2}}, ServingSize = 0},
+                new Product{Code = "4", Nutrients = new Dictionary<string, double>{{"Alcohol", 4.2}}, ServingSize = 284}
+            };
+
+            var expected = new List<double> { 2.4, 2.4, 1.2, 3.6, 9.6 };
+
+            // act
+            List<double> actual = new ChartServices().CalculateAlcoholByProduct(days, products);
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
     }
 
 }

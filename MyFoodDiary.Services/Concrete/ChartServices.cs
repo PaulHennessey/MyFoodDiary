@@ -80,6 +80,51 @@ namespace MyFoodDiary.Services.Concrete
 
 
         /// <summary>
+        /// Note the alcohol data is stored as ABV, i.e. units of alcohol per 100ml. We want to display 'units', e.g. one 
+        /// pint of Bass (4.2 ABV) is 2.4 units.
+        /// </summary>
+        /// <param name="days"></param>
+        /// <param name="products"></param>
+        /// <returns></returns>
+        public List<double> CalculateAlcoholByProduct(List<Day> days, List<Product> products)
+        {
+            // Make a big list of all the fooditems from each day.
+            List<FoodItem> foodItems = new List<FoodItem>();
+            foreach (Day day in days)
+            {
+                foodItems.AddRange(day.Food);
+            }
+
+            // Now group the fooditems to get rid of repeats.
+            var groupedFoodItems = foodItems.
+                                   GroupBy(f => f.FoodCode).
+                                   Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
+
+            // If ServingSize == 0, we assume the data is per 100g. Otherwise it's per serving. WHAT HAPPENS IF SERVING SIZE IS NULL, AS IT WILL BE WITH ALL THE HISTORICAL DATA??
+            var actualNutrientValues = from g in groupedFoodItems
+                                       join p in products
+                                       on g.Code equals p.Code
+                                       select new
+                                       {
+                                           TotalNutrient = p.ServingSize == 0 ? Math.Round(g.Total * (p.Nutrients["Alcohol"] / 1000), 1) :
+                                                                                Math.Round((g.Total * p.ServingSize) * (p.Nutrients["Alcohol"] / 1000), 1)
+                                       };
+
+            // Now convert the anonymous types to a list of objects for the Highchart. 
+            var nutrients = new List<double>();
+            double total = 0;
+            foreach (var product in actualNutrientValues)
+            {
+                nutrients.Add(product.TotalNutrient);
+                total += product.TotalNutrient;
+            }
+
+            nutrients.Add(Math.Round(total,1));
+
+            return nutrients;
+        }
+
+        /// <summary>
         /// This is used for the line charts.
         /// </summary>
         /// <param name="days"></param>
