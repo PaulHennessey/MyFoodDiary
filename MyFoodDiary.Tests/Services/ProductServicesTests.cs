@@ -57,7 +57,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
             };
@@ -128,7 +128,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 },
                 new Product
@@ -143,7 +143,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
 
@@ -222,7 +222,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
             };
@@ -293,7 +293,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 },
                 new Product
@@ -308,7 +308,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
 
@@ -385,7 +385,7 @@ namespace MyFoodDiary.Tests.Services
                                         { "Calories", 1 },
                                         { "Alcohol", 1 }
                                     },
-                ValuesArePerItem = false,
+                //ValuesArePerItem = false,
                 ServingSize = 1
             };
 
@@ -453,7 +453,7 @@ namespace MyFoodDiary.Tests.Services
                                         { "Calories", 1 },
                                         { "Alcohol", 1 }
                                     },
-                ValuesArePerItem = false,
+                //ValuesArePerItem = false,
                 ServingSize = 1
             };
 
@@ -530,7 +530,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
             };
@@ -601,7 +601,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 },
                 new Product
@@ -616,7 +616,7 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    ValuesArePerItem = false,
+                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
 

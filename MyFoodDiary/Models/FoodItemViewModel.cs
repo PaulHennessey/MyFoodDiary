@@ -10,6 +10,6 @@ namespace MyFoodDiary.Models
         public string Code { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
-        public bool ValuesArePerItem { get; set; }
+        //public bool ValuesArePerItem { get; set; }
     }
 }

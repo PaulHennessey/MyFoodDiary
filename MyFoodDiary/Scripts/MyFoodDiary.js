@@ -81,7 +81,7 @@
         $("#foodItemTable").append(row);
         row.append($("<td>" + rowData.Name + "</td>"));
         row.append($("<td><input class='input-quantity' id=" + rowData.Id + " name=" + rowData.Quantity + " type='text' value=" + rowData.Quantity + "></td>"));
-        row.append($("<td>" + (rowData.ValuesArePerItem ? "" : "grams") + "</td>"));
+        //row.append($("<td>" + (rowData.ValuesArePerItem ? "" : "grams") + "</td>"));
         row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + ">Save</a>\n<a class='DeleteLink' href=" + DeleteUrl + "/" + rowData.Id + ">Delete</a></td>"));
     }
 

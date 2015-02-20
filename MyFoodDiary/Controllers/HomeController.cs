@@ -95,7 +95,7 @@ namespace MyFoodDiary.Controllers
 
             Product product = _productServices.GetProduct(Code);
 
-            _foodItemServices.InsertFoodItem(Code, product.ValuesArePerItem ? 1 : 0, date, user.Id);
+            _foodItemServices.InsertFoodItem(Code, product.ServingSize > 0 ? 1 : 0, date, user.Id);
 
             return RedirectToAction("Index");
         }

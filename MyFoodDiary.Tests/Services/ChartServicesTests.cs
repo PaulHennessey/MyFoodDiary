@@ -182,7 +182,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100}
             };
 
             var expected = new List<double> { 5.6, 5.6 };
@@ -212,7 +212,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100}
             };
 
             var expected = new List<double> { 11.2, 11.2 };
@@ -242,7 +242,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10},
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100},
                 new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 1.4}}, ServingSize = 0}
             };
 
@@ -278,7 +278,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10},
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100},
                 new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 1.4}}, ServingSize = 0}
             };
 
@@ -296,41 +296,6 @@ namespace MyFoodDiary.Tests.Services
             CollectionAssert.AreEqual(expected, actual);
         }
 
-
-        [TestMethod]
-        public void CalculateNutrientByProduct_OneDay_TwoItemsOneAlcohol()
-        {
-            // arrange 
-            var foodItems = new List<FoodItem>
-            {
-                new FoodItem{FoodCode = "1", Quantity = 3},
-                new FoodItem{FoodCode = "3", Quantity = 750}
-            };
-
-            var days = new List<Day>
-            {
-                new Day {Date = new DateTime(2015, 1, 19), Food = foodItems}
-            };
-
-            var products = new List<Product>
-            {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Alcohol", 0}}, ServingSize = 10},
-                new Product{Code = "3", Nutrients = new Dictionary<string, double>{{"Alcohol", 9.6}}, ServingSize = 0}
-            };
-
-            var expected = new List<double>
-            {   
-                0.0,
-                10.285714285714286,
-                10.285714285714286
-            };
-
-            // act
-            List<double> actual = new ChartServices().CalculateNutrientByProduct(days, products, "Alcohol");
-
-            // assert
-            CollectionAssert.AreEqual(expected, actual);
-        }
 
 
         [TestMethod]
@@ -350,7 +315,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ValuesArePerItem = true}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100}
             };
 
             var expected = new List<double> { 11.2, 11.2 };
@@ -418,7 +383,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100}
             };
 
             var expected = new List<double> { 5.6 };
@@ -448,7 +413,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100}
             };
 
             var expected = new List<double> { 11.2 };
@@ -478,7 +443,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10},
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100},
                 new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 1.4}}, ServingSize = 0}
             };
 
@@ -509,7 +474,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10},
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100},
                 new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 1.4}}, ServingSize = 0}
             };
 
@@ -523,40 +488,6 @@ namespace MyFoodDiary.Tests.Services
         }
 
 
-        [TestMethod]
-        public void CalculateNutrientByDay_OneDay_TwoItemsOneAlcohol()
-        {
-            // arrange 
-            var foodItems = new List<FoodItem>
-            {
-                new FoodItem{FoodCode = "1", Quantity = 3},
-                new FoodItem{FoodCode = "3", Quantity = 750}
-            };
-
-            var days = new List<Day>
-            {
-                new Day {Date = new DateTime(2015, 1, 19), Food = foodItems}
-            };
-
-            var products = new List<Product>
-            {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Alcohol", 0}}, ValuesArePerItem = true},
-                new Product{Code = "3", Nutrients = new Dictionary<string, double>{{"Alcohol", 9.6}}, ValuesArePerItem = false}
-            };
-
-            var expected = new List<double>
-            {   
-                0.0,
-                10.285714285714286,
-                10.285714285714286
-            };
-
-            // act
-            List<double> actual = new ChartServices().CalculateNutrientByProduct(days, products, "Alcohol");
-
-            // assert
-            CollectionAssert.AreEqual(expected, actual);
-        }
 
 
         [TestMethod]
@@ -576,7 +507,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 10}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5.6}}, ServingSize = 100}
             };
 
             var expected = new List<double> { 5.6, 5.6 };
@@ -620,10 +551,10 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5}}, ValuesArePerItem = true},
-                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 30}}, ValuesArePerItem = false},
-                new Product{Code = "3", Nutrients = new Dictionary<string, double>{{"Protein", 10}}, ValuesArePerItem = true},
-                new Product{Code = "4", Nutrients = new Dictionary<string, double>{{"Protein", 50}}, ValuesArePerItem = false}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 5}}, ServingSize = 100},
+                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 30}}, ServingSize = 0},
+                new Product{Code = "3", Nutrients = new Dictionary<string, double>{{"Protein", 10}}, ServingSize = 100},
+                new Product{Code = "4", Nutrients = new Dictionary<string, double>{{"Protein", 50}}, ServingSize = 0}
             };
 
             var expected = new List<double> { 35, 25, 12.5 };
@@ -654,7 +585,7 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = true}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 100}
             };
 
             var expected = new List<double> { 23.5, 23.5, 52.9 };
@@ -684,8 +615,8 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = true},
-                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = false}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 100},
+                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 0}
             };
 
             var expected = new List<double> { 23.5, 23.5, 52.9 };
@@ -720,8 +651,8 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = true},
-                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = false}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 100},
+                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 0}
             };
 
             var expected = new List<double> { 23.5, 23.5, 52.9 };
@@ -758,10 +689,10 @@ namespace MyFoodDiary.Tests.Services
 
             var products = new List<Product>
             {
-                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = true},
-                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = false},
-                new Product{Code = "3", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = true},
-                new Product{Code = "4", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ValuesArePerItem = false}
+                new Product{Code = "1", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 100},
+                new Product{Code = "2", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 0},
+                new Product{Code = "3", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 100},
+                new Product{Code = "4", Nutrients = new Dictionary<string, double>{{"Protein", 10}, {"Carbohydrates", 10}, {"Fat", 10}}, ServingSize = 0}
             };
 
             var expected = new List<double> { 23.5, 23.5, 52.9 };

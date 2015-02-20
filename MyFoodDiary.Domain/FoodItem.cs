@@ -21,7 +21,7 @@ namespace MyFoodDiary.Domain
         public string Name { get; set; }
         public int Quantity { get; set; }
         public DateTime Date { get; set; }
-        public bool ValuesArePerItem { get; set; }
+//        public bool ValuesArePerItem { get; set; }
 
 
         public override bool Equals(Object obj)
@@ -35,8 +35,15 @@ namespace MyFoodDiary.Domain
                    (this.FoodCode == other.FoodCode) &&
                    (this.Name == other.Name) &&
                    (this.Quantity == other.Quantity) &&
-                   (this.Date == other.Date) &&
-                   (this.ValuesArePerItem == other.ValuesArePerItem);
+                   (this.Date == other.Date);
+
+            //return (this.Id == other.Id) &&
+            //       (this.FoodCode == other.FoodCode) &&
+            //       (this.Name == other.Name) &&
+            //       (this.Quantity == other.Quantity) &&
+            //       (this.Date == other.Date) &&
+            //       (this.ValuesArePerItem == other.ValuesArePerItem);
+        
         }
 
         public override int GetHashCode()
@@ -54,7 +61,7 @@ namespace MyFoodDiary.Domain
 
                 hash = hash * 23 + Quantity.GetHashCode();
                 hash = hash * 23 + Date.GetHashCode();
-                hash = hash * 23 + ValuesArePerItem.GetHashCode();
+                //hash = hash * 23 + ValuesArePerItem.GetHashCode();
 
                 return hash;
             }

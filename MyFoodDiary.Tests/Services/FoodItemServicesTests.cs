@@ -46,8 +46,8 @@ namespace MyFoodDiary.Tests.Services
                     FoodCode = "999",
                     Id = 1,
                     Name = "bacon",
-                    Quantity = 100,
-                    ValuesArePerItem = false
+                    Quantity = 100
+                    //ValuesArePerItem = false
                 }
             };
 
@@ -102,8 +102,8 @@ namespace MyFoodDiary.Tests.Services
                     FoodCode = "999",
                     Id = 1,
                     Name = "bacon",
-                    Quantity = 100,
-                    ValuesArePerItem = false
+                    Quantity = 100
+                    //ValuesArePerItem = false
                 },
 
                 new FoodItem
@@ -112,8 +112,8 @@ namespace MyFoodDiary.Tests.Services
                     FoodCode = "1000",
                     Id = 2,
                     Name = "eggs",
-                    Quantity = 100,
-                    ValuesArePerItem = false
+                    Quantity = 100
+                    //ValuesArePerItem = false
                 }
             };
 
