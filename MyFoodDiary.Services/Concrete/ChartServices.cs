@@ -56,7 +56,7 @@ namespace MyFoodDiary.Services.Concrete
                                        select new
                                        {
                                            TotalNutrient = p.ServingSize == 0 ? Math.Round(g.Total * (p.Nutrients[nutrient] / 100), 1) :
-                                                                                Math.Round((g.Total * p.ServingSize) * (p.Nutrients[nutrient] / 100), 1)
+                                                                                Math.Round(g.Total * p.Nutrients[nutrient], 1)
 
                                        };
 
@@ -149,7 +149,7 @@ namespace MyFoodDiary.Services.Concrete
                                            select new
                                            {
                                                TotalNutrient = p.ServingSize == 0 ? Math.Round(g.Total * (p.Nutrients[nutrient] / 100), 1) :
-                                                                                    Math.Round((g.Total * p.ServingSize) * (p.Nutrients[nutrient] / 100), 1)
+                                                                                    Math.Round(g.Total * p.Nutrients[nutrient], 1)
                                            };
 
                 double totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
@@ -189,7 +189,7 @@ namespace MyFoodDiary.Services.Concrete
                                            select new
                                            {
                                                TotalNutrient = p.ServingSize == 0 ? Math.Round(g.Total * (p.Nutrients["Carbohydrates"] / 100), 1) :
-                                                                                    Math.Round((g.Total * p.ServingSize) * (p.Nutrients["Carbohydrates"] / 100), 1)
+                                                                                    Math.Round(g.Total * p.Nutrients["Carbohydrates"], 1)
                                            };
 
             var actualProteinValues = from g in groupedFoodItems
@@ -198,7 +198,7 @@ namespace MyFoodDiary.Services.Concrete
                                       select new
                                       {
                                           TotalNutrient = p.ServingSize == 0 ? Math.Round(g.Total * (p.Nutrients["Protein"] / 100), 1) :
-                                                                               Math.Round((g.Total * p.ServingSize) * (p.Nutrients["Protein"] / 100), 1)
+                                                                               Math.Round(g.Total * p.Nutrients["Protein"], 1)
                                       };
 
             var actualFatValues = from g in groupedFoodItems
@@ -207,7 +207,7 @@ namespace MyFoodDiary.Services.Concrete
                                   select new
                                   {
                                       TotalNutrient = p.ServingSize == 0 ? Math.Round(g.Total * (p.Nutrients["Fat"] / 100), 1) :
-                                                                           Math.Round((g.Total * p.ServingSize) * (p.Nutrients["Fat"] / 100), 1)
+                                                                           Math.Round(g.Total * p.Nutrients["Fat"], 1)
                                   };
 
             // Now convert the anonymous types to a list of objects for the Highchart.
@@ -228,15 +228,6 @@ namespace MyFoodDiary.Services.Concrete
 
             return nutrients;
         }
-
-
-        //private void ConvertAlcoholToUnits(ref List<double> nutrients)
-        //{
-        //    for (int i = 0; i < nutrients.Count; i++)
-        //    {
-        //        nutrients[i] = nutrients[i] / CalorieValueAlcohol;
-        //    }
-        //}
 
 
         public List<string> GetBarNames(IEnumerable<FoodItem> foodItems)

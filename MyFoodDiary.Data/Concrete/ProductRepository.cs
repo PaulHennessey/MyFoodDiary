@@ -176,6 +176,9 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters.Add(new SqlParameter("@Calories", SqlDbType.VarChar, 255));
                 cmd.Parameters["@Calories"].Value = product.Nutrients["Calories"];
 
+                cmd.Parameters.Add(new SqlParameter("@Alcohol", SqlDbType.VarChar, 255));
+                cmd.Parameters["@Alcohol"].Value = product.Nutrients["Alcohol"];
+
                 cmd.Parameters.Add(new SqlParameter("@ServingSize", SqlDbType.Int));
                 cmd.Parameters["@ServingSize"].Value = product.ServingSize;
 
