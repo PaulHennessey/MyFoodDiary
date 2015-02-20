@@ -19,7 +19,6 @@ namespace MyFoodDiary.Data.Concrete
                        Name = row["Name"].ToString(),
                        Quantity = Convert.ToInt32(row["Quantity"]),
                        Date = Convert.ToDateTime(row["Date"]),
-                       //ValuesArePerItem = !Convert.IsDBNull(row["ValuesArePerItem"]) && Convert.ToBoolean(row["ValuesArePerItem"])
                    };
         }
     }

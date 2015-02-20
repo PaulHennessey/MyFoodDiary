@@ -9,7 +9,6 @@ namespace MyFoodDiary.Domain
         public string Code { get; set; }
         public string Name { get; set; }
         public Dictionary<string, double> Nutrients { get; set; }
-        //public bool ValuesArePerItem { get; set; }
         public int ServingSize { get; set; }
 
         public override bool Equals(Object obj)
@@ -22,12 +21,6 @@ namespace MyFoodDiary.Domain
             return (this.Code == other.Code) &&
                    (this.Name == other.Name) &&
                    (this.Nutrients.SequenceEqual(other.Nutrients));
-
-            //return (this.Code == other.Code) &&
-            //       (this.Name == other.Name) &&
-            //       (this.Nutrients.SequenceEqual(other.Nutrients)) &&
-            //       (this.ValuesArePerItem == other.ValuesArePerItem);
-        
         }
 
         public override int GetHashCode()
@@ -42,8 +35,6 @@ namespace MyFoodDiary.Domain
 
                 if (Nutrients != null)
                     hash = hash * 23 + Nutrients.GetHashCode();
-
-                //hash = hash * 23 + ValuesArePerItem.GetHashCode();
 
                 return hash;
             }

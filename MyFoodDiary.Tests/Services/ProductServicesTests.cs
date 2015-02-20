@@ -25,7 +25,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row = dataTable.NewRow();
@@ -36,7 +35,6 @@ namespace MyFoodDiary.Tests.Services
             row["Fat"] = 1;
             row["Calories"] = 1;
             row["Alcohol"] = 1;
-            row["ValuesArePerItem"] = false;
             row["ServingSize"] = 1;
             dataTable.Rows.Add(row);
 
@@ -57,7 +55,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
             };
@@ -84,7 +81,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row1 = dataTable.NewRow();
@@ -95,7 +91,6 @@ namespace MyFoodDiary.Tests.Services
             row1["Fat"] = 1;
             row1["Calories"] = 1;
             row1["Alcohol"] = 1;
-            row1["ValuesArePerItem"] = false;
             row1["ServingSize"] = 1;
             dataTable.Rows.Add(row1);
 
@@ -107,7 +102,6 @@ namespace MyFoodDiary.Tests.Services
             row2["Fat"] = 1;
             row2["Calories"] = 1;
             row2["Alcohol"] = 1;
-            row2["ValuesArePerItem"] = false;
             row2["ServingSize"] = 1;
             dataTable.Rows.Add(row2);
 
@@ -128,7 +122,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 },
                 new Product
@@ -143,7 +136,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
 
@@ -190,7 +182,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row = dataTable.NewRow();
@@ -201,7 +192,6 @@ namespace MyFoodDiary.Tests.Services
             row["Fat"] = 1;
             row["Calories"] = 1;
             row["Alcohol"] = 1;
-            row["ValuesArePerItem"] = false;
             row["ServingSize"] = 1;
             dataTable.Rows.Add(row);
 
@@ -222,7 +212,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
             };
@@ -249,7 +238,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row1 = dataTable.NewRow();
@@ -260,8 +248,7 @@ namespace MyFoodDiary.Tests.Services
             row1["Fat"] = 1;
             row1["Calories"] = 1;
             row1["Alcohol"] = 1;
-            row1["ValuesArePerItem"] = false;
-            row1["ServingSize"] = 1;
+            row1["ServingSize"] = 0;
             dataTable.Rows.Add(row1);
 
             var row2 = dataTable.NewRow();
@@ -272,8 +259,7 @@ namespace MyFoodDiary.Tests.Services
             row2["Fat"] = 1;
             row2["Calories"] = 1;
             row2["Alcohol"] = 1;
-            row2["ValuesArePerItem"] = false;
-            row2["ServingSize"] = 1;
+            row2["ServingSize"] = 0;
             dataTable.Rows.Add(row2);
 
             var mock = new Mock<IProductRepository>();
@@ -293,7 +279,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 },
                 new Product
@@ -308,7 +293,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
 
@@ -355,7 +339,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row = dataTable.NewRow();
@@ -366,7 +349,6 @@ namespace MyFoodDiary.Tests.Services
             row["Fat"] = 1;
             row["Calories"] = 1;
             row["Alcohol"] = 1;
-            row["ValuesArePerItem"] = false;
             row["ServingSize"] = 1;
             dataTable.Rows.Add(row);
 
@@ -385,7 +367,6 @@ namespace MyFoodDiary.Tests.Services
                                         { "Calories", 1 },
                                         { "Alcohol", 1 }
                                     },
-                //ValuesArePerItem = false,
                 ServingSize = 1
             };
 
@@ -411,7 +392,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row1 = dataTable.NewRow();
@@ -422,7 +402,6 @@ namespace MyFoodDiary.Tests.Services
             row1["Fat"] = 1;
             row1["Calories"] = 1;
             row1["Alcohol"] = 1;
-            row1["ValuesArePerItem"] = false;
             row1["ServingSize"] = 1;
             dataTable.Rows.Add(row1);
 
@@ -434,7 +413,6 @@ namespace MyFoodDiary.Tests.Services
             row2["Fat"] = 1;
             row2["Calories"] = 1;
             row2["Alcohol"] = 1;
-            row2["ValuesArePerItem"] = false;
             row2["ServingSize"] = 1;
             dataTable.Rows.Add(row2);
 
@@ -453,7 +431,6 @@ namespace MyFoodDiary.Tests.Services
                                         { "Calories", 1 },
                                         { "Alcohol", 1 }
                                     },
-                //ValuesArePerItem = false,
                 ServingSize = 1
             };
 
@@ -498,7 +475,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row = dataTable.NewRow();
@@ -509,7 +485,6 @@ namespace MyFoodDiary.Tests.Services
             row["Fat"] = 1;
             row["Calories"] = 1;
             row["Alcohol"] = 1;
-            row["ValuesArePerItem"] = false;
             row["ServingSize"] = 1;
             dataTable.Rows.Add(row);
 
@@ -530,7 +505,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
             };
@@ -557,7 +531,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Fat");
             dataTable.Columns.Add("Calories");
             dataTable.Columns.Add("Alcohol");
-            dataTable.Columns.Add("ValuesArePerItem");
             dataTable.Columns.Add("ServingSize");
 
             var row1 = dataTable.NewRow();
@@ -568,7 +541,6 @@ namespace MyFoodDiary.Tests.Services
             row1["Fat"] = 1;
             row1["Calories"] = 1;
             row1["Alcohol"] = 1;
-            row1["ValuesArePerItem"] = false;
             row1["ServingSize"] = 1;
             dataTable.Rows.Add(row1);
 
@@ -580,7 +552,6 @@ namespace MyFoodDiary.Tests.Services
             row2["Fat"] = 1;
             row2["Calories"] = 1;
             row2["Alcohol"] = 1;
-            row2["ValuesArePerItem"] = false;
             row2["ServingSize"] = 1;
             dataTable.Rows.Add(row2);
 
@@ -601,7 +572,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 },
                 new Product
@@ -616,7 +586,6 @@ namespace MyFoodDiary.Tests.Services
                         { "Calories", 1 },
                         { "Alcohol", 1 }
                     },
-                    //ValuesArePerItem = false,
                     ServingSize = 1
                 }
 

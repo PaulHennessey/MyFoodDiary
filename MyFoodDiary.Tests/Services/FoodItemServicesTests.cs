@@ -24,7 +24,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Name");
             dataTable.Columns.Add("Quantity");
             dataTable.Columns.Add("Date");
-            dataTable.Columns.Add("ValuesArePerItem");
 
             var row = dataTable.NewRow();
             row["Id"] = 1;
@@ -32,7 +31,6 @@ namespace MyFoodDiary.Tests.Services
             row["Name"] = "bacon";
             row["Quantity"] = 100;
             row["Date"] = DateTime.Today;
-            row["ValuesArePerItem"] = false;
             dataTable.Rows.Add(row);
 
             var mock = new Mock<IFoodItemRepository>();
@@ -47,7 +45,6 @@ namespace MyFoodDiary.Tests.Services
                     Id = 1,
                     Name = "bacon",
                     Quantity = 100
-                    //ValuesArePerItem = false
                 }
             };
 
@@ -71,7 +68,6 @@ namespace MyFoodDiary.Tests.Services
             dataTable.Columns.Add("Name");
             dataTable.Columns.Add("Quantity");
             dataTable.Columns.Add("Date");
-            dataTable.Columns.Add("ValuesArePerItem");
 
             var row1 = dataTable.NewRow();
             row1["Id"] = 1;
@@ -79,7 +75,6 @@ namespace MyFoodDiary.Tests.Services
             row1["Name"] = "bacon";
             row1["Quantity"] = 100;
             row1["Date"] = DateTime.Today;
-            row1["ValuesArePerItem"] = false;
             dataTable.Rows.Add(row1);
 
             var row2 = dataTable.NewRow();
@@ -88,7 +83,6 @@ namespace MyFoodDiary.Tests.Services
             row2["Name"] = "eggs";
             row2["Quantity"] = 100;
             row2["Date"] = DateTime.Today;
-            row2["ValuesArePerItem"] = false;
             dataTable.Rows.Add(row2);
 
             var mock = new Mock<IFoodItemRepository>();
@@ -103,7 +97,6 @@ namespace MyFoodDiary.Tests.Services
                     Id = 1,
                     Name = "bacon",
                     Quantity = 100
-                    //ValuesArePerItem = false
                 },
 
                 new FoodItem
@@ -113,7 +106,6 @@ namespace MyFoodDiary.Tests.Services
                     Id = 2,
                     Name = "eggs",
                     Quantity = 100
-                    //ValuesArePerItem = false
                 }
             };
 
