@@ -65,6 +65,13 @@ namespace MyFoodDiary.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Favourite(int id)
+        {
+            _foodItemServices.DeleteFoodItem(id);
+
+            return RedirectToAction("Index");
+        }
+
         /// <summary>
         /// This gives the autocomplete field a list of products.
         /// </summary>

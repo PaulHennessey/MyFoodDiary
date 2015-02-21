@@ -6,6 +6,7 @@
     var RefreshUrl = "/food/home/refresh";
     var DeleteUrl = "/food/home/delete";
     var SaveUrl = "/food/home/save";
+    var FavouriteUrl = "/food/home/favourite";
 
 
     // This rather dense code is explained here: http://blogs.msdn.com/b/stuartleeks/archive/2012/04/23/asp-net-mvc-amp-jquery-ui-autocomplete.aspx
@@ -82,7 +83,9 @@
         row.append($("<td>" + rowData.Name + "</td>"));
         row.append($("<td><input class='input-quantity' id=" + rowData.Id + " name=" + rowData.Quantity + " type='text' value=" + rowData.Quantity + "></td>"));
         //row.append($("<td>" + (rowData.ValuesArePerItem ? "" : "grams") + "</td>"));
-        row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + ">Save</a>\n<a class='DeleteLink' href=" + DeleteUrl + "/" + rowData.Id + ">Delete</a></td>"));
+        row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + ">Save</a>" +
+                         "<a class='DeleteLink' href=" + DeleteUrl + "/" + rowData.Id + ">Delete</a>" +
+                         "<a class='FavouriteLink' href=" + FavouriteUrl + "/" + rowData.Id + ">Favourite</a></td>"));
     }
 
 

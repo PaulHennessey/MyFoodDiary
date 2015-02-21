@@ -13,8 +13,22 @@
     @Html.TextBox("search", null, new { data_autocomplete_url = Url.Action("Search"), data_selectfood_url = Url.Action("SelectFood", new { Code = "replace", date = "replace-date" }) })
 </div>
 
-<table id="foodItemTable">
-</table>
+<div id="foodTableDiv">
+    <table id="foodItemTable"></table>
+</div>
+
+<div id="favouritesTableDiv">
+    <table id="favouritesTable">
+        <tr>
+            <td>hello</td>
+            <td>world</td>
+        </tr>
+        <tr>
+            <td>hello</td>
+            <td>world</td>
+        </tr>
+    </table>
+</div>
 
 <script src="@Url.Content("~/Scripts/MyFoodDiary.js")" type="text/javascript"></script>
 
