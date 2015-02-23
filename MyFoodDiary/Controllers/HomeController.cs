@@ -25,6 +25,7 @@ namespace MyFoodDiary.Controllers
             _foodItemServices = foodItemServices;
             _userServices = userServices;
             Mapper.CreateMap<FoodItem, FoodItemViewModel>();
+            Mapper.CreateMap<Favourite, FavouriteViewModel>();
             Mapper.CreateMap<Product, ProductAutocompleteViewModel>()
                 .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.Code));
@@ -41,10 +42,12 @@ namespace MyFoodDiary.Controllers
 
             // Order by Id, so the most recent item is at the top of the list.
             List<FoodItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
+            List<Favourite> favourites = _foodItemServices.GetFavourites(user.Id).OrderByDescending(x => x.Name).ToList();
 
             var viewModel = new FoodItemListViewModel()
             {
-                FoodItems = Mapper.Map<IEnumerable<FoodItem>, IEnumerable<FoodItemViewModel>>(foodItems)
+                FoodItems = Mapper.Map<IEnumerable<FoodItem>, IEnumerable<FoodItemViewModel>>(foodItems),
+                Favourites = Mapper.Map<IEnumerable<Favourite>, IEnumerable<FavouriteViewModel>>(favourites)
             };
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
@@ -64,10 +67,31 @@ namespace MyFoodDiary.Controllers
 
             return RedirectToAction("Index");
         }
-
-        public ActionResult Favourite(int id)
+    
+        /// <summary>
+        /// When we favourite something, we also want to save it - otherwise it is possible to edit a quantity, then
+        /// update the Favourites table without updating the FoodItems.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
+        public ActionResult Favourite(int id, int quantity)
         {
-            _foodItemServices.DeleteFoodItem(id);
+            User user = _userServices.GetUser(User.Identity.Name);
+
+            _foodItemServices.UpdateFoodItem(id, quantity);
+            _foodItemServices.MergeFavourite(user.Id, id, quantity);
+
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult UseFavourite(int id, int quantity)
+        {
+            User user = _userServices.GetUser(User.Identity.Name);
+
+            _foodItemServices.UpdateFoodItem(id, quantity);
+            _foodItemServices.MergeFavourite(user.Id, id, quantity);
 
             return RedirectToAction("Index");
         }

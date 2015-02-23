@@ -7,7 +7,7 @@
     var DeleteUrl = "/food/home/delete";
     var SaveUrl = "/food/home/save";
     var FavouriteUrl = "/food/home/favourite";
-
+    var UseFavouriteUrl = "/food/home/usefavourite";
 
     // This rather dense code is explained here: http://blogs.msdn.com/b/stuartleeks/archive/2012/04/23/asp-net-mvc-amp-jquery-ui-autocomplete.aspx
     $('*[data-autocomplete-url]')
@@ -49,6 +49,7 @@
                     });
                     $('.DeleteLink').on('click', DeleteLinkClick);
                     $('.SaveLink').on('click', SaveLinkClick);
+                    $('.FavouriteLink').on('click', FavouriteLinkClick);
                 }
             });
 
@@ -64,20 +65,28 @@
             date: sessionStorage["currentDate"]
         },
         success: function (json) {
+
             var foodItemTable = $("#foodItemTable");
             foodItemTable.empty();
             $(json.FoodItems).each(function (index, foodItem) {
-                drawRow(foodItem);               
+                drawFoodItemRow(foodItem);               
+            });
+
+            var favouriteTable = $("#favouriteTable");
+            favouriteTable.empty();
+            $(json.Favourites).each(function (index, favourite) {
+                drawFavouriteRow(favourite);
             });
 
             $('.DeleteLink').on('click', DeleteLinkClick);
             $(".SaveLink").on("click", SaveLinkClick);
+            $('.FavouriteLink').on('click', FavouriteLinkClick);
             // Put the focus on the first input field.
             $("#foodItemTable tr:first").find("input").focus();
         }
     });
 
-    function drawRow(rowData) {
+    function drawFoodItemRow(rowData) {
         var row = $("<tr />")
         $("#foodItemTable").append(row);
         row.append($("<td>" + rowData.Name + "</td>"));
@@ -88,6 +97,14 @@
                          "<a class='FavouriteLink' href=" + FavouriteUrl + "/" + rowData.Id + ">Favourite</a></td>"));
     }
 
+    function drawFavouriteRow(rowData) {
+        var row = $("<tr />")
+        $("#favouritesTable").append(row);
+        row.append($("<td><a class='UseFavouriteLink' href=" + UseFavouriteUrl + "/" + rowData.Code + ">" + rowData.Name + "</td>"));
+        //row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + ">Save</a>" +
+        //                 "<a class='DeleteLink' href=" + DeleteUrl + "/" + rowData.Id + ">Delete</a>" +
+        //                 "<a class='FavouriteLink' href=" + FavouriteUrl + "/" + rowData.Id + ">Favourite</a></td>"));
+    }
 
 
     function SetDateOnLoad() {
@@ -113,6 +130,25 @@
 
 
     function SaveLinkClick(e) {
+
+        e.preventDefault();
+
+        // First get the food item id - it is the last bit of the url        
+        var parsedUrl = this.href.split("/");
+        var foodItemId = parsedUrl[parsedUrl.length - 1];
+
+        // Now get the quantity - the fooditemid is used as the id of the quantity input field        
+        var quantity = $("#" + foodItemId).val();
+
+        // Now stick the quantity on the end of the url
+        var link = this.href + "/" + quantity;
+
+        // Go to it...
+        window.location.href = link;
+    }
+
+
+    function FavouriteLinkClick(e) {
 
         e.preventDefault();
 

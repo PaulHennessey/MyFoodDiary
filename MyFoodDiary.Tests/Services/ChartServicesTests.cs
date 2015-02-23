@@ -15,7 +15,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Name = "XXX"}
+                new FoodItem{Code = "1", Name = "XXX"}
             };
 
             var days = new List<Day>
@@ -39,8 +39,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Name = "XXX"},
-                new FoodItem{FoodCode = "1", Name = "XXX"}
+                new FoodItem{Code = "1", Name = "XXX"},
+                new FoodItem{Code = "1", Name = "XXX"}
             };
 
             var days = new List<Day>
@@ -64,8 +64,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Name = "XXX"},
-                new FoodItem{FoodCode = "2", Name = "YYY"}
+                new FoodItem{Code = "1", Name = "XXX"},
+                new FoodItem{Code = "2", Name = "YYY"}
             };
 
             var days = new List<Day>
@@ -89,7 +89,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Name = "XXX"}
+                new FoodItem{Code = "1", Name = "XXX"}
             };
 
             var days = new List<Day>
@@ -114,8 +114,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Name = "XXX"},
-                new FoodItem{FoodCode = "2", Name = "YYY"}
+                new FoodItem{Code = "1", Name = "XXX"},
+                new FoodItem{Code = "2", Name = "YYY"}
             };
 
             var days = new List<Day>
@@ -140,14 +140,14 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems1 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Name = "AAA"},
-                new FoodItem{FoodCode = "2", Name = "BBB"}
+                new FoodItem{Code = "1", Name = "AAA"},
+                new FoodItem{Code = "2", Name = "BBB"}
             };
 
             var foodItems2 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "3", Name = "XXX"},
-                new FoodItem{FoodCode = "4", Name = "YYY"}
+                new FoodItem{Code = "3", Name = "XXX"},
+                new FoodItem{Code = "4", Name = "YYY"}
             };
 
             var days = new List<Day>
@@ -172,7 +172,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -201,8 +201,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1},
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1},
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -231,8 +231,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1},
-                new FoodItem{FoodCode = "2", Quantity = 100}
+                new FoodItem{Code = "1", Quantity = 1},
+                new FoodItem{Code = "2", Quantity = 100}
             };
 
             var days = new List<Day>
@@ -267,8 +267,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 3},
-                new FoodItem{FoodCode = "2", Quantity = 100}
+                new FoodItem{Code = "1", Quantity = 3},
+                new FoodItem{Code = "2", Quantity = 100}
             };
 
             var days = new List<Day>
@@ -304,7 +304,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -373,7 +373,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -402,8 +402,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1},
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1},
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -432,8 +432,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1},
-                new FoodItem{FoodCode = "2", Quantity = 100}
+                new FoodItem{Code = "1", Quantity = 1},
+                new FoodItem{Code = "2", Quantity = 100}
             };
 
             var days = new List<Day>
@@ -463,8 +463,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 3},
-                new FoodItem{FoodCode = "2", Quantity = 100}
+                new FoodItem{Code = "1", Quantity = 3},
+                new FoodItem{Code = "2", Quantity = 100}
             };
 
             var days = new List<Day>
@@ -496,7 +496,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -526,20 +526,20 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems1 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1},
-                new FoodItem{FoodCode = "2", Quantity = 100}
+                new FoodItem{Code = "1", Quantity = 1},
+                new FoodItem{Code = "2", Quantity = 100}
             };
 
             var foodItems2 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "3", Quantity = 2},
-                new FoodItem{FoodCode = "4", Quantity = 10}
+                new FoodItem{Code = "3", Quantity = 2},
+                new FoodItem{Code = "4", Quantity = 10}
             };
 
             var foodItems3 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "3", Quantity = 1},
-                new FoodItem{FoodCode = "4", Quantity = 5}
+                new FoodItem{Code = "3", Quantity = 1},
+                new FoodItem{Code = "4", Quantity = 5}
             };
 
             var days = new List<Day>
@@ -575,7 +575,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -604,8 +604,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}, 
-                new FoodItem{FoodCode = "2", Quantity = 100}
+                new FoodItem{Code = "1", Quantity = 1}, 
+                new FoodItem{Code = "2", Quantity = 100}
             };
 
             var days = new List<Day>
@@ -635,12 +635,12 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems1 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var foodItems2 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 1}
             };
 
             var days = new List<Day>
@@ -671,14 +671,14 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems1 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 1},
-                new FoodItem{FoodCode = "2", Quantity = 100}
+                new FoodItem{Code = "1", Quantity = 1},
+                new FoodItem{Code = "2", Quantity = 100}
             };
 
             var foodItems2 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "3", Quantity = 1},
-                new FoodItem{FoodCode = "4", Quantity = 100}
+                new FoodItem{Code = "3", Quantity = 1},
+                new FoodItem{Code = "4", Quantity = 100}
             };
 
             var days = new List<Day>
@@ -711,7 +711,7 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 568}
+                new FoodItem{Code = "1", Quantity = 568}
             };
 
             var days = new List<Day>
@@ -740,8 +740,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 568},
-                new FoodItem{FoodCode = "2", Quantity = 2}
+                new FoodItem{Code = "1", Quantity = 568},
+                new FoodItem{Code = "2", Quantity = 2}
             };
 
             var days = new List<Day>
@@ -771,14 +771,14 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var foodItems1 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "1", Quantity = 568},
-                new FoodItem{FoodCode = "2", Quantity = 1}
+                new FoodItem{Code = "1", Quantity = 568},
+                new FoodItem{Code = "2", Quantity = 1}
             };
 
             var foodItems2 = new List<FoodItem>
             {
-                new FoodItem{FoodCode = "3", Quantity = 284},
-                new FoodItem{FoodCode = "4", Quantity = 3}
+                new FoodItem{Code = "3", Quantity = 284},
+                new FoodItem{Code = "4", Quantity = 3}
             };
 
             var days = new List<Day>

@@ -12,16 +12,20 @@ namespace MyFoodDiary.Services.Concrete
     {
         private readonly IFoodItemRepository _foodItemRepository;
         private readonly IFoodItemMapper _foodItemMapper;
+        private readonly IFavouriteRepository _favouriteRepository;
+        private readonly IFavouriteMapper _favouriteMapper;
 
 
         public FoodItemServices()
         { }
 
 
-        public FoodItemServices(IFoodItemRepository foodItemRepository, IFoodItemMapper foodItemMapper)
+        public FoodItemServices(IFoodItemRepository foodItemRepository, IFoodItemMapper foodItemMapper, IFavouriteRepository favouriteRepository, IFavouriteMapper favouriteMapper)
         {
             _foodItemRepository = foodItemRepository;
             _foodItemMapper = foodItemMapper;
+            _favouriteRepository = favouriteRepository;
+            _favouriteMapper = favouriteMapper;
         }
 
 
@@ -69,5 +73,23 @@ namespace MyFoodDiary.Services.Concrete
             _foodItemRepository.DeleteFoodItem(id);
         }
 
+
+        public IEnumerable<Favourite> GetFavourites(int userId)
+        {
+            DataTable favourites = _favouriteRepository.GetFavourites(userId);
+            return _favouriteMapper.HydrateFavourites(favourites);
+        }
+
+
+        public void MergeFavourite(int userId, int id, int quantity)
+        {
+            _favouriteRepository.MergeFavourite(userId, id, quantity);
+        }
+
+
+        public void DeleteFavourite(int userId, string code)
+        {
+            _favouriteRepository.DeleteFavourite(userId, code);
+        }
     }
 }

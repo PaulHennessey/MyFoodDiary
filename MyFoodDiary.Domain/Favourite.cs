@@ -2,39 +2,32 @@
 
 namespace MyFoodDiary.Domain
 {
-    public class FoodItem
+    public class Favourite
     {
-        public FoodItem()
+        public Favourite()
         { }
 
-        public FoodItem(int id, string code, string name, int quantity, DateTime date)
+        public Favourite(string code, string name, int quantity)
         {
-            Id = id;
             Code = code;
             Name = name;
             Quantity = quantity;
-            Date = date;
         }
 
-        public int Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
-        public DateTime Date { get; set; }
-
 
         public override bool Equals(Object obj)
         {
-            FoodItem other = obj as FoodItem;
+            Favourite other = obj as Favourite;
 
             if (other == null)
                 return false;
 
-            return (this.Id == other.Id) &&
-                   (this.Code == other.Code) &&
+            return (this.Code == other.Code) &&
                    (this.Name == other.Name) &&
-                   (this.Quantity == other.Quantity) &&
-                   (this.Date == other.Date);
+                   (this.Quantity == other.Quantity);
         }
 
         public override int GetHashCode()
@@ -42,7 +35,6 @@ namespace MyFoodDiary.Domain
             unchecked // Overflow is fine, just wrap
             {
                 int hash = 17;
-                hash = hash * 23 + Id.GetHashCode();
 
                 if (Code != null)
                     hash = hash * 23 + Code.GetHashCode();
@@ -51,7 +43,6 @@ namespace MyFoodDiary.Domain
                     hash = hash * 23 + Name.GetHashCode();
 
                 hash = hash * 23 + Quantity.GetHashCode();
-                hash = hash * 23 + Date.GetHashCode();
 
                 return hash;
             }

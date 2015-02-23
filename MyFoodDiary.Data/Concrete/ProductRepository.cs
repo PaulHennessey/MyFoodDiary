@@ -54,7 +54,7 @@ namespace MyFoodDiary.Data.Concrete
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.Add(new SqlParameter("@Food_Codes", SqlDbType.Structured));
-                command.Parameters["@Food_Codes"].Value = CreateFoodCodeTable(foodItems);
+                command.Parameters["@Food_Codes"].Value = CreateCodeTable(foodItems);
 
                 SqlDataAdapter da = new SqlDataAdapter(command);
                 da.Fill(dataTable);
@@ -251,13 +251,13 @@ namespace MyFoodDiary.Data.Concrete
             return dataTable;
         }
 
-        private DataTable CreateFoodCodeTable(IEnumerable<FoodItem> foodItems)
+        private DataTable CreateCodeTable(IEnumerable<FoodItem> foodItems)
         {
             var table = new DataTable();
             table.Columns.Add("Food Code", typeof(String));
             foreach (FoodItem foodItem in foodItems)
             {
-                table.Rows.Add(foodItem.FoodCode);
+                table.Rows.Add(foodItem.Code);
             }
             return table;
         }

@@ -46,7 +46,7 @@ namespace MyFoodDiary.Services.Concrete
 
             // Now group the fooditems to get rid of repeats.
             var groupedFoodItems = foodItems.
-                                   GroupBy(f => f.FoodCode).
+                                   GroupBy(f => f.Code).
                                    Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
 
             // If ServingSize == 0, we assume the data is per 100g. Otherwise it's per serving.
@@ -90,7 +90,7 @@ namespace MyFoodDiary.Services.Concrete
 
             // Now group the fooditems to get rid of repeats.
             var groupedFoodItems = foodItems.
-                                   GroupBy(f => f.FoodCode).
+                                   GroupBy(f => f.Code).
                                    Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
 
             // If ServingSize == 0, we assume the data is per 100g. Otherwise it's per serving.
@@ -131,7 +131,7 @@ namespace MyFoodDiary.Services.Concrete
             {
                 // Now group the fooditems to get rid of repeats.
                 var groupedFoodItems = day.Food.
-                                       GroupBy(f => f.FoodCode).
+                                       GroupBy(f => f.Code).
                                        Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
 
                 var actualNutrientValues = from g in groupedFoodItems
@@ -162,7 +162,7 @@ namespace MyFoodDiary.Services.Concrete
 
             // First group the fooditems in case there are repeats, e.g. two apples.
             var groupedFoodItems = foodItems.
-                                   GroupBy(f => f.FoodCode).
+                                   GroupBy(f => f.Code).
                                    Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
 
 
@@ -214,7 +214,7 @@ namespace MyFoodDiary.Services.Concrete
         {
             // First group the fooditems in case there are repeats, e.g. two apples.
             var groupedFoodItems = foodItems.
-                                   GroupBy(f => f.FoodCode).
+                                   GroupBy(f => f.Code).
                                    Select(fg => new { fg.First().Name });
 
             var names = groupedFoodItems.Select(g => g.Name).ToList();
@@ -235,7 +235,7 @@ namespace MyFoodDiary.Services.Concrete
 
             // Now group the fooditems to get rid of repeats.
             List<string> names = foodItems.
-                                   GroupBy(f => f.FoodCode).
+                                   GroupBy(f => f.Code).
                                    Select(fg => fg.First().Name).ToList();
 
             names.Add("Total");

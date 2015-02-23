@@ -7,18 +7,16 @@ using MyFoodDiary.Domain;
 
 namespace MyFoodDiary.Data.Concrete
 {
-    public class FoodItemMapper : IFoodItemMapper
+    public class FavouriteMapper : IFavouriteMapper
     {
-        public IEnumerable<FoodItem> HydrateFoodItems(DataTable dataTable)
+        public IEnumerable<Favourite> HydrateFavourites(DataTable dataTable)
         {
             return from DataRow row in dataTable.Rows
-                   select new FoodItem
+                   select new Favourite
                    {
-                       Id = Convert.ToInt32(row["Id"]),
                        Code = row["Code"].ToString(),
                        Name = row["Name"].ToString(),
                        Quantity = Convert.ToInt32(row["Quantity"]),
-                       Date = Convert.ToDateTime(row["Date"]),
                    };
         }
     }

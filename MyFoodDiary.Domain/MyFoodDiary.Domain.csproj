@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Day.cs" />
     <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Favourite.cs" />
     <Compile Include="FoodItem.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

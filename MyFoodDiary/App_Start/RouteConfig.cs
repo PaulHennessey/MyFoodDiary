@@ -46,6 +46,12 @@ namespace MyFoodDiary
             );
 
             routes.MapRoute(
+                name: "Favourite",
+                url: "Home/Favourite/{id}/{quantity}",
+                defaults: new { controller = "Home", action = "Favourite", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "SelectFood",
                 url: "Home/SelectFood/{Code}/{date}",
                 defaults: new { controller = "Home", action = "SelectFood", Code = UrlParameter.Optional, date = UrlParameter.Optional }

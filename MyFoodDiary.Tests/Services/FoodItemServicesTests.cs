@@ -41,14 +41,14 @@ namespace MyFoodDiary.Tests.Services
                 new FoodItem
                 {
                     Date = DateTime.Today,
-                    FoodCode = "999",
+                    Code = "999",
                     Id = 1,
                     Name = "bacon",
                     Quantity = 100
                 }
             };
 
-            var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper());
+            var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper(), new FavouriteRepository(), new FavouriteMapper());
 
             // act
             List<FoodItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
@@ -93,7 +93,7 @@ namespace MyFoodDiary.Tests.Services
                 new FoodItem
                 {
                     Date = DateTime.Today,
-                    FoodCode = "999",
+                    Code = "999",
                     Id = 1,
                     Name = "bacon",
                     Quantity = 100
@@ -102,14 +102,14 @@ namespace MyFoodDiary.Tests.Services
                 new FoodItem
                 {
                     Date = DateTime.Today,
-                    FoodCode = "1000",
+                    Code = "1000",
                     Id = 2,
                     Name = "eggs",
                     Quantity = 100
                 }
             };
 
-            var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper());
+            var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper(), new FavouriteRepository(), new FavouriteMapper());
 
             // act
             List<FoodItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
@@ -125,8 +125,8 @@ namespace MyFoodDiary.Tests.Services
             // arrange 
             var dataTable = new DataTable();
             var mock = new Mock<IFoodItemRepository>();
-            mock.Setup(m => m.GetFoodItems(It.IsAny<DateTime>(), It.IsAny<int>())).Returns(dataTable);
-            var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper());
+            mock.Setup(m => m.GetFoodItems(It.IsAny<DateTime>(), It.IsAny<int>())).Returns(dataTable);            
+            var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper(), new FavouriteRepository(), new FavouriteMapper());
 
             var expected = new List<FoodItem>();
 
