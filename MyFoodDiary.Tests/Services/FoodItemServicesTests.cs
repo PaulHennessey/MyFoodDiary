@@ -137,5 +137,115 @@ namespace MyFoodDiary.Tests.Services
             CollectionAssert.AreEqual(expected, actual);
         }
 
+
+
+        [TestMethod]
+        public void GetFavourites_OneItemExists()
+        {
+            // arrange 
+            var dataTable = new DataTable();
+            dataTable.Columns.Add("Code");
+            dataTable.Columns.Add("Name");
+            dataTable.Columns.Add("Quantity");
+
+            var row = dataTable.NewRow();
+            row["Code"] = "999";
+            row["Name"] = "bacon";           
+            row["Quantity"] = 100;            
+            dataTable.Rows.Add(row);
+
+            var mock = new Mock<IFavouriteRepository>();
+            mock.Setup(m => m.GetFavourites(It.IsAny<int>())).Returns(dataTable);
+
+            var expected = new List<Favourite>
+            {
+                new Favourite
+                {                    
+                    Code = "999",                 
+                    Name = "bacon",
+                    Quantity = 100
+                }
+            };
+
+            var foodItemServices = new FoodItemServices(new FoodItemRepository(), new FoodItemMapper(), mock.Object, new FavouriteMapper());
+
+            // act
+            List<Favourite> actual = foodItemServices.GetFavourites(1).ToList();
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void GetFavourites_MultipleItemsExist()
+        {
+            // arrange 
+            var dataTable = new DataTable();
+            dataTable.Columns.Add("Code");
+            dataTable.Columns.Add("Name");
+            dataTable.Columns.Add("Quantity");
+
+            var row1 = dataTable.NewRow();
+            row1["Code"] = "999";
+            row1["Name"] = "bacon";
+            row1["Quantity"] = 100;
+            dataTable.Rows.Add(row1);
+
+            var row2 = dataTable.NewRow();
+            row2["Code"] = "1000";
+            row2["Name"] = "eggs";
+            row2["Quantity"] = 50;
+            dataTable.Rows.Add(row2);
+
+            var mock = new Mock<IFavouriteRepository>();
+            mock.Setup(m => m.GetFavourites(It.IsAny<int>())).Returns(dataTable);
+
+            var expected = new List<Favourite>
+            {
+                new Favourite
+                {                    
+                    Code = "999",                 
+                    Name = "bacon",
+                    Quantity = 100
+                },
+                new Favourite
+                {                    
+                    Code = "1000",                 
+                    Name = "eggs",
+                    Quantity = 50
+                }
+
+            };
+
+            var foodItemServices = new FoodItemServices(new FoodItemRepository(), new FoodItemMapper(), mock.Object, new FavouriteMapper());
+
+            // act
+            List<Favourite> actual = foodItemServices.GetFavourites(1).ToList();
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
+        [TestMethod]
+        public void GetFavourites_NoItemsExist()
+        {
+            // arrange 
+            var dataTable = new DataTable();
+            var mock = new Mock<IFavouriteRepository>();
+            mock.Setup(m => m.GetFavourites(It.IsAny<int>())).Returns(dataTable);
+            var foodItemServices = new FoodItemServices(new FoodItemRepository(), new FoodItemMapper(), mock.Object, new FavouriteMapper());
+
+            var expected = new List<Favourite>();
+
+            // act
+            List<Favourite> actual = foodItemServices.GetFavourites(1).ToList();
+
+            // assert
+            CollectionAssert.AreEqual(expected, actual);
+        }
+
+
     }
 }

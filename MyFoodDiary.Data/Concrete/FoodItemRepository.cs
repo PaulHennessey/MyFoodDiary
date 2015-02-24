@@ -9,6 +9,9 @@ namespace MyFoodDiary.Data.Concrete
     {
         private readonly string _connectionString;
 
+        public FoodItemRepository()
+        {}
+
         public FoodItemRepository(string connectionString)
         {
             _connectionString = connectionString;
