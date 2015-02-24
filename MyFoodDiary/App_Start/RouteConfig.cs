@@ -58,6 +58,18 @@ namespace MyFoodDiary
             );
 
             routes.MapRoute(
+                name: "UseFavourite",
+                url: "Home/UseFavourite/{Code}/{date}",
+                defaults: new { controller = "Home", action = "UseFavourite", Code = UrlParameter.Optional, date = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "DeleteFavourite",
+                url: "Home/DeleteFavourite/{Code}",
+                defaults: new { controller = "Home", action = "DeleteFavourite", Code = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "CreateProduct",
                 url: "Products/Create",
                 defaults: new { controller = "Products", action = "Create" }

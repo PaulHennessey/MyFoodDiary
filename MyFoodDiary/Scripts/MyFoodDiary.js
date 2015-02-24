@@ -8,6 +8,7 @@
     var SaveUrl = "/food/home/save";
     var FavouriteUrl = "/food/home/favourite";
     var UseFavouriteUrl = "/food/home/usefavourite";
+    var DeleteFavouriteUrl = "/food/home/deletefavourite";
 
     // This rather dense code is explained here: http://blogs.msdn.com/b/stuartleeks/archive/2012/04/23/asp-net-mvc-amp-jquery-ui-autocomplete.aspx
     $('*[data-autocomplete-url]')
@@ -16,7 +17,7 @@
                minLength: 3,
                source: $(this).data("autocomplete-url"),
                select: function (event, ui) {
-
+                   
                    var actionlink = $(this).data("selectfood-url");
 
                    actionlink = actionlink.replace("replace", ui.item.value);                              // Insert the parameter (on the client)
@@ -50,6 +51,7 @@
                     $('.DeleteLink').on('click', DeleteLinkClick);
                     $('.SaveLink').on('click', SaveLinkClick);
                     $('.FavouriteLink').on('click', FavouriteLinkClick);
+                    $('.DeleteFavouriteLink').on('click', DeleteFavouriteLinkClick);
                 }
             });
 
@@ -81,6 +83,7 @@
             $('.DeleteLink').on('click', DeleteLinkClick);
             $(".SaveLink").on("click", SaveLinkClick);
             $('.FavouriteLink').on('click', FavouriteLinkClick);
+            $('.DeleteFavouriteLink').on('click', DeleteFavouriteLinkClick);           
             // Put the focus on the first input field.
             $("#foodItemTable tr:first").find("input").focus();
         }
@@ -100,10 +103,10 @@
     function drawFavouriteRow(rowData) {
         var row = $("<tr />")
         $("#favouritesTable").append(row);
-        row.append($("<td><a class='UseFavouriteLink' href=" + UseFavouriteUrl + "/" + rowData.Code + ">" + rowData.Name + "</td>"));
-        //row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + ">Save</a>" +
-        //                 "<a class='DeleteLink' href=" + DeleteUrl + "/" + rowData.Id + ">Delete</a>" +
-        //                 "<a class='FavouriteLink' href=" + FavouriteUrl + "/" + rowData.Id + ">Favourite</a></td>"));
+        row.append($("<td><a class='UseFavouriteLink' href=" + UseFavouriteUrl + "/" + rowData.Code +
+                    "/" + ConvertDateToISO8601(sessionStorage["currentDate"]) +
+                    ">" + rowData.Name + "</td>"));
+        row.append($("<td><a class='DeleteFavouriteLink' href=" + DeleteFavouriteUrl + "/" + rowData.Code + ">Delete</a></td>"));
     }
 
 
@@ -164,6 +167,15 @@
 
         // Go to it...
         window.location.href = link;
+    }
+
+
+    function DeleteFavouriteLinkClick(e) {
+
+        e.preventDefault();
+
+        if (confirm("Delete?"))
+            return window.location.href = this.href;
     }
 
     function GetTodaysDate() {

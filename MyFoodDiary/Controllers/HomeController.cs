@@ -86,15 +86,26 @@ namespace MyFoodDiary.Controllers
         }
 
 
-        public ActionResult UseFavourite(int id, int quantity)
+        public ActionResult UseFavourite(string Code, DateTime date)
         {
             User user = _userServices.GetUser(User.Identity.Name);
 
-            _foodItemServices.UpdateFoodItem(id, quantity);
-            _foodItemServices.MergeFavourite(user.Id, id, quantity);
+            Favourite favourite = _foodItemServices.GetFavourites(user.Id).Where(f => f.Code == Code).First();                
+            _foodItemServices.InsertFoodItem(Code, favourite.Quantity, date, user.Id);
 
             return RedirectToAction("Index");
         }
+
+
+        public ActionResult DeleteFavourite(string Code)
+        {
+            User user = _userServices.GetUser(User.Identity.Name);
+            
+            _foodItemServices.DeleteFavourite(user.Id, Code);
+
+            return RedirectToAction("Index");
+        }
+
 
         /// <summary>
         /// This gives the autocomplete field a list of products.
