@@ -71,14 +71,22 @@ namespace MyFoodDiary.Controllers
 
             List<Day> days = _foodItemServices.GetDays(start, end, user.Id).ToList();
             List<Product> products = _productServices.GetProducts(days).ToList();
-            var viewModel = new LineChartViewModel
+            var viewModel = new LineChartViewModel();
+            
+            if (nutrient.ToLower() == "alcohol")
             {
-                BarNames = _chartServices.GetDates(days),
-                ChartTitle = _chartServices.GetTitle(nutrient),
-                BarData = _chartServices.CalculateNutrientByDay(days, products, nutrient)
-            };
-
+                viewModel.BarNames = _chartServices.GetDates(days);
+                viewModel.ChartTitle = _chartServices.GetTitle(nutrient);
+                viewModel.BarData = _chartServices.CalculateAlcoholByDay(days, products);
+            }
+            else
+            {
+                viewModel.BarNames = _chartServices.GetDates(days);
+                viewModel.ChartTitle = _chartServices.GetTitle(nutrient);
+                viewModel.BarData = _chartServices.CalculateNutrientByDay(days, products, nutrient);
+            }
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
+
     }
 }

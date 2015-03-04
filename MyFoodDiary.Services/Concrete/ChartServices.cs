@@ -116,6 +116,37 @@ namespace MyFoodDiary.Services.Concrete
             return nutrients;
         }
 
+
+
+        public List<double> CalculateAlcoholByDay(List<Day> days, List<Product> products)
+        {
+            var nutrients = new List<double>();
+
+            foreach (Day day in days)
+            {
+                // Now group the fooditems to get rid of repeats.
+                var groupedFoodItems = day.Food.
+                                       GroupBy(f => f.Code).
+                                       Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
+
+                var actualNutrientValues = from g in groupedFoodItems
+                                           join p in products
+                                           on g.Code equals p.Code
+                                           select new
+                                           {
+                                               TotalNutrient = GetTotalAlcoholUnits(g.Total, p)
+                                           };
+
+                double totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
+                nutrients.Add(totalNutrientByDay);
+            }
+
+            return nutrients;
+        }
+
+
+
+
         /// <summary>
         /// This is used for the line charts.
         /// </summary>
@@ -148,7 +179,6 @@ namespace MyFoodDiary.Services.Concrete
 
             return nutrients;
         }
-
 
 
         public List<double> CalculateTotalEnergyData(List<Day> days, List<Product> products)
