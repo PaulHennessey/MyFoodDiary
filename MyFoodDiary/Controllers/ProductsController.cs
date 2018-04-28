@@ -22,8 +22,12 @@ namespace MyFoodDiary.Controllers
         {
             _productServices = productServices;
             _userServices = userServices;
-            Mapper.CreateMap<Product, ProductViewModel>();
-            Mapper.CreateMap<ProductViewModel, Product>();
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Product, ProductViewModel>();
+                cfg.CreateMap<ProductViewModel, Product>();
+            });
         }
 
         public ActionResult Index()
