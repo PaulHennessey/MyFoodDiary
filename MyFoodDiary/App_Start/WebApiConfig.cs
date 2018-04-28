@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AutoMapper;
+using MyFoodDiary.Domain;
+using MyFoodDiary.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
@@ -19,6 +22,18 @@ namespace MyFoodDiary
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.
             // For more information, visit http://go.microsoft.com/fwlink/?LinkId=279712.
             //config.EnableQuerySupport();
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.CreateMap<Product, ProductViewModel>();
+                cfg.CreateMap<ProductViewModel, Product>();
+                cfg.CreateMap<FoodItem, FoodItemViewModel>();
+                cfg.CreateMap<Favourite, FavouriteViewModel>();
+                cfg.CreateMap<Product, ProductAutocompleteViewModel>()
+                    .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Name))
+                    .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.Code));
+            });
+
         }
     }
 }

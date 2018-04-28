@@ -24,11 +24,18 @@ namespace MyFoodDiary.Controllers
             _productServices = productServices;
             _foodItemServices = foodItemServices;
             _userServices = userServices;
-            Mapper.CreateMap<FoodItem, FoodItemViewModel>();
-            Mapper.CreateMap<Favourite, FavouriteViewModel>();
-            Mapper.CreateMap<Product, ProductAutocompleteViewModel>()
-                .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Name))
-                .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.Code));
+
+            //Mapper.Initialize(cfg =>
+            //{
+            //    cfg.CreateMap<Product, ProductViewModel>();
+            //    cfg.CreateMap<ProductViewModel, Product>();
+            //    cfg.CreateMap<FoodItem, FoodItemViewModel>();
+            //    cfg.CreateMap<Favourite, FavouriteViewModel>();
+            //    cfg.CreateMap<Product, ProductAutocompleteViewModel>()
+            //        .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Name))
+            //        .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.Code));
+            //});
+
         }
 
         public ActionResult Index()
