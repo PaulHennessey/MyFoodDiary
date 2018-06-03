@@ -22,10 +22,12 @@ namespace MyFoodDiary.Data.Concrete
                     { "Carbohydrates", row.GetValue("Carbohydrate") },
                     { "Fat", row.GetValue("Fat") },
                     { "Calories", row.GetValue("Calories") },
-                    { "Alcohol", row.GetValue("Alcohol") }
+                    { "Alcohol", row.GetValue("Alcohol") },
+                    { "TotalSugars", row.GetValue("TotalSugars") }
                 },
 
-                ServingSize = Convert.ToInt32(row.GetValue("ServingSize"))
+                //ServingSize = 1
+                //ServingSize = Convert.ToInt32(row.GetValue("ServingSize"))
             };
         }
     }

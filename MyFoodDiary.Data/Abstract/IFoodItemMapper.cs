@@ -6,6 +6,6 @@ namespace MyFoodDiary.Data.Abstract
 {
     public interface IFoodItemMapper
     {
-        IEnumerable<FoodItem> HydrateFoodItems(DataTable dataTable);
+        IEnumerable<MealItem> HydrateFoodItems(DataTable dataTable);
     }
 }

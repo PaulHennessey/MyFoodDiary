@@ -9,10 +9,10 @@ namespace MyFoodDiary.Data.Concrete
 {
     public class FoodItemMapper : IFoodItemMapper
     {
-        public IEnumerable<FoodItem> HydrateFoodItems(DataTable dataTable)
+        public IEnumerable<MealItem> HydrateFoodItems(DataTable dataTable)
         {
             return from DataRow row in dataTable.Rows
-                   select new FoodItem
+                   select new MealItem
                    {
                        Id = Convert.ToInt32(row["Id"]),
                        Code = row["Code"].ToString(),

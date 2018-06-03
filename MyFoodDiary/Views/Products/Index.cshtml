@@ -24,9 +24,9 @@
         <th>
             Alcohol
         </th>
-        <th>
+        @*<th>
             Serving Size
-        </th>
+        </th>*@
         <th>
         </th>
     </tr>
@@ -52,9 +52,9 @@
             <td>
                 @Html.DisplayFor(modelItem => product.Nutrients["Alcohol"])
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => product.ServingSize)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new { code = product.Code })
                 @Html.ActionLink("Delete", "Delete", new { code = product.Code }, new { @class = "DeleteProductLink" })

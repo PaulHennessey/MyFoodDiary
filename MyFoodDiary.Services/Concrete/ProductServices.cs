@@ -27,7 +27,7 @@ namespace MyFoodDiary.Services.Concrete
             return _productMapper.HydrateProducts(dataTable);
         }
 
-        public IEnumerable<Product> GetProducts(List<FoodItem> foodItems)
+        public IEnumerable<Product> GetProducts(List<MealItem> foodItems)
         {
             DataTable dataTable = _productRepository.GetProducts(foodItems);
             return _productMapper.HydrateProducts(dataTable);
@@ -35,7 +35,7 @@ namespace MyFoodDiary.Services.Concrete
 
         public IEnumerable<Product> GetProducts(List<Day> days)
         {
-            IEnumerable<FoodItem> foodItems = new List<FoodItem>();
+            IEnumerable<MealItem> foodItems = new List<MealItem>();
 
             foreach (var day in days)
             {

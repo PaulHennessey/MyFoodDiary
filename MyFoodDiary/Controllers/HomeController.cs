@@ -29,7 +29,7 @@ namespace MyFoodDiary.Controllers
             //{
             //    cfg.CreateMap<Product, ProductViewModel>();
             //    cfg.CreateMap<ProductViewModel, Product>();
-            //    cfg.CreateMap<FoodItem, FoodItemViewModel>();
+            //    cfg.CreateMap<MealItem, FoodItemViewModel>();
             //    cfg.CreateMap<Favourite, FavouriteViewModel>();
             //    cfg.CreateMap<Product, ProductAutocompleteViewModel>()
             //        .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Name))
@@ -48,12 +48,12 @@ namespace MyFoodDiary.Controllers
             User user = _userServices.GetUser(User.Identity.Name);
 
             // Order by Id, so the most recent item is at the top of the list.
-            List<FoodItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
+            List<MealItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
             List<Favourite> favourites = _foodItemServices.GetFavourites(user.Id).OrderByDescending(x => x.Name).ToList();
 
             var viewModel = new FoodItemListViewModel()
             {
-                FoodItems = Mapper.Map<IEnumerable<FoodItem>, IEnumerable<FoodItemViewModel>>(foodItems),
+                FoodItems = Mapper.Map<IEnumerable<MealItem>, IEnumerable<FoodItemViewModel>>(foodItems),
                 Favourites = Mapper.Map<IEnumerable<Favourite>, IEnumerable<FavouriteViewModel>>(favourites)
             };
 
@@ -144,7 +144,8 @@ namespace MyFoodDiary.Controllers
 
             Product product = _productServices.GetProduct(Code);
 
-            _foodItemServices.InsertFoodItem(Code, product.ServingSize > 0 ? 1 : 0, date, user.Id);
+            //_foodItemServices.InsertFoodItem(Code, product.ServingSize > 0 ? 1 : 0, date, user.Id);
+            _foodItemServices.InsertFoodItem(Code, 0, date, user.Id);
 
             return RedirectToAction("Index");
         }

@@ -6,6 +6,6 @@ namespace MyFoodDiary.Domain
     public class Day
     {
         public DateTime Date { get; set; }
-        public List<FoodItem> Food { get; set; } 
+        public List<MealItem> Food { get; set; } 
     }
 }

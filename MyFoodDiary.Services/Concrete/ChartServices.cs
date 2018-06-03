@@ -9,10 +9,11 @@ namespace MyFoodDiary.Services.Concrete
     public class ChartServices : IChartServices
     {
         // The Calorie Value of the different nutrients expressed as kcal/g
-        const double CalorieValueProtein = 4;
-        const double CalorieValueCarbohydrate = 4;
-        const double CalorieValueFat = 9;
-        const double CalorieValueAlcohol = 7;
+        private const double CalorieValueProtein = 4;
+        private const double CalorieValueCarbohydrate = 4;
+        private const double CalorieValueFat = 9;
+        private const double CalorieValueAlcohol = 7;
+        private const double SpecificGravityOfAlcohol = 0.789;
 
         private readonly Dictionary<string, string> _titles = new Dictionary<string, string>();
 
@@ -38,7 +39,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<double> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient)
         {
             // Make a big list of all the fooditems from each day.
-            List<FoodItem> foodItems = new List<FoodItem>();
+            List<MealItem> foodItems = new List<MealItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
@@ -82,7 +83,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<double> CalculateAlcoholByProduct(List<Day> days, List<Product> products)
         {
             // Make a big list of all the fooditems from each day.
-            List<FoodItem> foodItems = new List<FoodItem>();
+            List<MealItem> foodItems = new List<MealItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
@@ -184,7 +185,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<double> CalculateTotalEnergyData(List<Day> days, List<Product> products)
         {
             // Make a big list of all the fooditems from each day.
-            List<FoodItem> foodItems = new List<FoodItem>();
+            List<MealItem> foodItems = new List<MealItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
@@ -240,7 +241,7 @@ namespace MyFoodDiary.Services.Concrete
         }
 
 
-        public List<string> GetBarNames(IEnumerable<FoodItem> foodItems)
+        public List<string> GetBarNames(IEnumerable<MealItem> foodItems)
         {
             // First group the fooditems in case there are repeats, e.g. two apples.
             var groupedFoodItems = foodItems.
@@ -257,7 +258,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<string> GetBarNames(IEnumerable<Day> days)
         {
             // Make a big list of all the fooditems from each day.
-            List<FoodItem> foodItems = new List<FoodItem>();
+            List<MealItem> foodItems = new List<MealItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
@@ -293,15 +294,31 @@ namespace MyFoodDiary.Services.Concrete
 
         private double GetTotalNutrient(int total, Product product, string nutrient)
         {
-            return product.ServingSize == 0 ? Math.Round(total * (product.Nutrients[nutrient] / 100), 1) :
-                                              Math.Round(total * product.Nutrients[nutrient], 1);
+            //return product.ServingSize == 0 ? Math.Round(total * (product.Nutrients[nutrient] / 100), 1) :
+            //                                  Math.Round(total * product.Nutrients[nutrient], 1);
+
+            return Math.Round(total * (product.Nutrients[nutrient] / 100), 1);
         }
 
-
+        /// <summary>
+        /// Alcohol (ALCO). Values are given as g/100 ml. Pure ethyl alcohol has a
+        /// specific gravity of 0.789, dividing values by 0.789 converts them to alcohol by
+        /// volume(ml/100 ml). 
+        /// 
+        /// So to calculate units, (ABV * vol(ml))/1000.
+        /// </summary>
+        /// <param name="total"></param>
+        /// <param name="product"></param>
+        /// <returns></returns>
         private double GetTotalAlcoholUnits(int total, Product product)
         {
-            return product.ServingSize == 0 ? Math.Round(total * (product.Nutrients["Alcohol"] / 1000), 1) :
-                                              Math.Round((total * product.ServingSize) * (product.Nutrients["Alcohol"] / 1000), 1);
+            double alcoholByWeight = product.Nutrients["Alcohol"];
+            double alcoholByVolume = alcoholByWeight / SpecificGravityOfAlcohol;
+
+            //return product.ServingSize == 0 ? Math.Round(total * (product.Nutrients["Alcohol"] / 1000), 1) :
+            //                                  Math.Round((total * product.ServingSize) * (product.Nutrients["Alcohol"] / 1000), 1);
+
+            return Math.Round((alcoholByVolume * total) / 1000, 1);
         }
 
     }

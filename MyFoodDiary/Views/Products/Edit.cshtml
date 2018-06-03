@@ -30,13 +30,21 @@
         </div>
     }
 
-    <div class="editor-label">
+    @*<div class="editor-label">
         @Html.LabelFor(model => model.ServingSize)
     </div>
     <div class="editor-field">
         @Html.EditorFor(model => model.ServingSize)
         @Html.ValidationMessageFor(model => model.ServingSize)
     </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.AlcoholicDrinkSize)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.AlcoholicDrinkSize)
+        @Html.ValidationMessageFor(model => model.AlcoholicDrinkSize)
+    </div>*@
 
     <p>
         <input type="submit" value="Save" />

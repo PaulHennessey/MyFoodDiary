@@ -12,7 +12,7 @@ namespace MyFoodDiary.Services.Abstract
         List<double> CalculateAlcoholByDay(List<Day> days, List<Product> products);
         List<string> GetBarNames(IEnumerable<Day> days);
         List<string> GetDates(IEnumerable<Day> days);
-        List<string> GetBarNames(IEnumerable<FoodItem> foodItems);
+        List<string> GetBarNames(IEnumerable<MealItem> foodItems);
         List<string> GetTotalEnergyCategories();
         string GetTitle(string nutrient);
     }

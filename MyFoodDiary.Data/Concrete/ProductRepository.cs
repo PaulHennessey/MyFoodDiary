@@ -44,7 +44,7 @@ namespace MyFoodDiary.Data.Concrete
         /// </summary>
         /// <param name="foodItems"></param>
         /// <returns></returns>
-        public DataTable GetProducts(IEnumerable<FoodItem> foodItems)
+        public DataTable GetProducts(IEnumerable<MealItem> foodItems)
         {
             var dataTable = new DataTable();
 
@@ -117,7 +117,7 @@ namespace MyFoodDiary.Data.Concrete
                 };
 
                 cmd.Parameters.Add(new SqlParameter("@Code", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Code"].Value = GenerateCode();
+                cmd.Parameters["@Code"].Value = GenerateCode(userId);
 
                 cmd.Parameters.Add(new SqlParameter("@Name", SqlDbType.VarChar, 255));
                 cmd.Parameters["@Name"].Value = product.Name;
@@ -137,11 +137,17 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters.Add(new SqlParameter("@Alcohol", SqlDbType.VarChar, 255));
                 cmd.Parameters["@Alcohol"].Value = product.Nutrients["Alcohol"];
 
-                cmd.Parameters.Add(new SqlParameter("@ServingSize", SqlDbType.Int));
-                cmd.Parameters["@ServingSize"].Value = product.ServingSize;
+                cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));
+                cmd.Parameters["@TotalSugars"].Value = product.Nutrients["TotalSugars"];
+
+                //cmd.Parameters.Add(new SqlParameter("@AlcoholicDrinkSize", SqlDbType.Int));
+                //cmd.Parameters["@AlcoholicDrinkSize"].Value = product.AlcoholicDrinkSize;
 
                 cmd.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
                 cmd.Parameters["@userId"].Value = userId;
+
+                cmd.Parameters.Add(new SqlParameter("@ProductType", SqlDbType.Int));
+                cmd.Parameters["@ProductType"].Value = userId;
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -179,8 +185,14 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters.Add(new SqlParameter("@Alcohol", SqlDbType.VarChar, 255));
                 cmd.Parameters["@Alcohol"].Value = product.Nutrients["Alcohol"];
 
-                cmd.Parameters.Add(new SqlParameter("@ServingSize", SqlDbType.Int));
-                cmd.Parameters["@ServingSize"].Value = product.ServingSize;
+                //cmd.Parameters.Add(new SqlParameter("@ServingSize", SqlDbType.Int));
+                //cmd.Parameters["@ServingSize"].Value = product.ServingSize;
+
+                cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));
+                cmd.Parameters["@TotalSugars"].Value = product.Nutrients["TotalSugars"];
+
+                //cmd.Parameters.Add(new SqlParameter("@AlcoholicDrinkSize", SqlDbType.Int));
+                //cmd.Parameters["@AlcoholicDrinkSize"].Value = product.AlcoholicDrinkSize;
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -207,7 +219,7 @@ namespace MyFoodDiary.Data.Concrete
         }
 
 
-        private string GenerateCode()
+        private string GenerateCode(int userId)
         {
             var dataTable = new DataTable();
 
@@ -217,6 +229,9 @@ namespace MyFoodDiary.Data.Concrete
                 {
                     CommandType = CommandType.StoredProcedure
                 };
+
+                command.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
+                command.Parameters["@userId"].Value = userId;
 
                 var da = new SqlDataAdapter(command);
                 da.Fill(dataTable);
@@ -251,11 +266,11 @@ namespace MyFoodDiary.Data.Concrete
             return dataTable;
         }
 
-        private DataTable CreateCodeTable(IEnumerable<FoodItem> foodItems)
+        private DataTable CreateCodeTable(IEnumerable<MealItem> foodItems)
         {
             var table = new DataTable();
             table.Columns.Add("Food Code", typeof(String));
-            foreach (FoodItem foodItem in foodItems)
+            foreach (MealItem foodItem in foodItems)
             {
                 table.Rows.Add(foodItem.Code);
             }

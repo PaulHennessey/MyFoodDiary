@@ -2,9 +2,11 @@
 
     setDateOnLoad();
 
-    var refreshBarChartUrl = "/food/charts/refreshbarchart/";
-    var refreshLineChartUrl = "/food/charts/refreshlinechart/";
+    var refreshBarChartUrl = "/charts/refreshbarchart/";
+    var refreshLineChartUrl = "/charts/refreshlinechart/";
 
+    //var refreshBarChartUrl = "/food/charts/refreshbarchart/";
+    //var refreshLineChartUrl = "/food/charts/refreshlinechart/";
 
     $(".ProteinLink").on("click", proteinLinkClick);
     $(".CarbohydratesLink").on("click", carbohydratesLinkClick);
