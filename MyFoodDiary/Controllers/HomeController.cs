@@ -49,7 +49,7 @@ namespace MyFoodDiary.Controllers
 
             // Order by Id, so the most recent item is at the top of the list.
             List<MealItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
-            List<Favourite> favourites = _foodItemServices.GetFavourites(user.Id).OrderByDescending(x => x.Name).ToList();
+            List<Favourite> favourites = _foodItemServices.GetFavourites(user.Id).OrderBy(x => x.Name).ToList();
 
             var viewModel = new FoodItemListViewModel()
             {
@@ -144,7 +144,6 @@ namespace MyFoodDiary.Controllers
 
             Product product = _productServices.GetProduct(Code);
 
-            //_foodItemServices.InsertFoodItem(Code, product.ServingSize > 0 ? 1 : 0, date, user.Id);
             _foodItemServices.InsertFoodItem(Code, 0, date, user.Id);
 
             return RedirectToAction("Index");

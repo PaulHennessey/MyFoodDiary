@@ -21,6 +21,7 @@ namespace MyFoodDiary.Services.Concrete
         {
             _titles.Add("Protein", "Protein in grams");
             _titles.Add("Carbohydrates", "Carbohydrates in grams");
+            _titles.Add("TotalSugars", "Total sugars in grams");
             _titles.Add("Fat", "Fat in grams");
             _titles.Add("Calories", "Calories");
             _titles.Add("Alcohol", "Alcohol in units");
@@ -50,7 +51,6 @@ namespace MyFoodDiary.Services.Concrete
                                    GroupBy(f => f.Code).
                                    Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
 
-            // If ServingSize == 0, we assume the data is per 100g. Otherwise it's per serving.
             var actualNutrientValues = from g in groupedFoodItems
                                        join p in products
                                        on g.Code equals p.Code
@@ -93,8 +93,7 @@ namespace MyFoodDiary.Services.Concrete
             var groupedFoodItems = foodItems.
                                    GroupBy(f => f.Code).
                                    Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
-
-            // If ServingSize == 0, we assume the data is per 100g. Otherwise it's per serving.
+            
             var actualNutrientValues = from g in groupedFoodItems
                                        join p in products
                                        on g.Code equals p.Code
@@ -294,9 +293,6 @@ namespace MyFoodDiary.Services.Concrete
 
         private double GetTotalNutrient(int total, Product product, string nutrient)
         {
-            //return product.ServingSize == 0 ? Math.Round(total * (product.Nutrients[nutrient] / 100), 1) :
-            //                                  Math.Round(total * product.Nutrients[nutrient], 1);
-
             return Math.Round(total * (product.Nutrients[nutrient] / 100), 1);
         }
 
@@ -314,9 +310,6 @@ namespace MyFoodDiary.Services.Concrete
         {
             double alcoholByWeight = product.Nutrients["Alcohol"];
             double alcoholByVolume = alcoholByWeight / SpecificGravityOfAlcohol;
-
-            //return product.ServingSize == 0 ? Math.Round(total * (product.Nutrients["Alcohol"] / 1000), 1) :
-            //                                  Math.Round((total * product.ServingSize) * (product.Nutrients["Alcohol"] / 1000), 1);
 
             return Math.Round((alcoholByVolume * total) / 1000, 1);
         }

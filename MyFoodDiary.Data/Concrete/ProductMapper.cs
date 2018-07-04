@@ -25,9 +25,6 @@ namespace MyFoodDiary.Data.Concrete
                     { "Alcohol", row.GetValue("Alcohol") },
                     { "TotalSugars", row.GetValue("TotalSugars") }
                 },
-
-                //ServingSize = 1
-                //ServingSize = Convert.ToInt32(row.GetValue("ServingSize"))
             };
         }
     }
