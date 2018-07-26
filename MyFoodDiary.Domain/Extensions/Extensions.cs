@@ -5,9 +5,9 @@ namespace MyFoodDiary.Domain.Extensions
 {
     public static class Extensions
     {
-        public static double GetValue(this DataRow row, string columnName)
+        public static decimal GetValue(this DataRow row, string columnName)
         {
-            double value = 0.0;
+            decimal value = 0.0m;
 
             if (row.IsNull(columnName))
             {
@@ -15,7 +15,7 @@ namespace MyFoodDiary.Domain.Extensions
             }
             else
             {
-                Double.TryParse(row[columnName].ToString(), out value);
+                Decimal.TryParse(row[columnName].ToString(), out value);
                 return value;
             }
         }

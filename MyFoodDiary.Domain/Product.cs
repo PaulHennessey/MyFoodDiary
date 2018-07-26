@@ -8,7 +8,7 @@ namespace MyFoodDiary.Domain
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public Dictionary<string, double> Nutrients { get; set; }
+        public Dictionary<string, decimal> Nutrients { get; set; }
 
         public override bool Equals(Object obj)
         {

@@ -45,14 +45,14 @@ namespace MyFoodDiary.Controllers
             Product product = new Product()
             {
                 Code = String.Empty,
-                Nutrients = new Dictionary<string, double>
+                Nutrients = new Dictionary<string, decimal>
                 {
-                    { "Protein", 0.0},
-                    { "Carbohydrates", 0.0},
-                    { "Fat", 0.0},
-                    { "Calories", 0.0},
-                    { "Alcohol", 0.0},
-                    { "TotalSugars", 0.0}
+                    { "Calories", 0.0m},
+                    { "Fat", 0.0m},
+                    { "Carbohydrates", 0.0m},
+                    { "TotalSugars", 0.0m},
+                    { "Protein", 0.0m},                                       
+                    { "Alcohol", 0.0m}                    
                 }
             };
 

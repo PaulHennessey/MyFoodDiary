@@ -5,9 +5,6 @@
     var refreshBarChartUrl = "/charts/refreshbarchart/";
     var refreshLineChartUrl = "/charts/refreshlinechart/";
 
-    //var refreshBarChartUrl = "/food/charts/refreshbarchart/";
-    //var refreshLineChartUrl = "/food/charts/refreshlinechart/";
-
     $(".ProteinLink").on("click", proteinLinkClick);
     $(".CarbohydratesLink").on("click", carbohydratesLinkClick);
     $(".TotalSugarsLink").on("click", totalSugarsLinkClick);
@@ -17,6 +14,7 @@
     $(".TotalEnergyLink").on("click", totalEnergyLinkClick);
     $(".ProteinWeekLink").on("click", proteinWeekLinkClick);
     $(".CarbohydratesWeekLink").on("click", carbohydratesWeekLinkClick);
+    $(".SugarsWeekLink").on("click", sugarsWeekLinkClick);
     $(".FatWeekLink").on("click", fatWeekLinkClick);
     $(".CaloriesWeekLink").on("click", caloriesWeekLinkClick);
     $(".AlcoholWeekLink").on("click", alcoholWeekLinkClick);
@@ -41,7 +39,6 @@
                 start: sessionStorage["currentDate"],
                 end: sessionStorage["currentDate"],
                 nutrient: sessionStorage["nutrient"]
-                //nutrient: nutrient
             },
             success: function (json) {
 
@@ -231,6 +228,15 @@
         e.preventDefault();
 
         sessionStorage["nutrient"] = "Carbohydrates";
+
+        refreshLineChart("");
+    }
+
+    function sugarsWeekLinkClick(e) {
+
+        e.preventDefault();
+
+        sessionStorage["nutrient"] = "TotalSugars";
 
         refreshLineChart("");
     }

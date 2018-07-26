@@ -16,14 +16,14 @@ namespace MyFoodDiary.Data.Concrete
             {
                 Code = row["Code"].ToString(),
                 Name = row["Name"].ToString(),
-                Nutrients = new Dictionary<string, double>()
+                Nutrients = new Dictionary<string, decimal>()
                 {
-                    { "Protein", row.GetValue("Protein") },
-                    { "Carbohydrates", row.GetValue("Carbohydrate") },
-                    { "Fat", row.GetValue("Fat") },
                     { "Calories", row.GetValue("Calories") },
-                    { "Alcohol", row.GetValue("Alcohol") },
-                    { "TotalSugars", row.GetValue("TotalSugars") }
+                    { "Fat", row.GetValue("Fat") },
+                    { "Carbohydrates", row.GetValue("Carbohydrate") },
+                    { "TotalSugars", row.GetValue("TotalSugars") },
+                    { "Protein", row.GetValue("Protein") },                   
+                    { "Alcohol", row.GetValue("Alcohol") }                    
                 },
             };
         }

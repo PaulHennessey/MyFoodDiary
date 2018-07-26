@@ -6,6 +6,6 @@ namespace MyFoodDiary.Models
     {
         public string ChartTitle { get; set; }
         public List<string> BarNames { get; set; }
-        public List<double> BarData { get; set; }
+        public List<decimal> BarData { get; set; }
     }
 }

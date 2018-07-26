@@ -16,6 +16,11 @@ namespace MyFoodDiary.Data.Concrete
             _connectionString = connectionString;
         }
 
+        /// <summary>
+        /// This is used by the Search.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public DataTable GetProducts(int userId)
         {
             var dataTable = new DataTable();
@@ -63,6 +68,11 @@ namespace MyFoodDiary.Data.Concrete
             return dataTable;
         }
 
+        /// <summary>
+        /// This is used by the ProductsController Index.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
         public DataTable GetCustomProducts(int userId)
         {
             var dataTable = new DataTable();
@@ -83,29 +93,6 @@ namespace MyFoodDiary.Data.Concrete
 
             return dataTable;
         }
-
-        public void InsertFoodItem(string Code, DateTime dt)
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var cmd = new SqlCommand("InsertFoodItem", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-
-                cmd.Parameters.Add(new SqlParameter("@Code", SqlDbType.VarChar, 50));
-                cmd.Parameters["@Code"].Value = Code;
-
-                cmd.Parameters.Add(new SqlParameter("@dt", SqlDbType.DateTime));
-                cmd.Parameters["@dt"].Value = dt;
-
-                connection.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-
-
 
         public void CreateProduct(Product product, int userId)
         {
@@ -139,15 +126,6 @@ namespace MyFoodDiary.Data.Concrete
 
                 cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));
                 cmd.Parameters["@TotalSugars"].Value = product.Nutrients["TotalSugars"];
-
-                //cmd.Parameters.Add(new SqlParameter("@AlcoholicDrinkSize", SqlDbType.Int));
-                //cmd.Parameters["@AlcoholicDrinkSize"].Value = product.AlcoholicDrinkSize;
-
-                cmd.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
-                cmd.Parameters["@userId"].Value = userId;
-
-                cmd.Parameters.Add(new SqlParameter("@ProductType", SqlDbType.Int));
-                cmd.Parameters["@ProductType"].Value = userId;
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -235,9 +213,33 @@ namespace MyFoodDiary.Data.Concrete
             int count = Convert.ToInt32(row["ProductCount"]);
             count++;
 
-            return "99-" + count.ToString();
+            return "99-" + userId.ToString() + "-" + count.ToString();
         }
 
+        //private string GenerateCode(int userId)
+        //{
+        //    var dataTable = new DataTable();
+
+        //    using (var connection = new SqlConnection(_connectionString))
+        //    {
+        //        var command = new SqlCommand("GetCustomProductCount", connection)
+        //        {
+        //            CommandType = CommandType.StoredProcedure
+        //        };
+
+        //        command.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
+        //        command.Parameters["@userId"].Value = userId;
+
+        //        var da = new SqlDataAdapter(command);
+        //        da.Fill(dataTable);
+        //    }
+
+        //    DataRow row = dataTable.Rows[0];
+        //    int count = Convert.ToInt32(row["ProductCount"]);
+        //    count++;
+
+        //    return "99-" + count.ToString();
+        //}
 
         public DataTable GetProduct(string code)
         {

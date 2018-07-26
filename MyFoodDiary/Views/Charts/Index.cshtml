@@ -1,5 +1,7 @@
 ﻿@model  MyFoodDiary.Models.BarChartViewModel
 
+@using MyFoodDiary.Models
+
 @Scripts.Render("~/bundles/jqueryui")
 
 <link href="@Url.Content("~//Content/themes/vader/jquery-ui-1.10.3.custom.css")" rel="stylesheet" type="text/css" />
@@ -18,11 +20,17 @@
     @Html.ActionLink("Calories", "Refresh", new { nutrient = "Calories" }, new { @class = "CaloriesLink" })
     @Html.ActionLink("Alcohol", "Refresh", new { nutrient = "Alcohol" }, new { @class = "AlcoholLink" })
     @Html.ActionLink("% Total Energy", "Refresh", new { nutrient = "TotalEnergy" }, new { @class = "TotalEnergyLink" })
+    @*@Html.DropDownListFor(m => m.SelectedNutrientId, Model.Nutrients)
+        <input type="submit" value="Submit" />
+
+        https://www.mikesdotnetting.com/article/128/get-the-drop-on-asp-net-mvc-dropdownlists*@
+
 </div>
 
 <div>
     @Html.ActionLink("Protein week to date", "Refresh", new { nutrient = "ProteinWeek" }, new { @class = "ProteinWeekLink" })
     @Html.ActionLink("Carbohydrates week to date", "Refresh", new { nutrient = "CarbohydratesWeek" }, new { @class = "CarbohydratesWeekLink" })
+    @Html.ActionLink("Total Sugars week to date", "Refresh", new { nutrient = "TotalSugarsWeek" }, new { @class = "SugarsWeekLink" })
     @Html.ActionLink("Fat week to date", "Refresh", new { nutrient = "FatWeek" }, new { @class = "FatWeekLink" })
     @Html.ActionLink("Calories week to date", "Refresh", new { nutrient = "CaloriesWeek" }, new { @class = "CaloriesWeekLink" })
     @Html.ActionLink("Alcohol week to date", "Refresh", new { nutrient = "AlcoholWeek" }, new { @class = "AlcoholWeekLink" })

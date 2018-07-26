@@ -10,7 +10,7 @@
             Name
         </th>
         <th>
-            Protein
+            Calories            
         </th>
         <th>
             Fat
@@ -19,44 +19,47 @@
             Carbohydrates
         </th>
         <th>
-            Calories
+            Total Sugars
+        </th>
+        <th>
+            Protein            
         </th>
         <th>
             Alcohol
         </th>
-        @*<th>
-            Serving Size
-        </th>*@
         <th>
         </th>
     </tr>
 
     @foreach (var product in Model.Products)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.Nutrients["Protein"])
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.Nutrients["Fat"])
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.Nutrients["Carbohydrates"])
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.Nutrients["Calories"])
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.Nutrients["Alcohol"])
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { code = product.Code })
-                @Html.ActionLink("Delete", "Delete", new { code = product.Code }, new { @class = "DeleteProductLink" })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => product.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Nutrients["Calories"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Nutrients["Fat"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Nutrients["Carbohydrates"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Nutrients["TotalSugars"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Nutrients["Protein"])
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => product.Nutrients["Alcohol"])
+        </td>       
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { code = product.Code })
+            @Html.ActionLink("Delete", "Delete", new { code = product.Code }, new { @class = "DeleteProductLink" })
+        </td>
+    </tr>
     }
 </table>
 

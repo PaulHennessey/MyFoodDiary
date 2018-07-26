@@ -9,11 +9,11 @@ namespace MyFoodDiary.Services.Concrete
     public class ChartServices : IChartServices
     {
         // The Calorie Value of the different nutrients expressed as kcal/g
-        private const double CalorieValueProtein = 4;
-        private const double CalorieValueCarbohydrate = 4;
-        private const double CalorieValueFat = 9;
-        private const double CalorieValueAlcohol = 7;
-        private const double SpecificGravityOfAlcohol = 0.789;
+        private const decimal CalorieValueProtein = 4;
+        private const decimal CalorieValueCarbohydrate = 4;
+        private const decimal CalorieValueFat = 9;
+        private const decimal CalorieValueAlcohol = 7;
+        private const decimal SpecificGravityOfAlcohol = 0.789m;
 
         private readonly Dictionary<string, string> _titles = new Dictionary<string, string>();
 
@@ -37,7 +37,7 @@ namespace MyFoodDiary.Services.Concrete
         /// <param name="products"></param>
         /// <param name="nutrient"></param>
         /// <returns></returns>
-        public List<double> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient)
+        public List<decimal> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient)
         {
             // Make a big list of all the fooditems from each day.
             List<MealItem> foodItems = new List<MealItem>();
@@ -60,8 +60,8 @@ namespace MyFoodDiary.Services.Concrete
                                        };
 
             // Now convert the anonymous types to a list of objects for the Highchart. 
-            var nutrients = new List<double>();
-            double total = 0;
+            var nutrients = new List<decimal>();
+            decimal total = 0;
             foreach (var product in actualNutrientValues)
             {
                 nutrients.Add(product.TotalNutrient);
@@ -80,7 +80,7 @@ namespace MyFoodDiary.Services.Concrete
         /// <param name="days"></param>
         /// <param name="products"></param>
         /// <returns></returns>
-        public List<double> CalculateAlcoholByProduct(List<Day> days, List<Product> products)
+        public List<decimal> CalculateAlcoholByProduct(List<Day> days, List<Product> products)
         {
             // Make a big list of all the fooditems from each day.
             List<MealItem> foodItems = new List<MealItem>();
@@ -103,8 +103,8 @@ namespace MyFoodDiary.Services.Concrete
                                        };
 
             // Now convert the anonymous types to a list of objects for the Highchart. 
-            var nutrients = new List<double>();
-            double total = 0;
+            var nutrients = new List<decimal>();
+            decimal total = 0;
             foreach (var product in actualNutrientValues)
             {
                 nutrients.Add(product.TotalNutrient);
@@ -118,9 +118,9 @@ namespace MyFoodDiary.Services.Concrete
 
 
 
-        public List<double> CalculateAlcoholByDay(List<Day> days, List<Product> products)
+        public List<decimal> CalculateAlcoholByDay(List<Day> days, List<Product> products)
         {
-            var nutrients = new List<double>();
+            var nutrients = new List<decimal>();
 
             foreach (Day day in days)
             {
@@ -137,7 +137,7 @@ namespace MyFoodDiary.Services.Concrete
                                                TotalNutrient = GetTotalAlcoholUnits(g.Total, p)
                                            };
 
-                double totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
+                decimal totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
                 nutrients.Add(totalNutrientByDay);
             }
 
@@ -154,9 +154,9 @@ namespace MyFoodDiary.Services.Concrete
         /// <param name="products"></param>
         /// <param name="nutrient"></param>
         /// <returns></returns>
-        public List<double> CalculateNutrientByDay(List<Day> days, List<Product> products, string nutrient)
+        public List<decimal> CalculateNutrientByDay(List<Day> days, List<Product> products, string nutrient)
         {
-            var nutrients = new List<double>();
+            var nutrients = new List<decimal>();
 
             foreach (Day day in days)
             {
@@ -173,7 +173,7 @@ namespace MyFoodDiary.Services.Concrete
                                                TotalNutrient = GetTotalNutrient(g.Total, p, nutrient)
                                            };
 
-                double totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
+                decimal totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
                 nutrients.Add(totalNutrientByDay);
             }
 
@@ -181,7 +181,7 @@ namespace MyFoodDiary.Services.Concrete
         }
 
 
-        public List<double> CalculateTotalEnergyData(List<Day> days, List<Product> products)
+        public List<decimal> CalculateTotalEnergyData(List<Day> days, List<Product> products)
         {
             // Make a big list of all the fooditems from each day.
             List<MealItem> foodItems = new List<MealItem>();
@@ -221,16 +221,16 @@ namespace MyFoodDiary.Services.Concrete
                                   };
 
             // Now convert the anonymous types to a list of objects for the Highchart.
-            var nutrients = new List<double>();
+            var nutrients = new List<decimal>();
 
-            double carbohydrates = actualCarbohydrateValues.Sum(product => product.TotalNutrient);
-            double protein = actualProteinValues.Sum(product => product.TotalNutrient);
-            double fat = actualFatValues.Sum(product => product.TotalNutrient);
+            decimal carbohydrates = actualCarbohydrateValues.Sum(product => product.TotalNutrient);
+            decimal protein = actualProteinValues.Sum(product => product.TotalNutrient);
+            decimal fat = actualFatValues.Sum(product => product.TotalNutrient);
 
-            double carbohydrateCalories = carbohydrates * CalorieValueCarbohydrate;
-            double proteinCalories = protein * CalorieValueProtein;
-            double fatCalories = fat * CalorieValueFat;
-            double totalCalories = carbohydrateCalories + proteinCalories + fatCalories;
+            decimal carbohydrateCalories = carbohydrates * CalorieValueCarbohydrate;
+            decimal proteinCalories = protein * CalorieValueProtein;
+            decimal fatCalories = fat * CalorieValueFat;
+            decimal totalCalories = carbohydrateCalories + proteinCalories + fatCalories;
 
             nutrients.Add(Math.Round((carbohydrateCalories / totalCalories) * 100, 1));
             nutrients.Add(Math.Round((proteinCalories / totalCalories) * 100, 1));
@@ -291,7 +291,7 @@ namespace MyFoodDiary.Services.Concrete
         }
 
 
-        private double GetTotalNutrient(int total, Product product, string nutrient)
+        private decimal GetTotalNutrient(int total, Product product, string nutrient)
         {
             return Math.Round(total * (product.Nutrients[nutrient] / 100), 1);
         }
@@ -306,10 +306,10 @@ namespace MyFoodDiary.Services.Concrete
         /// <param name="total"></param>
         /// <param name="product"></param>
         /// <returns></returns>
-        private double GetTotalAlcoholUnits(int total, Product product)
+        private decimal GetTotalAlcoholUnits(int total, Product product)
         {
-            double alcoholByWeight = product.Nutrients["Alcohol"];
-            double alcoholByVolume = alcoholByWeight / SpecificGravityOfAlcohol;
+            decimal alcoholByWeight = product.Nutrients["Alcohol"];
+            decimal alcoholByVolume = alcoholByWeight / SpecificGravityOfAlcohol;
 
             return Math.Round((alcoholByVolume * total) / 1000, 1);
         }

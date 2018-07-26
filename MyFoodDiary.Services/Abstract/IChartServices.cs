@@ -5,11 +5,11 @@ namespace MyFoodDiary.Services.Abstract
 {
     public interface IChartServices
     {
-        List<double> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient);
-        List<double> CalculateNutrientByDay(List<Day> days, List<Product> products, string nutrient);
-        List<double> CalculateTotalEnergyData(List<Day> days, List<Product> products);
-        List<double> CalculateAlcoholByProduct(List<Day> days, List<Product> products);
-        List<double> CalculateAlcoholByDay(List<Day> days, List<Product> products);
+        List<decimal> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient);
+        List<decimal> CalculateNutrientByDay(List<Day> days, List<Product> products, string nutrient);
+        List<decimal> CalculateTotalEnergyData(List<Day> days, List<Product> products);
+        List<decimal> CalculateAlcoholByProduct(List<Day> days, List<Product> products);
+        List<decimal> CalculateAlcoholByDay(List<Day> days, List<Product> products);
         List<string> GetBarNames(IEnumerable<Day> days);
         List<string> GetDates(IEnumerable<Day> days);
         List<string> GetBarNames(IEnumerable<MealItem> foodItems);

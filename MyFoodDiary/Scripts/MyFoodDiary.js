@@ -2,7 +2,6 @@
 
     SetDateOnLoad();
 
-    //var HomeUrl = "/food/home/";
     var RefreshUrl = "/home/refresh";
     var DeleteUrl = "/home/delete";
     var SaveUrl = "/home/save";
@@ -43,11 +42,19 @@
                     date: dateText
                 },
                 success: function (json) {
+
                     var foodItemTable = $("#foodItemTable");
                     foodItemTable.empty();
                     $(json.FoodItems).each(function (index, foodItem) {
-                        drawRow(foodItem);
+                        drawFoodItemRow(foodItem);               
                     });
+
+                    //var favouriteTable = $("#favouriteTable");
+                    //favouriteTable.empty();
+                    //$(json.Favourites).each(function (index, favourite) {
+                    //    drawFavouriteRow(favourite);
+                    //});
+
                     $('.DeleteLink').on('click', DeleteLinkClick);
                     $('.SaveLink').on('click', SaveLinkClick);
                     $('.FavouriteLink').on('click', FavouriteLinkClick);
@@ -94,7 +101,6 @@
         $("#foodItemTable").append(row);
         row.append($("<td>" + rowData.Name + "</td>"));
         row.append($("<td><input class='input-quantity' id=" + rowData.Id + " name=" + rowData.Quantity + " type='text' value=" + rowData.Quantity + "></td>"));
-        //row.append($("<td>" + (rowData.ValuesArePerItem ? "" : "grams") + "</td>"));
         row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + ">Save</a>" +
                          "<a class='DeleteLink' href=" + DeleteUrl + "/" + rowData.Id + ">Delete</a>" +
                          "<a class='FavouriteLink' href=" + FavouriteUrl + "/" + rowData.Id + ">Favourite</a></td>"));
