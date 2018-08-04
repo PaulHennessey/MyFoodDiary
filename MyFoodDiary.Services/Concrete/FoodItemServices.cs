@@ -29,7 +29,7 @@ namespace MyFoodDiary.Services.Concrete
         }
 
 
-        public IEnumerable<MealItem> GetFoodItems(DateTime dt, int userId)
+        public IEnumerable<FoodItem> GetFoodItems(DateTime dt, int userId)
         {
             DataTable foodItems = _foodItemRepository.GetFoodItems(dt, userId);
             return _foodItemMapper.HydrateFoodItems(foodItems);

@@ -36,9 +36,9 @@ namespace MyFoodDiary.Tests.Services
             var mock = new Mock<IFoodItemRepository>();
             mock.Setup(m => m.GetFoodItems(It.IsAny<DateTime>(), It.IsAny<int>())).Returns(dataTable);
 
-            var expected = new List<MealItem>
+            var expected = new List<FoodItem>
             {
-                new MealItem
+                new FoodItem
                 {
                     Date = DateTime.Today,
                     Code = "999",
@@ -51,7 +51,7 @@ namespace MyFoodDiary.Tests.Services
             var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper(), new FavouriteRepository(), new FavouriteMapper());
 
             // act
-            List<MealItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
+            List<FoodItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
 
             // assert
             CollectionAssert.AreEqual(expected, actual);
@@ -88,9 +88,9 @@ namespace MyFoodDiary.Tests.Services
             var mock = new Mock<IFoodItemRepository>();
             mock.Setup(m => m.GetFoodItems(It.IsAny<DateTime>(), It.IsAny<int>())).Returns(dataTable);
 
-            var expected = new List<MealItem>
+            var expected = new List<FoodItem>
             {
-                new MealItem
+                new FoodItem
                 {
                     Date = DateTime.Today,
                     Code = "999",
@@ -99,7 +99,7 @@ namespace MyFoodDiary.Tests.Services
                     Quantity = 100
                 },
 
-                new MealItem
+                new FoodItem
                 {
                     Date = DateTime.Today,
                     Code = "1000",
@@ -112,7 +112,7 @@ namespace MyFoodDiary.Tests.Services
             var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper(), new FavouriteRepository(), new FavouriteMapper());
 
             // act
-            List<MealItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
+            List<FoodItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
 
             // assert
             CollectionAssert.AreEqual(expected, actual);
@@ -128,10 +128,10 @@ namespace MyFoodDiary.Tests.Services
             mock.Setup(m => m.GetFoodItems(It.IsAny<DateTime>(), It.IsAny<int>())).Returns(dataTable);            
             var foodItemServices = new FoodItemServices(mock.Object, new FoodItemMapper(), new FavouriteRepository(), new FavouriteMapper());
 
-            var expected = new List<MealItem>();
+            var expected = new List<FoodItem>();
 
             // act
-            List<MealItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
+            List<FoodItem> actual = foodItemServices.GetFoodItems(new DateTime(), 1).ToList();
 
             // assert
             CollectionAssert.AreEqual(expected, actual);

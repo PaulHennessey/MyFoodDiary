@@ -5,19 +5,19 @@
     var refreshBarChartUrl = "/charts/refreshbarchart/";
     var refreshLineChartUrl = "/charts/refreshlinechart/";
 
-    $(".ProteinLink").on("click", proteinLinkClick);
-    $(".CarbohydratesLink").on("click", carbohydratesLinkClick);
-    $(".TotalSugarsLink").on("click", totalSugarsLinkClick);
-    $(".FatLink").on("click", fatLinkClick);
-    $(".CaloriesLink").on("click", caloriesLinkClick);
-    $(".AlcoholLink").on("click", alcoholLinkClick);
-    $(".TotalEnergyLink").on("click", totalEnergyLinkClick);
-    $(".ProteinWeekLink").on("click", proteinWeekLinkClick);
-    $(".CarbohydratesWeekLink").on("click", carbohydratesWeekLinkClick);
-    $(".SugarsWeekLink").on("click", sugarsWeekLinkClick);
-    $(".FatWeekLink").on("click", fatWeekLinkClick);
-    $(".CaloriesWeekLink").on("click", caloriesWeekLinkClick);
-    $(".AlcoholWeekLink").on("click", alcoholWeekLinkClick);
+    //$(".ProteinLink").on("click", proteinLinkClick);
+    //$(".CarbohydratesLink").on("click", carbohydratesLinkClick);
+    //$(".TotalSugarsLink").on("click", totalSugarsLinkClick);
+    //$(".FatLink").on("click", fatLinkClick);
+    //$(".CaloriesLink").on("click", caloriesLinkClick);
+    //$(".AlcoholLink").on("click", alcoholLinkClick);
+    //$(".TotalEnergyLink").on("click", totalEnergyLinkClick);
+    //$(".ProteinWeekLink").on("click", proteinWeekLinkClick);
+    //$(".CarbohydratesWeekLink").on("click", carbohydratesWeekLinkClick);
+    //$(".SugarsWeekLink").on("click", sugarsWeekLinkClick);
+    //$(".FatWeekLink").on("click", fatWeekLinkClick);
+    //$(".CaloriesWeekLink").on("click", caloriesWeekLinkClick);
+    //$(".AlcoholWeekLink").on("click", alcoholWeekLinkClick);
 
     // When a date is selected I want to 
     $("#dateselection").datepicker({
@@ -25,11 +25,27 @@
 
             sessionStorage["currentDate"] = dateText;
 
-            refreshBarChart();
+            //refreshBarChart();
         }
     });
 
-    function refreshBarChart(nutrient, yAxis) {
+    $('#SelectedDateButton').click(function (e) {
+        e.preventDefault();
+
+        sessionStorage["nutrient"] = $('#SelectedNutrientId :selected').text();
+       
+        refreshBarChart("Grams");
+    });
+
+    $('#WeekToDateButton').click(function (e) {
+        e.preventDefault();
+
+        sessionStorage["nutrient"] = $('#SelectedNutrientId :selected').text();
+
+        refreshLineChart("Grams");
+    });
+
+    function refreshBarChart(yAxis) {
 
         $.ajax({
             type: "POST",
@@ -150,123 +166,122 @@
         return dd + "/" + mm + "/" + yyyy;
     }
 
+    //function proteinLinkClick(e) {
 
-    function proteinLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Protein";
 
-        sessionStorage["nutrient"] = "Protein";
+    //    refreshBarChart("Grams");
+    //}
 
-        refreshBarChart("Grams");
-    }
+    //function carbohydratesLinkClick(e) {
 
-    function carbohydratesLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Carbohydrates";
 
-        sessionStorage["nutrient"] = "Carbohydrates";
+    //    refreshBarChart("Grams");
+    //}
 
-        refreshBarChart("Grams");
-    }
+    //function totalSugarsLinkClick(e) {
 
-    function totalSugarsLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "TotalSugars";
 
-        sessionStorage["nutrient"] = "TotalSugars";
+    //    refreshBarChart("Grams");
+    //}
 
-        refreshBarChart("Grams");
-    }
+    //function fatLinkClick(e) {
 
-    function fatLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Fat";
 
-        sessionStorage["nutrient"] = "Fat";
+    //    refreshBarChart("Grams");
+    //}
 
-        refreshBarChart("Grams");
-    }
+    //function caloriesLinkClick(e) {
 
-    function caloriesLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Calories";
 
-        sessionStorage["nutrient"] = "Calories";
+    //    refreshBarChart("kcal");
+    //}
 
-        refreshBarChart("kcal");
-    }
+    //function alcoholLinkClick(e) {
 
-    function alcoholLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Alcohol";
 
-        sessionStorage["nutrient"] = "Alcohol";
+    //    refreshBarChart("Units");
+    //}
 
-        refreshBarChart("Units");
-    }
+    //function totalEnergyLinkClick(e) {
 
-    function totalEnergyLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "TotalEnergy";
 
-        sessionStorage["nutrient"] = "TotalEnergy";
+    //    refreshBarChart("");
+    //}
 
-        refreshBarChart("");
-    }
+    //function proteinWeekLinkClick(e) {
 
-    function proteinWeekLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Protein";
 
-        sessionStorage["nutrient"] = "Protein";
+    //    refreshLineChart("");
+    //}
 
-        refreshLineChart("");
-    }
+    //function carbohydratesWeekLinkClick(e) {
 
-    function carbohydratesWeekLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Carbohydrates";
 
-        sessionStorage["nutrient"] = "Carbohydrates";
+    //    refreshLineChart("");
+    //}
 
-        refreshLineChart("");
-    }
+    //function sugarsWeekLinkClick(e) {
 
-    function sugarsWeekLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "TotalSugars";
 
-        sessionStorage["nutrient"] = "TotalSugars";
+    //    refreshLineChart("");
+    //}
 
-        refreshLineChart("");
-    }
+    //function fatWeekLinkClick(e) {
 
-    function fatWeekLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Fat";
 
-        sessionStorage["nutrient"] = "Fat";
+    //    refreshLineChart("");
+    //}
 
-        refreshLineChart("");
-    }
+    //function caloriesWeekLinkClick(e) {
 
-    function caloriesWeekLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Calories";
 
-        sessionStorage["nutrient"] = "Calories";
+    //    refreshLineChart("");
+    //}
 
-        refreshLineChart("");
-    }
+    //function alcoholWeekLinkClick(e) {
 
-    function alcoholWeekLinkClick(e) {
+    //    e.preventDefault();
 
-        e.preventDefault();
+    //    sessionStorage["nutrient"] = "Alcohol";
 
-        sessionStorage["nutrient"] = "Alcohol";
-
-        refreshLineChart("");
-    }
+    //    refreshLineChart("");
+    //}
 
 
 })(jQuery);

@@ -27,7 +27,8 @@ namespace MyFoodDiary
             {
                 cfg.CreateMap<Product, ProductViewModel>();
                 cfg.CreateMap<ProductViewModel, Product>();
-                cfg.CreateMap<MealItem, FoodItemViewModel>();
+                cfg.CreateMap<FoodItem, FoodItemViewModel>();
+                cfg.CreateMap<FoodItem, DietFoodItemViewModel>();
                 cfg.CreateMap<Favourite, FavouriteViewModel>();
                 cfg.CreateMap<Product, ProductAutocompleteViewModel>()
                     .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Name))

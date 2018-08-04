@@ -2,19 +2,10 @@
 
 namespace MyFoodDiary.Domain
 {
-    public class MealItem
+    public class FoodItem
     {
-        public MealItem()
+        public FoodItem()
         { }
-
-        public MealItem(int id, string code, string name, int quantity, DateTime date)
-        {
-            Id = id;
-            Code = code;
-            Name = name;
-            Quantity = quantity;
-            Date = date;
-        }
 
         public int Id { get; set; }
         public string Code { get; set; }
@@ -22,10 +13,9 @@ namespace MyFoodDiary.Domain
         public int Quantity { get; set; }
         public DateTime Date { get; set; }
 
-
         public override bool Equals(Object obj)
         {
-            MealItem other = obj as MealItem;
+            FoodItem other = obj as FoodItem;
 
             if (other == null)
                 return false;

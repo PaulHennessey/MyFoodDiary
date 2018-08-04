@@ -9,7 +9,7 @@ namespace MyFoodDiary.Data.Abstract
         DataTable GetProducts(int userId);
         DataTable GetCustomProducts(int userId);
         DataTable GetProduct(string code);
-        DataTable GetProducts(IEnumerable<MealItem> foodItems);
+        DataTable GetProducts(IEnumerable<FoodItem> foodItems);
         void CreateProduct(Product product, int userId);
         void UpdateProduct(Product product);
         void DeleteProduct(string code);

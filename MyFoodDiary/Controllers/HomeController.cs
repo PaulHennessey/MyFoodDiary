@@ -24,18 +24,6 @@ namespace MyFoodDiary.Controllers
             _productServices = productServices;
             _foodItemServices = foodItemServices;
             _userServices = userServices;
-
-            //Mapper.Initialize(cfg =>
-            //{
-            //    cfg.CreateMap<Product, ProductViewModel>();
-            //    cfg.CreateMap<ProductViewModel, Product>();
-            //    cfg.CreateMap<MealItem, FoodItemViewModel>();
-            //    cfg.CreateMap<Favourite, FavouriteViewModel>();
-            //    cfg.CreateMap<Product, ProductAutocompleteViewModel>()
-            //        .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Name))
-            //        .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.Code));
-            //});
-
         }
 
         public ActionResult Index()
@@ -48,12 +36,12 @@ namespace MyFoodDiary.Controllers
             User user = _userServices.GetUser(User.Identity.Name);
 
             // Order by Id, so the most recent item is at the top of the list.
-            List<MealItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
+            List<FoodItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
             List<Favourite> favourites = _foodItemServices.GetFavourites(user.Id).OrderBy(x => x.Name).ToList();
 
             var viewModel = new FoodItemListViewModel()
             {
-                FoodItems = Mapper.Map<IEnumerable<MealItem>, IEnumerable<FoodItemViewModel>>(foodItems),
+                FoodItems = Mapper.Map<IEnumerable<FoodItem>, IEnumerable<FoodItemViewModel>>(foodItems),
                 Favourites = Mapper.Map<IEnumerable<Favourite>, IEnumerable<FavouriteViewModel>>(favourites)
             };
 

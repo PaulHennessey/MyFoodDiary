@@ -192,6 +192,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ChartsController.cs" />
+    <Compile Include="Controllers\DietController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -203,7 +204,9 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\BarChartViewModel.cs" />
     <Compile Include="Models\FavouriteViewModel.cs" />
+    <Compile Include="Models\DietFoodItemListViewModel.cs" />
     <Compile Include="Models\FoodItemListViewModel.cs" />
+    <Compile Include="Models\DietFoodItemViewModel.cs" />
     <Compile Include="Models\FoodItemViewModel.cs" />
     <Compile Include="Models\LineChartViewModel.cs" />
     <Compile Include="Models\ProductAutocompleteViewModel.cs" />
@@ -328,6 +331,7 @@
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\MyFoodDiaryDiet.js" />
     <Content Include="Scripts\MyFoodDiaryProducts.js" />
     <Content Include="Scripts\MyFoodDiaryCharts.js" />
     <Content Include="Scripts\MyFoodDiary.js" />
@@ -365,8 +369,6 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -378,6 +380,7 @@
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+    <Content Include="Views\Diet\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

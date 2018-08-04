@@ -23,7 +23,7 @@ namespace MyFoodDiary.Data.Concrete
         /// <returns></returns>
         public DataTable GetProducts(int userId)
         {
-            var dataTable = new DataTable();
+          var dataTable = new DataTable();
 
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -49,7 +49,7 @@ namespace MyFoodDiary.Data.Concrete
         /// </summary>
         /// <param name="foodItems"></param>
         /// <returns></returns>
-        public DataTable GetProducts(IEnumerable<MealItem> foodItems)
+        public DataTable GetProducts(IEnumerable<FoodItem> foodItems)
         {
             var dataTable = new DataTable();
 
@@ -262,11 +262,11 @@ namespace MyFoodDiary.Data.Concrete
             return dataTable;
         }
 
-        private DataTable CreateCodeTable(IEnumerable<MealItem> foodItems)
+        private DataTable CreateCodeTable(IEnumerable<FoodItem> foodItems)
         {
             var table = new DataTable();
             table.Columns.Add("Food Code", typeof(String));
-            foreach (MealItem foodItem in foodItems)
+            foreach (FoodItem foodItem in foodItems)
             {
                 table.Rows.Add(foodItem.Code);
             }

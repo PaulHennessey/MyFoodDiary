@@ -40,7 +40,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<decimal> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient)
         {
             // Make a big list of all the fooditems from each day.
-            List<MealItem> foodItems = new List<MealItem>();
+            List<FoodItem> foodItems = new List<FoodItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
@@ -83,7 +83,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<decimal> CalculateAlcoholByProduct(List<Day> days, List<Product> products)
         {
             // Make a big list of all the fooditems from each day.
-            List<MealItem> foodItems = new List<MealItem>();
+            List<FoodItem> foodItems = new List<FoodItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
@@ -184,7 +184,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<decimal> CalculateTotalEnergyData(List<Day> days, List<Product> products)
         {
             // Make a big list of all the fooditems from each day.
-            List<MealItem> foodItems = new List<MealItem>();
+            List<FoodItem> foodItems = new List<FoodItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
@@ -240,7 +240,7 @@ namespace MyFoodDiary.Services.Concrete
         }
 
 
-        public List<string> GetBarNames(IEnumerable<MealItem> foodItems)
+        public List<string> GetBarNames(IEnumerable<FoodItem> foodItems)
         {
             // First group the fooditems in case there are repeats, e.g. two apples.
             var groupedFoodItems = foodItems.
@@ -257,7 +257,7 @@ namespace MyFoodDiary.Services.Concrete
         public List<string> GetBarNames(IEnumerable<Day> days)
         {
             // Make a big list of all the fooditems from each day.
-            List<MealItem> foodItems = new List<MealItem>();
+            List<FoodItem> foodItems = new List<FoodItem>();
             foreach (Day day in days)
             {
                 foodItems.AddRange(day.Food);
