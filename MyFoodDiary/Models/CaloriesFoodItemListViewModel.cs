@@ -2,9 +2,9 @@
 
 namespace MyFoodDiary.Models
 {
-    public class DietFoodItemListViewModel
+    public class CaloriesFoodItemListViewModel
     {
-        public IEnumerable<DietFoodItemViewModel> FoodItems { get; set; }
+        public IEnumerable<CaloriesFoodItemViewModel> FoodItems { get; set; }
         public IEnumerable<FavouriteViewModel> Favourites { get; set; }      
     }
 }

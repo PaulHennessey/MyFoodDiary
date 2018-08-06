@@ -10,16 +10,16 @@ using MyFoodDiary.Services.Abstract;
 namespace MyFoodDiary.Controllers
 {
     [Authorize]
-    public class DietController : Controller
+    public class CaloriesController : Controller
     {
         private readonly IFoodItemServices _foodItemServices;
         private readonly IProductServices _productServices;
         private readonly IUserServices _userServices;
 
-        public DietController()
+        public CaloriesController()
         { }
 
-        public DietController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices)
+        public CaloriesController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices)
         {
             _productServices = productServices;
             _foodItemServices = foodItemServices;
@@ -28,26 +28,43 @@ namespace MyFoodDiary.Controllers
 
         public ActionResult Index()
         {
-            return View("Index", new DietFoodItemListViewModel());
+            return View("Index", new CaloriesFoodItemListViewModel());
         }
 
         public ActionResult Refresh(DateTime date)
         {
             User user = _userServices.GetUser(User.Identity.Name);
 
-            // Order by Id, so the most recent item is at the top of the list.
-            List<FoodItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
+            // Favourites
             List<Favourite> favourites = _foodItemServices.GetFavourites(user.Id).OrderBy(x => x.Name).ToList();
+            var favouritesViewModel = Mapper.Map<IEnumerable<Favourite>, IEnumerable<FavouriteViewModel>>(favourites);
 
-            var viewModel = new DietFoodItemListViewModel()
+            // Food items
+            List<FoodItem> foodItems = _foodItemServices.GetFoodItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
+            List<Product> products = _productServices.GetProducts(foodItems).ToList();
+            var foodItemsViewModel = CalculateCaloriesByFoodItem(foodItems, products);
+
+            var viewModel = new CaloriesFoodItemListViewModel()
             {
-                FoodItems = Mapper.Map<IEnumerable<FoodItem>, IEnumerable<DietFoodItemViewModel>>(foodItems),
-                Favourites = Mapper.Map<IEnumerable<Favourite>, IEnumerable<FavouriteViewModel>>(favourites)
+                Favourites = favouritesViewModel,
+                FoodItems = foodItemsViewModel
             };
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
+      
+        private List<CaloriesFoodItemViewModel> CalculateCaloriesByFoodItem(List<FoodItem> foodItems, List<Product> products)
+        {            
+            List<CaloriesFoodItemViewModel> viewModel = Mapper.Map<List<FoodItem>, List<CaloriesFoodItemViewModel>>(foodItems);
 
+            foreach (var item in viewModel)
+            {
+                decimal calories = products.Where(p => p.Code == item.Code).First().Nutrients["Calories"];
+                item.Calories = Math.Round(item.Quantity * (calories / 100), 1);
+            }
+
+            return viewModel;
+        }
 
         public ActionResult Save(int id, int quantity)
         {
