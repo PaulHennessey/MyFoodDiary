@@ -23,7 +23,8 @@ namespace MyFoodDiary.Data.Concrete
                     { "Carbohydrates", row.GetValue("Carbohydrate") },
                     { "TotalSugars", row.GetValue("TotalSugars") },
                     { "Protein", row.GetValue("Protein") },                   
-                    { "Alcohol", row.GetValue("Alcohol") }                    
+                    { "Alcohol", row.GetValue("Alcohol") },
+                    { "Cholesterol", row.GetValue("Cholesterol") }
                 },
             };
         }

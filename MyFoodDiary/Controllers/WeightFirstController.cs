@@ -10,16 +10,16 @@ using MyFoodDiary.Services.Abstract;
 namespace MyFoodDiary.Controllers
 {
     [Authorize]
-    public class CaloriesController : Controller
+    public class WeightFirstController : Controller
     {
         private readonly IFoodItemServices _foodItemServices;
         private readonly IProductServices _productServices;
         private readonly IUserServices _userServices;
 
-        public CaloriesController()
+        public WeightFirstController()
         { }
 
-        public CaloriesController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices)
+        public WeightFirstController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices)
         {
             _productServices = productServices;
             _foodItemServices = foodItemServices;
@@ -28,7 +28,7 @@ namespace MyFoodDiary.Controllers
 
         public ActionResult Index()
         {
-            return View("Index", new CaloriesFoodItemListViewModel());
+            return View("Index", new WeightFirstFoodItemListViewModel());
         }
 
         public ActionResult Refresh(DateTime date)
@@ -44,23 +44,36 @@ namespace MyFoodDiary.Controllers
             List<Product> products = _productServices.GetProducts(foodItems).ToList();
             var foodItemsViewModel = CalculateCaloriesByFoodItem(foodItems, products);
 
-            var viewModel = new CaloriesFoodItemListViewModel()
+            var viewModel = new WeightFirstFoodItemListViewModel()
             {
                 Favourites = favouritesViewModel,
-                FoodItems = foodItemsViewModel
+                FoodItems = foodItemsViewModel,
+                TotalCalories = CalculateTotalCalories(foodItemsViewModel)
             };
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
-      
-        private List<CaloriesFoodItemViewModel> CalculateCaloriesByFoodItem(List<FoodItem> foodItems, List<Product> products)
+
+        private decimal CalculateTotalCalories(List<WeightFirstFoodItemViewModel> foodItemsViewModel)
+        {
+            decimal total = 0m;
+
+            foreach(var item in foodItemsViewModel)
+            {
+                total += item.Calories;
+            }
+
+            return total;
+        }
+
+        private List<WeightFirstFoodItemViewModel> CalculateCaloriesByFoodItem(List<FoodItem> foodItems, List<Product> products)
         {            
-            List<CaloriesFoodItemViewModel> viewModel = Mapper.Map<List<FoodItem>, List<CaloriesFoodItemViewModel>>(foodItems);
+            List<WeightFirstFoodItemViewModel> viewModel = Mapper.Map<List<FoodItem>, List<WeightFirstFoodItemViewModel>>(foodItems);
 
             foreach (var item in viewModel)
             {
                 decimal calories = products.Where(p => p.Code == item.Code).First().Nutrients["Calories"];
-                item.Calories = Math.Round(item.Quantity * (calories / 100), 1);
+                item.Calories = Convert.ToInt32(Math.Round(item.Quantity * (calories / 100), 0));
             }
 
             return viewModel;

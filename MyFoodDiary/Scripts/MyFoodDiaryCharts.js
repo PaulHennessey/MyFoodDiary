@@ -34,7 +34,7 @@
 
         sessionStorage["nutrient"] = $('#SelectedNutrientId :selected').text();
        
-        refreshBarChart("Grams");
+        refreshBarChart();
     });
 
     $('#WeekToDateButton').click(function (e) {
@@ -44,7 +44,7 @@
 
         refreshLineChart("Grams");
     });
-
+    
     function refreshBarChart(yAxis) {
 
         $.ajax({
@@ -78,16 +78,20 @@
 
                 };
 
-                options.series.push({
-                    name: json.ChartTitle,
-                    data: json.BarData
-                });
+                for (i = 0; i < json.BarData.length; i++) {
+                    options.series.push({
+                        name: json.ChartTitle[i],
+                        data: json.BarData[i]
+                    });
+                }
 
                 var chart = new Highcharts.Chart(options);
             }
         });
     }
 
+
+    //https://www.highcharts.com/docs/chart-and-series-types/line-chart
 
     function refreshLineChart(nutrient, yAxis) {
 
@@ -122,11 +126,12 @@
 
                 };
 
-                options.series.push({
-                    name: json.ChartTitle,
-                    data: json.BarData
-                });
-
+                for (i = 0; i < json.BarData.length; i++) {
+                    options.series.push({
+                        name: json.ChartTitle[i],
+                        data: json.BarData[i]
+                    });
+                }
 
                 var chart = new Highcharts.Chart(options);
             }

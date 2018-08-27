@@ -2,12 +2,12 @@
 
     SetDateOnLoad();
 
-    var RefreshUrl = "/calories/refresh";
-    var DeleteUrl = "/calories/delete";
-    var SaveUrl = "/calories/save";
-    var FavouriteUrl = "/calories/favourite";
-    var UseFavouriteUrl = "/calories/usefavourite";
-    var DeleteFavouriteUrl = "/calories/deletefavourite";
+    var RefreshUrl = "/caloriesfirst/refresh";
+    var DeleteUrl = "/caloriesfirst/delete";
+    var SaveUrl = "/caloriesfirst/save";
+    var FavouriteUrl = "/caloriesfirst/favourite";
+    var UseFavouriteUrl = "/caloriesfirst/usefavourite";
+    var DeleteFavouriteUrl = "/caloriesfirst/deletefavourite";
 
     // This rather dense code is explained here: http://blogs.msdn.com/b/stuartleeks/archive/2012/04/23/asp-net-mvc-amp-jquery-ui-autocomplete.aspx
     $('*[data-autocomplete-url]')
@@ -49,11 +49,7 @@
                         drawFoodItemRow(foodItem);               
                     });
 
-                    //var favouriteTable = $("#favouriteTable");
-                    //favouriteTable.empty();
-                    //$(json.Favourites).each(function (index, favourite) {
-                    //    drawFavouriteRow(favourite);
-                    //});
+                    drawTotalCaloriesRow(json.TotalCalories);
 
                     $('.DeleteLink').on('click', DeleteLinkClick);
                     $('.SaveLink').on('click', SaveLinkClick);
@@ -81,6 +77,8 @@
                 drawFoodItemRow(foodItem);               
             });
 
+            drawTotalCaloriesRow(json.TotalCalories);
+
             var favouriteTable = $("#favouriteTable");
             favouriteTable.empty();
             $(json.Favourites).each(function (index, favourite) {
@@ -100,11 +98,19 @@
         var row = $("<tr />")
         $("#foodItemTable").append(row);
         row.append($("<td>" + rowData.Name + "</td>"));
-        row.append($("<td><input class='input-quantity' id=" + rowData.Id + " name=" + rowData.Quantity + " type='text' value=" + rowData.Quantity + "></td>"));
-        row.append($("<td>" + rowData.Calories + "</td>"));
-        row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + ">Save</a>" +
+        row.append($("<td><input class='input-quantity' id=" + rowData.Id + " name=" + rowData.Calories + " type='text' value=" + rowData.Calories + "></td>"));
+        row.append($("<td>" + rowData.Quantity + "</td>"));
+        row.append($("<td><a class='SaveLink' href=" + SaveUrl + "/" + rowData.Id + "/" + rowData.Code + ">Save</a>" +
                          "<a class='DeleteLink' href=" + DeleteUrl + "/" + rowData.Id + ">Delete</a>" +
                          "<a class='FavouriteLink' href=" + FavouriteUrl + "/" + rowData.Id + ">Favourite</a></td>"));
+    }
+
+    function drawTotalCaloriesRow(totalCalories) {
+        var row = $("<tr />")
+        $("#foodItemTable").append(row);
+        row.append($("<td>" + "Total calories" + "</td>"));
+        row.append($("<td>" + totalCalories + "</td>"));
+        row.append($("<td></td>"));
     }
 
     function drawFavouriteRow(rowData) {
@@ -145,13 +151,13 @@
 
         // First get the food item id - it is the last bit of the url        
         var parsedUrl = this.href.split("/");
-        var foodItemId = parsedUrl[parsedUrl.length - 1];
+        var foodItemId = parsedUrl[parsedUrl.length - 2];
 
         // Now get the quantity - the fooditemid is used as the id of the quantity input field        
-        var quantity = $("#" + foodItemId).val();
+        var calories = $("#" + foodItemId).val();
 
         // Now stick the quantity on the end of the url
-        var link = this.href + "/" + quantity;
+        var link = this.href + "/" + calories + "/";
 
         // Go to it...
         window.location.href = link;

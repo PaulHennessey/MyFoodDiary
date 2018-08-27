@@ -1,0 +1,26 @@
+﻿@model  MyFoodDiary.Models.CaloriesFirstFoodItemListViewModel
+
+@Scripts.Render("~/bundles/jqueryui")
+@Styles.Render("~/Content/myfooddiary")
+
+<link href="@Url.Content("~//Content/themes/vader/jquery-ui-1.10.3.custom.css")" rel="stylesheet" type="text/css" />
+
+<div>
+    <input id="dateselection" name="Date" type="text">
+</div>
+
+<div>
+    @Html.TextBox("search", null, new { data_autocomplete_url = Url.Action("Search"), data_selectfood_url = Url.Action("SelectFood", new { Code = "replace", date = "replace-date" }) })
+</div>
+
+<div id="foodTableDiv">
+    <table id="foodItemTable"></table>
+</div>
+
+<div id="favouritesTableDiv">
+    <h3>Favourites</h3>
+    <table id="favouritesTable"></table>
+</div>
+
+<script src="@Url.Content("~/Scripts/MyFoodDiaryCaloriesFirst.js")" type="text/javascript"></script>
+

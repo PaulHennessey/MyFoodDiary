@@ -89,29 +89,54 @@ namespace MyFoodDiary
 
 
             routes.MapRoute(
-                name: "SaveCalories",
-                url: "Calories/Save/{id}/{quantity}",
-                defaults: new { controller = "Calories", action = "Save", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
+                name: "SaveWeightFirst",
+                url: "WeightFirst/Save/{id}/{quantity}",
+                defaults: new { controller = "WeightFirst", action = "Save", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "FavouriteCalories",
-                url: "Calories/Favourite/{id}/{quantity}",
-                defaults: new { controller = "Calories", action = "Favourite", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
+                name: "FavouriteWeightFirst",
+                url: "WeightFirst/Favourite/{id}/{quantity}",
+                defaults: new { controller = "WeightFirst", action = "Favourite", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "UseFavouriteCalories",
-                url: "Calories/UseFavourite/{Code}/{date}",
-                defaults: new { controller = "Calories", action = "UseFavourite", Code = UrlParameter.Optional, date = UrlParameter.Optional }
+                name: "UseFavouriteWeightFirst",
+                url: "WeightFirst/UseFavourite/{Code}/{date}",
+                defaults: new { controller = "WeightFirst", action = "UseFavourite", Code = UrlParameter.Optional, date = UrlParameter.Optional }
             );
 
             routes.MapRoute(
-                name: "DeleteFavouriteCalories",
-                url: "Calories/DeleteFavourite/{Code}",
-                defaults: new { controller = "Calories", action = "DeleteFavourite", Code = UrlParameter.Optional }
+                name: "DeleteFavouriteWeightFirst",
+                url: "WeightFirst/DeleteFavourite/{Code}",
+                defaults: new { controller = "WeightFirst", action = "DeleteFavourite", Code = UrlParameter.Optional }
             );
 
+
+
+            routes.MapRoute(
+                name: "SaveCaloriesFirst",
+                url: "CaloriesFirst/Save/{id}/{code}/{calories}",
+                defaults: new { controller = "CaloriesFirst", action = "Save", id = UrlParameter.Optional, code = UrlParameter.Optional, calories = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "FavouriteCaloriesFirst",
+                url: "CaloriesFirst/Favourite/{id}/{quantity}",
+                defaults: new { controller = "CaloriesFirst", action = "Favourite", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "UseFavouriteCaloriesFirst",
+                url: "CaloriesFirst/UseFavourite/{Code}/{date}",
+                defaults: new { controller = "CaloriesFirst", action = "UseFavourite", Code = UrlParameter.Optional, date = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "DeleteFavouriteCaloriesFirst",
+                url: "CaloriesFirst/DeleteFavourite/{Code}",
+                defaults: new { controller = "CaloriesFirst", action = "DeleteFavourite", Code = UrlParameter.Optional }
+            );
 
 
             routes.MapRoute(

@@ -40,11 +40,14 @@ namespace MyFoodDiary.Controllers
             List<Product> products = _productServices.GetProducts(days).ToList();
             var viewModel = new BarChartViewModel();
 
-            if (nutrient.ToLower() == "totalenergy")
+            if (nutrient.ToLower() == "macronutrientratio")
             {
-                viewModel.BarNames = _chartServices.GetTotalEnergyCategories();
-                viewModel.ChartTitle = _chartServices.GetTitle(nutrient);
-                viewModel.BarData = _chartServices.CalculateTotalEnergyData(days, products);
+                viewModel.BarNames = _chartServices.GetDates(days);
+                viewModel.ChartTitle = _chartServices.GetMacronutrientRatioCategories();
+
+                //viewModel.BarNames = _chartServices.GetMacronutrientRatioCategories();
+                //viewModel.ChartTitle = _chartServices.GetTitle(nutrient);
+                viewModel.BarData = _chartServices.CalculateMacronutrientRatioData(days, products);
             }
             else if (nutrient.ToLower() == "alcohol")
             {
@@ -72,8 +75,15 @@ namespace MyFoodDiary.Controllers
             List<Day> days = _foodItemServices.GetDays(start, end, user.Id).ToList();
             List<Product> products = _productServices.GetProducts(days).ToList();
             var viewModel = new LineChartViewModel();
-            
-            if (nutrient.ToLower() == "alcohol")
+
+            if (nutrient.ToLower() == "macronutrientratio")
+            {
+                viewModel.BarNames = _chartServices.GetDates(days);
+                viewModel.ChartTitle = _chartServices.GetMacronutrientRatioCategories();
+                viewModel.BarData = _chartServices.CalculateMacronutrientRatioData(days, products);
+
+            }
+            else if (nutrient.ToLower() == "alcohol")
             {
                 viewModel.BarNames = _chartServices.GetDates(days);
                 viewModel.ChartTitle = _chartServices.GetTitle(nutrient);

@@ -14,14 +14,17 @@ namespace MyFoodDiary.Models
             _nutrients.Add(new Nutrient { Id = 4, Name = "TotalSugars" });
             _nutrients.Add(new Nutrient { Id = 5, Name = "Fat" });            
             _nutrients.Add(new Nutrient { Id = 6, Name = "Alcohol" });
+            _nutrients.Add(new Nutrient { Id = 7, Name = "Cholesterol" });
+            _nutrients.Add(new Nutrient { Id = 8, Name = "MacronutrientRatio" });
+            SelectedNutrientId = 9;
         }
 
         private readonly List<Nutrient> _nutrients = new List<Nutrient>();
         public int SelectedNutrientId { get; set; }
 
-        public string ChartTitle { get; set; }
+        public List<string> ChartTitle { get; set; }
         public List<string> BarNames { get; set; }
-        public List<decimal> BarData { get; set; }
+        public List<List<decimal>> BarData { get; set; }
 
         public IEnumerable<SelectListItem> Nutrients
         {

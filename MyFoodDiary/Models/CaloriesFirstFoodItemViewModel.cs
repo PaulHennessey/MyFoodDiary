@@ -2,7 +2,7 @@
 
 namespace MyFoodDiary.Models
 {
-    public class CaloriesFoodItemViewModel
+    public class CaloriesFirstFoodItemViewModel
     {
         public int Id { get; set; }
 
@@ -10,6 +10,6 @@ namespace MyFoodDiary.Models
         public string Code { get; set; }
         public string Name { get; set; }
         public int Quantity { get; set; }
-        public decimal Calories { get; set; }
+        public int Calories { get; set; }
     }
 }
