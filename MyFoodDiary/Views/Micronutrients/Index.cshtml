@@ -1,0 +1,30 @@
+﻿@model  MyFoodDiary.Models.MicronutrientsViewModel
+
+@using MyFoodDiary.Models
+
+@Scripts.Render("~/bundles/jqueryui")
+
+<link href="@Url.Content("~//Content/themes/vader/jquery-ui-1.10.3.custom.css")" rel="stylesheet" type="text/css" />
+
+<script src="~/Scripts/Highcharts-4.0.1/js/highcharts.js"></script>
+
+@using (Html.BeginForm("Index", "Charts", FormMethod.Post, new { id = "TheForm" }))
+{
+    <div>
+        <input id="fromdate" name="fromDate" type="text">
+        <input id="todate" name="toDate" type="text">
+    </div>
+    <div>
+        @Html.DropDownListFor(m => m.SelectedNutrientId, Model.Nutrients)
+    </div>
+
+    <div id="foodChart" style="margin:10px 0px 0px 0px">
+    </div>
+
+    <div>
+        <input type="submit" value="GenerateChart" id="GenerateChartButton">
+    </div>
+}
+
+<script src="@Url.Content("~/Scripts/MyFoodDiaryMicronutrients.js")" type="text/javascript"></script>
+

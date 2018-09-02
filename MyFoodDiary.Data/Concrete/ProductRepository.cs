@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.Linq;
+using System.Linq;
 using MyFoodDiary.Data.Abstract;
 using MyFoodDiary.Domain;
 
@@ -110,22 +112,25 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters["@Name"].Value = product.Name;
 
                 cmd.Parameters.Add(new SqlParameter("@Protein", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.Nutrients["Protein"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Protein");
 
-                cmd.Parameters.Add(new SqlParameter("@Carbohydrate", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Carbohydrate"].Value = product.Nutrients["Carbohydrates"];
+                cmd.Parameters.Add(new SqlParameter("@Carbohydrate", SqlDbType.VarChar, 255));                
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Carbohydrates");
 
                 cmd.Parameters.Add(new SqlParameter("@Fat", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Fat"].Value = product.Nutrients["Fat"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Fat");
 
-                cmd.Parameters.Add(new SqlParameter("@Calories", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Calories"].Value = product.Nutrients["Calories"];
+                cmd.Parameters.Add(new SqlParameter("@Calories", SqlDbType.VarChar, 255));                
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calories");
 
                 cmd.Parameters.Add(new SqlParameter("@Alcohol", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Alcohol"].Value = product.Nutrients["Alcohol"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Alcohol");
 
-                cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));
-                cmd.Parameters["@TotalSugars"].Value = product.Nutrients["TotalSugars"];
+                cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));               
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Total Sugars");
+
+                cmd.Parameters.Add(new SqlParameter("@Calcium", SqlDbType.VarChar, 255));
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calcium");
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -149,22 +154,25 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters["@Name"].Value = product.Name;
 
                 cmd.Parameters.Add(new SqlParameter("@Protein", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.Nutrients["Protein"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Protein");
 
                 cmd.Parameters.Add(new SqlParameter("@Carbohydrate", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Carbohydrate"].Value = product.Nutrients["Carbohydrates"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Carbohydrates");
 
                 cmd.Parameters.Add(new SqlParameter("@Fat", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Fat"].Value = product.Nutrients["Fat"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Fat");
 
                 cmd.Parameters.Add(new SqlParameter("@Calories", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Calories"].Value = product.Nutrients["Calories"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calories");
 
                 cmd.Parameters.Add(new SqlParameter("@Alcohol", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Alcohol"].Value = product.Nutrients["Alcohol"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Alcohol");
 
                 cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));
-                cmd.Parameters["@TotalSugars"].Value = product.Nutrients["TotalSugars"];
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Total Sugars");
+
+                cmd.Parameters.Add(new SqlParameter("@Calcium", SqlDbType.VarChar, 255));
+                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calcium");
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -215,31 +223,6 @@ namespace MyFoodDiary.Data.Concrete
 
             return "99-" + userId.ToString() + "-" + count.ToString();
         }
-
-        //private string GenerateCode(int userId)
-        //{
-        //    var dataTable = new DataTable();
-
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        var command = new SqlCommand("GetCustomProductCount", connection)
-        //        {
-        //            CommandType = CommandType.StoredProcedure
-        //        };
-
-        //        command.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
-        //        command.Parameters["@userId"].Value = userId;
-
-        //        var da = new SqlDataAdapter(command);
-        //        da.Fill(dataTable);
-        //    }
-
-        //    DataRow row = dataTable.Rows[0];
-        //    int count = Convert.ToInt32(row["ProductCount"]);
-        //    count++;
-
-        //    return "99-" + count.ToString();
-        //}
 
         public DataTable GetProduct(string code)
         {

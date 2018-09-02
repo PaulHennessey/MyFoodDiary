@@ -15,64 +15,6 @@ namespace MyFoodDiary.Services.Concrete
         private const decimal CalorieValueAlcohol = 7;
         private const decimal SpecificGravityOfAlcohol = 0.789m;
 
-        private readonly Dictionary<string, string> _titles = new Dictionary<string, string>();
-
-        public ChartServices()
-        {
-            _titles.Add("Protein", "Protein in grams");
-            _titles.Add("Carbohydrates", "Carbohydrates in grams");
-            _titles.Add("TotalSugars", "Total sugars in grams");
-            _titles.Add("Fat", "Fat in grams");
-            _titles.Add("Calories", "Calories in kcal");
-            _titles.Add("Alcohol", "Alcohol in units");
-            _titles.Add("MacronutrientRatio", "Macronutrient Ratios");
-            _titles.Add("Cholesterol", "Cholesterol");
-        }
-
-
-        ///// <summary>
-        ///// This gives you the amount of nutrient per product. I expect that the list of days will normally just contain one,
-        ///// but it will work the same if there are multiple days.
-        ///// </summary>
-        ///// <param name="days"></param>
-        ///// <param name="products"></param>
-        ///// <param name="nutrient"></param>
-        ///// <returns></returns>
-        //public List<decimal> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient)
-        //{
-        //    // Make a big list of all the fooditems from each day.
-        //    List<FoodItem> foodItems = new List<FoodItem>();
-        //    foreach (Day day in days)
-        //    {
-        //        foodItems.AddRange(day.Food);
-        //    }
-
-        //    // Now group the fooditems to get rid of repeats.
-        //    var groupedFoodItems = foodItems.
-        //                           GroupBy(f => f.Code).
-        //                           Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
-
-        //    var actualNutrientValues = from g in groupedFoodItems
-        //                               join p in products
-        //                               on g.Code equals p.Code
-        //                               select new
-        //                               {
-        //                                   TotalNutrient = GetTotalNutrient(g.Total, p, nutrient)
-        //                               };
-
-        //    // Now convert the anonymous types to a list of objects for the Highchart. 
-        //    var nutrients = new List<decimal>();
-        //    decimal total = 0;
-        //    foreach (var product in actualNutrientValues)
-        //    {
-        //        nutrients.Add(product.TotalNutrient);
-        //        total += product.TotalNutrient;
-        //    }
-
-        //    nutrients.Add(total);
-        //    return nutrients;
-        //}
-
         public List<List<decimal>> CalculateNutrientByProduct(List<Day> days, List<Product> products, string nutrient)
         {
             var allNutrients = new List<List<decimal>>();
@@ -95,7 +37,7 @@ namespace MyFoodDiary.Services.Concrete
                                            on g.Code equals p.Code
                                            select new
                                            {
-                                               TotalNutrient = GetTotalNutrient(g.Total, p, nutrient)
+                                               TotalNutrient = GetTotalMacroNutrient(g.Total, p, nutrient)
                                            };
 
                 // Now convert the anonymous types to a list of objects for the Highchart. 
@@ -113,53 +55,11 @@ namespace MyFoodDiary.Services.Concrete
             return allNutrients;
         }
 
-        ///// <summary>
-        ///// Note the alcohol data is stored as ABV, i.e. units of alcohol per 100ml. We want to display 'units', e.g. one 
-        ///// pint of Bass (4.2 ABV) is 2.4 units.
-        ///// </summary>
-        ///// <param name="days"></param>
-        ///// <param name="products"></param>
-        ///// <returns></returns>
-        //public List<decimal> CalculateAlcoholByProduct(List<Day> days, List<Product> products)
-        //{
-        //    // Make a big list of all the fooditems from each day.
-        //    List<FoodItem> foodItems = new List<FoodItem>();
-        //    foreach (Day day in days)
-        //    {
-        //        foodItems.AddRange(day.Food);
-        //    }
-
-        //    // Now group the fooditems to get rid of repeats.
-        //    var groupedFoodItems = foodItems.
-        //                           GroupBy(f => f.Code).
-        //                           Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
-            
-        //    var actualNutrientValues = from g in groupedFoodItems
-        //                               join p in products
-        //                               on g.Code equals p.Code
-        //                               select new
-        //                               {
-        //                                   TotalNutrient = GetTotalAlcoholUnits(g.Total, p)
-        //                               };
-
-        //    // Now convert the anonymous types to a list of objects for the Highchart. 
-        //    var nutrients = new List<decimal>();
-        //    decimal total = 0;
-        //    foreach (var product in actualNutrientValues)
-        //    {
-        //        nutrients.Add(product.TotalNutrient);
-        //        total += product.TotalNutrient;
-        //    }
-
-        //    nutrients.Add(Math.Round(total, 1));
-
-        //    return nutrients;
-        //}
-
 
         /// <summary>
         /// Note the alcohol data is stored as ABV, i.e. units of alcohol per 100ml. We want to display 'units', e.g. one 
         /// pint of Bass (4.2 ABV) is 2.4 units.
+        /// This returns the amount of alcohol per product.
         /// </summary>
         /// <param name="days"></param>
         /// <param name="products"></param>
@@ -169,31 +69,26 @@ namespace MyFoodDiary.Services.Concrete
             var allNutrients = new List<List<decimal>>();
             var nutrients = new List<decimal>();
 
-            // Make a big list of all the fooditems from each day.
-            List<FoodItem> foodItems = new List<FoodItem>();
             foreach (Day day in days)
             {
-                foodItems.AddRange(day.Food);
-
-                // Now group the fooditems to get rid of repeats.
-                var groupedFoodItems = foodItems.
+                var groupedFoodItemsByProduct = day.Food.
                                        GroupBy(f => f.Code).
                                        Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
 
-                var actualNutrientValues = from g in groupedFoodItems
-                                           join p in products
-                                           on g.Code equals p.Code
-                                           select new
-                                           {
-                                               TotalNutrient = GetTotalAlcoholUnits(g.Total, p)
-                                           };
+                var alcoholConsumedByProduct = from g in groupedFoodItemsByProduct
+                                               join p in products
+                                               on g.Code equals p.Code
+                                               select new
+                                               {
+                                                   AlcoholUnits = GetTotalAlcoholUnits(g.Total, p)
+                                               };
 
                 // Now convert the anonymous types to a list of objects for the Highchart. 
                 decimal total = 0;
-                foreach (var product in actualNutrientValues)
+                foreach (var product in alcoholConsumedByProduct)
                 {
-                    nutrients.Add(product.TotalNutrient);
-                    total += product.TotalNutrient;
+                    nutrients.Add(product.AlcoholUnits);
+                    total += product.AlcoholUnits;
                 }
 
                 nutrients.Add(Math.Round(total, 1));
@@ -203,7 +98,13 @@ namespace MyFoodDiary.Services.Concrete
             return allNutrients;
         }
 
-
+        /// <summary>
+        /// This is used for the line chart.
+        /// It returns the amount of alcohol per day.
+        /// </summary>
+        /// <param name="days"></param>
+        /// <param name="products"></param>
+        /// <returns></returns>
         public List<List<decimal>> CalculateAlcoholByDay(List<Day> days, List<Product> products)
         {
             var allNutrients = new List<List<decimal>>();
@@ -211,21 +112,20 @@ namespace MyFoodDiary.Services.Concrete
 
             foreach (Day day in days)
             {
-                // Now group the fooditems to get rid of repeats.
-                var groupedFoodItems = day.Food.
-                                       GroupBy(f => f.Code).
-                                       Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
+                var groupedFoodItemsByProduct = day.Food.
+                                                GroupBy(f => f.Code).
+                                                Select(fg => new { Code = fg.Key, Total = fg.Sum(f => f.Quantity) }).ToList();
 
-                var actualNutrientValues = from g in groupedFoodItems
-                                           join p in products
-                                           on g.Code equals p.Code
-                                           select new
-                                           {
-                                               TotalNutrient = GetTotalAlcoholUnits(g.Total, p)
-                                           };
+                var alcoholConsumedByProduct = from g in groupedFoodItemsByProduct
+                                               join p in products
+                                               on g.Code equals p.Code
+                                               select new
+                                               {
+                                                   AlcoholUnits = GetTotalAlcoholUnits(g.Total, p)
+                                               };
 
-                decimal totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
-                nutrients.Add(totalNutrientByDay);
+                decimal alcoholConsumedByDay = alcoholConsumedByProduct.Sum(product => product.AlcoholUnits);
+                nutrients.Add(alcoholConsumedByDay);
             }
 
             allNutrients.Add(nutrients);
@@ -251,7 +151,7 @@ namespace MyFoodDiary.Services.Concrete
                                            on g.Code equals p.Code
                                            select new
                                            {
-                                               TotalNutrient = GetTotalNutrient(g.Total, p, nutrient)
+                                               TotalNutrient = GetTotalMacroNutrient(g.Total, p, nutrient)
                                            };
 
                 decimal totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
@@ -284,7 +184,7 @@ namespace MyFoodDiary.Services.Concrete
                                                on g.Code equals p.Code
                                                select new
                                                {
-                                                   TotalNutrient = GetTotalNutrient(g.Total, p, "Carbohydrates")
+                                                   TotalNutrient = GetTotalMacroNutrient(g.Total, p, "Carbohydrates")
                                                };
 
                 var actualProteinValues = from g in groupedFoodItems
@@ -292,7 +192,7 @@ namespace MyFoodDiary.Services.Concrete
                                           on g.Code equals p.Code
                                           select new
                                           {
-                                              TotalNutrient = GetTotalNutrient(g.Total, p, "Protein")
+                                              TotalNutrient = GetTotalMacroNutrient(g.Total, p, "Protein")
                                           };
 
                 var actualFatValues = from g in groupedFoodItems
@@ -300,7 +200,7 @@ namespace MyFoodDiary.Services.Concrete
                                       on g.Code equals p.Code
                                       select new
                                       {
-                                          TotalNutrient = GetTotalNutrient(g.Total, p, "Fat")
+                                          TotalNutrient = GetTotalMacroNutrient(g.Total, p, "Fat")
                                       };
 
                 // Now convert the anonymous types to a list of objects for the Highchart.
@@ -372,18 +272,31 @@ namespace MyFoodDiary.Services.Concrete
         }
 
 
-        public List<string> GetTitle(string nutrient)
+        public List<string> GetMacronutrientTitle(string name)
         {
-            return new List<string> { _titles[nutrient] };
+            Nutrient nutrient = Macronutrients.Nutrients.Where(m => m.Name == name).First();
+            return new List<string> { nutrient.Name + " in " + nutrient.MeasurementUnit };
         }
-    
 
-        private decimal GetTotalNutrient(int total, Product product, string nutrient)
+
+        public List<string> GetMicronutrientTitle(string name)
         {
-            if(nutrient == "Calories")
-                return Math.Round(total * (product.Nutrients[nutrient] / 100), 0);
+            Nutrient nutrient = Micronutrients.Nutrients.Where(m => m.Name == name).First();
+            return new List<string> { nutrient.Name + " in " + nutrient.MeasurementUnit };
+        }
+
+
+        private decimal GetTotalMacroNutrient(int total, Product product, string nutrient)
+        {
+            if (nutrient == "Calories")
+                return Math.Round(total * (product.ProductMacronutrients.Quantity(nutrient) / 100), 0);
             else
-                return Math.Round(total * (product.Nutrients[nutrient] / 100), 1);
+                return Math.Round(total * (product.ProductMacronutrients.Quantity(nutrient) / 100), 1);
+        }
+
+        private decimal GetTotalMicroNutrient(int total, Product product, string nutrient)
+        {
+            return Math.Round(total * (product.ProductMicronutrients.Quantity(nutrient) / 100), 1);
         }
 
         /// <summary>
@@ -397,8 +310,9 @@ namespace MyFoodDiary.Services.Concrete
         /// <param name="product"></param>
         /// <returns></returns>
         private decimal GetTotalAlcoholUnits(int total, Product product)
-        {
-            decimal alcoholByWeight = product.Nutrients["Alcohol"];
+        {           
+            decimal alcoholByWeight = product.ProductMacronutrients.Quantity("Alcohol");
+            //decimal alcoholByWeight = product.Nutrients["Alcohol"];
             decimal alcoholByVolume = alcoholByWeight / SpecificGravityOfAlcohol;
 
             return Math.Round((alcoholByVolume * total) / 1000, 1);

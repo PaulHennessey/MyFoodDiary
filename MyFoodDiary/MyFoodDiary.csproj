@@ -191,9 +191,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ChartsController.cs" />
+    <Compile Include="Controllers\MicronutrientsController.cs" />
+    <Compile Include="Controllers\MacronutrientsController.cs" />
     <Compile Include="Controllers\CaloriesFirstController.cs" />
-    <Compile Include="Controllers\WeightFirstController.cs" />
+    <Compile Include="Controllers\DataEntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -203,15 +204,16 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\BarChartViewModel.cs" />
+    <Compile Include="Models\ChartViewModel.cs" />
     <Compile Include="Models\FavouriteViewModel.cs" />
     <Compile Include="Models\CaloriesFirstFoodItemListViewModel.cs" />
+    <Compile Include="Models\MicronutrientsViewModel.cs" />
+    <Compile Include="Models\MacronutrientsViewModel.cs" />
     <Compile Include="Models\WeightFirstFoodItemListViewModel.cs" />
     <Compile Include="Models\FoodItemListViewModel.cs" />
     <Compile Include="Models\CaloriesFirstFoodItemViewModel.cs" />
     <Compile Include="Models\WeightFirstFoodItemViewModel.cs" />
     <Compile Include="Models\FoodItemViewModel.cs" />
-    <Compile Include="Models\LineChartViewModel.cs" />
     <Compile Include="Models\ProductAutocompleteViewModel.cs" />
     <Compile Include="Models\ProductsViewModel.cs" />
     <Compile Include="Models\ProductViewModel.cs" />
@@ -335,9 +337,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MyFoodDiaryCaloriesFirst.js" />
-    <Content Include="Scripts\MyFoodDiaryWeightFirst.js" />
+    <Content Include="Scripts\MyFoodDiaryDataEntry.js" />
+    <Content Include="Scripts\MyFoodDiaryMicronutrients.js" />
     <Content Include="Scripts\MyFoodDiaryProducts.js" />
-    <Content Include="Scripts\MyFoodDiaryCharts.js" />
+    <Content Include="Scripts\MyFoodDiaryMacronutrients.js" />
     <Content Include="Scripts\MyFoodDiary.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -378,14 +381,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Charts\Index.cshtml" />
+    <Content Include="Views\Macronutrients\Index.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-    <Content Include="Views\WeightFirst\Index.cshtml" />
+    <Content Include="Views\DataEntry\Index.cshtml" />
     <Content Include="Views\CaloriesFirst\Index.cshtml" />
+    <Content Include="Views\Micronutrients\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,12 +2,12 @@
 
     SetDateOnLoad();
 
-    var RefreshUrl = "/weightfirst/refresh";
-    var DeleteUrl = "/weightfirst/delete";
-    var SaveUrl = "/weightfirst/save";
-    var FavouriteUrl = "/weightfirst/favourite";
-    var UseFavouriteUrl = "/weightfirst/usefavourite";
-    var DeleteFavouriteUrl = "/weightfirst/deletefavourite";
+    var RefreshUrl = "/dataentry/refresh";
+    var DeleteUrl = "/dataentry/delete";
+    var SaveUrl = "/dataentry/save";
+    var FavouriteUrl = "/dataentry/favourite";
+    var UseFavouriteUrl = "/dataentry/usefavourite";
+    var DeleteFavouriteUrl = "/dataentry/deletefavourite";
 
     // This rather dense code is explained here: http://blogs.msdn.com/b/stuartleeks/archive/2012/04/23/asp-net-mvc-amp-jquery-ui-autocomplete.aspx
     $('*[data-autocomplete-url]')

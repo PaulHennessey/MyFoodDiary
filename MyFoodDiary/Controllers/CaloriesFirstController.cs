@@ -72,7 +72,8 @@ namespace MyFoodDiary.Controllers
 
             foreach (var item in viewModel)
             {
-                decimal calories = products.Where(p => p.Code == item.Code).First().Nutrients["Calories"];
+                Product product = products.Where(p => p.Code == item.Code).First();
+                decimal calories = product.ProductMacronutrients.Quantity("Calories");
                 item.Calories = Convert.ToInt32(Math.Round(item.Quantity * (calories / 100), 0));
             }
 
@@ -83,7 +84,7 @@ namespace MyFoodDiary.Controllers
         {
             Product product = _productServices.GetProduct(code);
 
-            int quantity = Convert.ToInt32(Math.Round((calories / product.Nutrients["Calories"]) * 100, 0));
+            int quantity = Convert.ToInt32(Math.Round((calories / product.ProductMacronutrients.Quantity("Calories")) * 100, 0));
 
             _foodItemServices.UpdateFoodItem(id, (int)quantity);
 

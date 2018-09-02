@@ -8,35 +8,37 @@ namespace MyFoodDiary.Domain
     {
         public string Code { get; set; }
         public string Name { get; set; }
-        public Dictionary<string, decimal> Nutrients { get; set; }
+        public ProductMacronutrients ProductMacronutrients { get; set; }
+        public ProductMicronutrients ProductMicronutrients { get; set; }
 
-        public override bool Equals(Object obj)
-        {
-            Product other = obj as Product;
 
-            if (other == null)
-                return false;
+        //public override bool Equals(Object obj)
+        //{
+        //    Product other = obj as Product;
 
-            return (this.Code == other.Code) &&
-                   (this.Name == other.Name) &&
-                   (this.Nutrients.SequenceEqual(other.Nutrients));
-        }
+        //    if (other == null)
+        //        return false;
 
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 17;
-                hash = hash * 23 + Code.GetHashCode();
+        //    return (this.Code == other.Code) &&
+        //           (this.Name == other.Name) &&
+        //           (this.Nutrients.SequenceEqual(other.Nutrients));
+        //}
 
-                if (Name != null)
-                    hash = hash * 23 + Name.GetHashCode();
+        //public override int GetHashCode()
+        //{
+        //    unchecked // Overflow is fine, just wrap
+        //    {
+        //        int hash = 17;
+        //        hash = hash * 23 + Code.GetHashCode();
 
-                if (Nutrients != null)
-                    hash = hash * 23 + Nutrients.GetHashCode();
+        //        if (Name != null)
+        //            hash = hash * 23 + Name.GetHashCode();
 
-                return hash;
-            }
-        }
+        //        if (Nutrients != null)
+        //            hash = hash * 23 + Nutrients.GetHashCode();
+
+        //        return hash;
+        //    }
+        //}
     }
 }

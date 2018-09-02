@@ -16,17 +16,44 @@ namespace MyFoodDiary.Data.Concrete
             {
                 Code = row["Code"].ToString(),
                 Name = row["Name"].ToString(),
-                Nutrients = new Dictionary<string, decimal>()
-                {
-                    { "Calories", row.GetValue("Calories") },
-                    { "Fat", row.GetValue("Fat") },
-                    { "Carbohydrates", row.GetValue("Carbohydrate") },
-                    { "TotalSugars", row.GetValue("TotalSugars") },
-                    { "Protein", row.GetValue("Protein") },                   
-                    { "Alcohol", row.GetValue("Alcohol") },
-                    { "Cholesterol", row.GetValue("Cholesterol") }
-                },
+                ProductMacronutrients = HydrateMacronutrients(row),
+                ProductMicronutrients = HydrateMicronutrients(row)
             };
         }
+
+        private ProductMacronutrients HydrateMacronutrients(DataRow row)
+        {
+            ProductMacronutrients productMacronutrients = new ProductMacronutrients();
+
+            foreach (Nutrient nutrient in Macronutrients.Nutrients)
+            {
+                productMacronutrients.ProductNutrients.Add(new ProductNutrient
+                {
+                    Name = nutrient.Name,
+                    MeasurementUnit = nutrient.MeasurementUnit,
+                    Quantity = row.GetValue(nutrient.Name)
+                });
+            }
+
+            return productMacronutrients;
+        }
+
+        private ProductMicronutrients HydrateMicronutrients(DataRow row)
+        {
+            ProductMicronutrients productMicronutrients = new ProductMicronutrients();
+
+            foreach (Nutrient nutrient in Micronutrients.Nutrients)
+            {
+                productMicronutrients.ProductNutrients.Add(new ProductNutrient
+                {
+                    Name = nutrient.Name,
+                    MeasurementUnit = nutrient.MeasurementUnit,
+                    Quantity = row.GetValue(nutrient.Name)
+                });
+            }
+
+            return productMicronutrients;
+        }
+
     }
 }

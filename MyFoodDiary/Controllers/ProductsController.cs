@@ -45,15 +45,8 @@ namespace MyFoodDiary.Controllers
             Product product = new Product()
             {
                 Code = String.Empty,
-                Nutrients = new Dictionary<string, decimal>
-                {
-                    { "Calories", 0.0m},
-                    { "Fat", 0.0m},
-                    { "Carbohydrates", 0.0m},
-                    { "TotalSugars", 0.0m},
-                    { "Protein", 0.0m},                                       
-                    { "Alcohol", 0.0m}                    
-                }
+                ProductMacronutrients = new ProductMacronutrients().InitialiseList(),
+                ProductMicronutrients = new ProductMicronutrients().InitialiseList()
             };
 
             ProductViewModel productViewModel = Mapper.Map<Product, ProductViewModel>(product);

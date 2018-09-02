@@ -10,7 +10,7 @@
             Name
         </th>
         <th>
-            Calories            
+            Calories
         </th>
         <th>
             Fat
@@ -22,10 +22,13 @@
             Total Sugars
         </th>
         <th>
-            Protein            
+            Protein
         </th>
         <th>
             Alcohol
+        </th>
+        <th>
+            Calcium
         </th>
         <th>
         </th>
@@ -33,33 +36,43 @@
 
     @foreach (var product in Model.Products)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => product.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => product.Nutrients["Calories"])
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => product.Nutrients["Fat"])
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => product.Nutrients["Carbohydrates"])
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => product.Nutrients["TotalSugars"])
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => product.Nutrients["Protein"])
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => product.Nutrients["Alcohol"])
-        </td>       
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { code = product.Code })
-            @Html.ActionLink("Delete", "Delete", new { code = product.Code }, new { @class = "DeleteProductLink" })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => product.Name)
+            </td>
+            <td>
+                @{var calories = product.ProductMacronutrients.Quantity("Calories");}               
+                @Html.DisplayFor(m => calories)
+            </td>
+            <td>
+                @{var fat = product.ProductMacronutrients.Quantity("Fat");}
+                @Html.DisplayFor(m => fat)
+            </td>
+            <td>
+                @{var carbohydrates = product.ProductMacronutrients.Quantity("Carbohydrates");}
+                @Html.DisplayFor(m => carbohydrates)               
+            </td>
+            <td>
+                @{var totalSugars = product.ProductMacronutrients.Quantity("Total Sugars");}
+                @Html.DisplayFor(m => totalSugars)
+            </td>
+            <td>
+                @{var protein = product.ProductMacronutrients.Quantity("Protein");}
+                @Html.DisplayFor(m => protein)
+            </td>
+            <td>
+                @{var alcohol = product.ProductMacronutrients.Quantity("Alcohol");}
+                @Html.DisplayFor(m => alcohol)
+            </td>
+            <td>
+                @{var calcium = product.ProductMicronutrients.Quantity("Calcium");}
+                @Html.DisplayFor(m => calcium)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { code = product.Code })
+                @Html.ActionLink("Delete", "Delete", new { code = product.Code }, new { @class = "DeleteProductLink" })
+            </td>
+        </tr>
     }
 </table>
 

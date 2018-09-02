@@ -46,7 +46,6 @@ namespace MyFoodDiary.Services.Concrete
             return _productMapper.HydrateProducts(dataTable);
         }
 
-
         public void CreateProduct(Product product, int userId)
         {
             _productRepository.CreateProduct(product, userId);

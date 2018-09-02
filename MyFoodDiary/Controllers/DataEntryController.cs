@@ -10,16 +10,16 @@ using MyFoodDiary.Services.Abstract;
 namespace MyFoodDiary.Controllers
 {
     [Authorize]
-    public class WeightFirstController : Controller
+    public class DataEntryController : Controller
     {
         private readonly IFoodItemServices _foodItemServices;
         private readonly IProductServices _productServices;
         private readonly IUserServices _userServices;
 
-        public WeightFirstController()
+        public DataEntryController()
         { }
 
-        public WeightFirstController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices)
+        public DataEntryController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices)
         {
             _productServices = productServices;
             _foodItemServices = foodItemServices;
@@ -72,7 +72,10 @@ namespace MyFoodDiary.Controllers
 
             foreach (var item in viewModel)
             {
-                decimal calories = products.Where(p => p.Code == item.Code).First().Nutrients["Calories"];
+                Product product = products.Where(p => p.Code == item.Code).First();
+                decimal calories = product.ProductMacronutrients.Quantity("Calories");
+
+                //decimal calories = products.Where(p => p.Code == item.Code).First().Nutrients["Calories"];
                 item.Calories = Convert.ToInt32(Math.Round(item.Quantity * (calories / 100), 0));
             }
 

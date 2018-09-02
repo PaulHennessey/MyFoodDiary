@@ -1,4 +1,5 @@
 ﻿@model  MyFoodDiary.Models.ProductViewModel
+@using MyFoodDiary.Domain
 
 @Scripts.Render("~/bundles/jqueryui")
 
@@ -19,14 +20,25 @@
     </div>
 
 
-    foreach (string key in Model.Nutrients.Keys)
+    foreach (ProductNutrient nutrient in Model.ProductMacronutrients.ProductNutrients)
     {
         <div class="editor-label">
-            @Html.Label(key)
+            @Html.Label(nutrient.Name)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Nutrients[key])
-            @Html.ValidationMessageFor(model => model.Nutrients[key])
+            @Html.EditorFor(model => nutrient.Quantity)
+            @Html.ValidationMessageFor(model => nutrient.Quantity)
+        </div>
+    }
+
+    foreach (ProductNutrient nutrient in Model.ProductMicronutrients.ProductNutrients)
+    {
+        <div class="editor-label">
+            @Html.Label(nutrient.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => nutrient.Quantity)
+            @Html.ValidationMessageFor(model => nutrient.Quantity)
         </div>
     }
 
