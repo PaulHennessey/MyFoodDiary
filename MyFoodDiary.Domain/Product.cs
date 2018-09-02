@@ -11,34 +11,33 @@ namespace MyFoodDiary.Domain
         public ProductMacronutrients ProductMacronutrients { get; set; }
         public ProductMicronutrients ProductMicronutrients { get; set; }
 
+        public override bool Equals(Object obj)
+        {
+            Product other = obj as Product;
 
-        //public override bool Equals(Object obj)
-        //{
-        //    Product other = obj as Product;
+            if (other == null)
+                return false;
 
-        //    if (other == null)
-        //        return false;
+            return (this.Code == other.Code) &&
+                   (this.Name == other.Name) &&
+                   (this.ProductMacronutrients.ProductNutrients.SequenceEqual(other.ProductMacronutrients.ProductNutrients));
+        }
 
-        //    return (this.Code == other.Code) &&
-        //           (this.Name == other.Name) &&
-        //           (this.Nutrients.SequenceEqual(other.Nutrients));
-        //}
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                hash = hash * 23 + Code.GetHashCode();
 
-        //public override int GetHashCode()
-        //{
-        //    unchecked // Overflow is fine, just wrap
-        //    {
-        //        int hash = 17;
-        //        hash = hash * 23 + Code.GetHashCode();
+                if (Name != null)
+                    hash = hash * 23 + Name.GetHashCode();
 
-        //        if (Name != null)
-        //            hash = hash * 23 + Name.GetHashCode();
+                if (ProductMacronutrients.ProductNutrients != null)
+                    hash = hash * 23 + ProductMacronutrients.ProductNutrients.GetHashCode();
 
-        //        if (Nutrients != null)
-        //            hash = hash * 23 + Nutrients.GetHashCode();
-
-        //        return hash;
-        //    }
-        //}
+                return hash;
+            }
+        }
     }
 }

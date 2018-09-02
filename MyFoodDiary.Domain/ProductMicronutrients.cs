@@ -29,5 +29,10 @@ namespace MyFoodDiary.Domain
         {
             return this.ProductNutrients.Where(n => n.Name == name).First().Quantity;
         }
+
+        public void Update(string name, decimal value)
+        {
+            ProductNutrients.Where(n => n.Name == name).First().Quantity = value;
+        }
     }
 }

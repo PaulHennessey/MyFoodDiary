@@ -115,22 +115,22 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Protein");
 
                 cmd.Parameters.Add(new SqlParameter("@Carbohydrate", SqlDbType.VarChar, 255));                
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Carbohydrates");
+                cmd.Parameters["@Carbohydrate"].Value = product.ProductMacronutrients.Quantity("Carbohydrates");
 
                 cmd.Parameters.Add(new SqlParameter("@Fat", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Fat");
+                cmd.Parameters["@Fat"].Value = product.ProductMacronutrients.Quantity("Fat");
 
                 cmd.Parameters.Add(new SqlParameter("@Calories", SqlDbType.VarChar, 255));                
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calories");
+                cmd.Parameters["@Calories"].Value = product.ProductMacronutrients.Quantity("Calories");
 
                 cmd.Parameters.Add(new SqlParameter("@Alcohol", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Alcohol");
+                cmd.Parameters["@Alcohol"].Value = product.ProductMacronutrients.Quantity("Alcohol");
 
                 cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));               
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Total Sugars");
+                cmd.Parameters["@TotalSugars"].Value = product.ProductMacronutrients.Quantity("Total Sugars");
 
                 cmd.Parameters.Add(new SqlParameter("@Calcium", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calcium");
+                cmd.Parameters["@Calcium"].Value = product.ProductMicronutrients.Quantity("Calcium");
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -157,22 +157,22 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Protein");
 
                 cmd.Parameters.Add(new SqlParameter("@Carbohydrate", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Carbohydrates");
+                cmd.Parameters["@Carbohydrate"].Value = product.ProductMacronutrients.Quantity("Carbohydrates");
 
                 cmd.Parameters.Add(new SqlParameter("@Fat", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Fat");
+                cmd.Parameters["@Fat"].Value = product.ProductMacronutrients.Quantity("Fat");
 
                 cmd.Parameters.Add(new SqlParameter("@Calories", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calories");
+                cmd.Parameters["@Calories"].Value = product.ProductMacronutrients.Quantity("Calories");
 
                 cmd.Parameters.Add(new SqlParameter("@Alcohol", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Alcohol");
+                cmd.Parameters["@Alcohol"].Value = product.ProductMacronutrients.Quantity("Alcohol");
 
                 cmd.Parameters.Add(new SqlParameter("@TotalSugars", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Total Sugars");
+                cmd.Parameters["@TotalSugars"].Value = product.ProductMacronutrients.Quantity("Total Sugars");
 
                 cmd.Parameters.Add(new SqlParameter("@Calcium", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Protein"].Value = product.ProductMacronutrients.Quantity("Calcium");
+                cmd.Parameters["@Calcium"].Value = product.ProductMicronutrients.Quantity("Calcium");
 
                 connection.Open();
                 cmd.ExecuteNonQuery();

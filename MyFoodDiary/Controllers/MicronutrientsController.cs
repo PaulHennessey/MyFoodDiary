@@ -40,24 +40,9 @@ namespace MyFoodDiary.Controllers
             List<Product> products = _productServices.GetProducts(days).ToList();
             var viewModel = new ChartViewModel();
 
-            if (nutrient.ToLower() == "macronutrient ratios")
-            {
-                viewModel.BarNames = _chartServices.GetDates(days);
-                viewModel.ChartTitle = _chartServices.GetMacronutrientRatioCategories();
-                viewModel.BarData = _chartServices.CalculateMacronutrientRatioData(days, products);
-            }
-            else if (nutrient.ToLower() == "alcohol")
-            {
-                viewModel.BarNames = _chartServices.GetBarNames(days);
-                viewModel.ChartTitle = _chartServices.GetMicronutrientTitle(nutrient);
-                viewModel.BarData = _chartServices.CalculateAlcoholByProduct(days, products);
-            }
-            else
-            {
-                viewModel.BarNames = _chartServices.GetBarNames(days);
-                viewModel.ChartTitle = _chartServices.GetMicronutrientTitle(nutrient);
-                viewModel.BarData = _chartServices.CalculateNutrientByProduct(days, products, nutrient);
-            }
+            viewModel.BarNames = _chartServices.GetBarNames(days);
+            viewModel.ChartTitle = _chartServices.GetMicronutrientTitle(nutrient);
+            viewModel.BarData = _chartServices.CalculateMicroNutrientByProduct(days, products, nutrient);
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
@@ -71,25 +56,10 @@ namespace MyFoodDiary.Controllers
             List<Product> products = _productServices.GetProducts(days).ToList();
             var viewModel = new ChartViewModel();
 
-            if (nutrient.ToLower() == "macronutrient ratios")
-            {
-                viewModel.BarNames = _chartServices.GetDates(days);
-                viewModel.ChartTitle = _chartServices.GetMacronutrientRatioCategories();
-                viewModel.BarData = _chartServices.CalculateMacronutrientRatioData(days, products);
+            viewModel.BarNames = _chartServices.GetDates(days);
+            viewModel.ChartTitle = _chartServices.GetMicronutrientTitle(nutrient);
+            viewModel.BarData = _chartServices.CalculateMicroNutrientByDay(days, products, nutrient);
 
-            }
-            else if (nutrient.ToLower() == "alcohol")
-            {
-                viewModel.BarNames = _chartServices.GetDates(days);
-                viewModel.ChartTitle = _chartServices.GetMicronutrientTitle(nutrient);
-                viewModel.BarData = _chartServices.CalculateAlcoholByDay(days, products);
-            }
-            else
-            {
-                viewModel.BarNames = _chartServices.GetDates(days);
-                viewModel.ChartTitle = _chartServices.GetMicronutrientTitle(nutrient);
-                viewModel.BarData = _chartServices.CalculateNutrientByDay(days, products, nutrient);
-            }
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 

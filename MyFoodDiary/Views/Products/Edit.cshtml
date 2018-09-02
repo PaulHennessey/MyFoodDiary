@@ -19,26 +19,14 @@
         @Html.ValidationMessageFor(model => model.Name)
     </div>
 
-
-    foreach (ProductNutrient nutrient in Model.ProductMacronutrients.ProductNutrients)
+    foreach (string key in Model.Nutrients.Keys)
     {
         <div class="editor-label">
-            @Html.Label(nutrient.Name)
+            @Html.Label(key)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => nutrient.Quantity)
-            @Html.ValidationMessageFor(model => nutrient.Quantity)
-        </div>
-    }
-
-    foreach (ProductNutrient nutrient in Model.ProductMicronutrients.ProductNutrients)
-    {
-        <div class="editor-label">
-            @Html.Label(nutrient.Name)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => nutrient.Quantity)
-            @Html.ValidationMessageFor(model => nutrient.Quantity)
+            @Html.EditorFor(model => model.Nutrients[key])
+            @Html.ValidationMessageFor(model => model.Nutrients[key])
         </div>
     }
 

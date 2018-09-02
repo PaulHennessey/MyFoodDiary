@@ -56,7 +56,7 @@ namespace MyFoodDiary.Controllers
             {
                 viewModel.BarNames = _chartServices.GetBarNames(days);
                 viewModel.ChartTitle = _chartServices.GetMacronutrientTitle(nutrient);
-                viewModel.BarData = _chartServices.CalculateNutrientByProduct(days, products, nutrient);
+                viewModel.BarData = _chartServices.CalculateMacroNutrientByProduct(days, products, nutrient);
             }
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
@@ -88,7 +88,7 @@ namespace MyFoodDiary.Controllers
             {
                 viewModel.BarNames = _chartServices.GetDates(days);
                 viewModel.ChartTitle = _chartServices.GetMacronutrientTitle(nutrient);
-                viewModel.BarData = _chartServices.CalculateNutrientByDay(days, products, nutrient);
+                viewModel.BarData = _chartServices.CalculateMacroNutrientByDay(days, products, nutrient);
             }
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }

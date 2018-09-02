@@ -73,5 +73,47 @@ namespace MyFoodDiary.Services.Concrete
             _productRepository.DeleteProduct(code);
         }
 
+        public Dictionary<string, decimal> GetNutrients(Product product)
+        {
+            var nutrients = new Dictionary<string, decimal>();
+
+            foreach(ProductNutrient productNutrient in product.ProductMacronutrients.ProductNutrients)
+            {
+                nutrients.Add(productNutrient.Name, productNutrient.Quantity);
+            }
+
+            foreach (ProductNutrient productNutrient in product.ProductMicronutrients.ProductNutrients)
+            {
+                nutrients.Add(productNutrient.Name, productNutrient.Quantity);
+            }
+
+            return nutrients;
+        }
+
+        public ProductMacronutrients UpdateProductMacronutrients(Dictionary<string, decimal> nutrients)
+        {
+            var productMacronutrients = new ProductMacronutrients().InitialiseList();
+
+            foreach (var key in nutrients.Keys)
+            {               
+                if (productMacronutrients.ProductNutrients.Exists(n => n.Name == key))
+                    productMacronutrients.Update(key, nutrients[key]);
+            }
+
+            return productMacronutrients;
+        }
+
+        public ProductMicronutrients UpdateProductMicronutrients(Dictionary<string, decimal> nutrients)
+        {
+            var productMicronutrients = new ProductMicronutrients().InitialiseList();
+
+            foreach (var key in nutrients.Keys)
+            {
+                if (productMicronutrients.ProductNutrients.Exists(n => n.Name == key))
+                    productMicronutrients.Update(key, nutrients[key]);
+            }
+
+            return productMicronutrients;
+        }
     }
 }

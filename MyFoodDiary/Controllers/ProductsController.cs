@@ -46,10 +46,12 @@ namespace MyFoodDiary.Controllers
             {
                 Code = String.Empty,
                 ProductMacronutrients = new ProductMacronutrients().InitialiseList(),
-                ProductMicronutrients = new ProductMicronutrients().InitialiseList()
+                ProductMicronutrients = new ProductMicronutrients().InitialiseList(),
             };
 
             ProductViewModel productViewModel = Mapper.Map<Product, ProductViewModel>(product);
+
+            productViewModel.Nutrients = _productServices.GetNutrients(product);
 
             return View(productViewModel);
         }
@@ -63,6 +65,9 @@ namespace MyFoodDiary.Controllers
                 User user = _userServices.GetUser(User.Identity.Name);
 
                 Product product = Mapper.Map<ProductViewModel, Product>(productViewModel);
+                product.ProductMacronutrients = _productServices.UpdateProductMacronutrients(productViewModel.Nutrients);
+                product.ProductMicronutrients = _productServices.UpdateProductMicronutrients(productViewModel.Nutrients);
+
                 _productServices.CreateProduct(product, user.Id);
 
                 return RedirectToAction("Index");
@@ -81,6 +86,8 @@ namespace MyFoodDiary.Controllers
 
             ProductViewModel productViewModel = Mapper.Map<Product, ProductViewModel>(product);
 
+            productViewModel.Nutrients = _productServices.GetNutrients(product);
+
             return View(productViewModel);
         }
 
@@ -91,6 +98,9 @@ namespace MyFoodDiary.Controllers
             if (ModelState.IsValid)
             {
                 Product product = Mapper.Map<ProductViewModel, Product>(productViewModel);
+                product.ProductMacronutrients = _productServices.UpdateProductMacronutrients(productViewModel.Nutrients);
+                product.ProductMicronutrients = _productServices.UpdateProductMicronutrients(productViewModel.Nutrients);
+
                 _productServices.UpdateProduct(product);
 
                 return RedirectToAction("Index");
