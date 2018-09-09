@@ -132,6 +132,9 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters.Add(new SqlParameter("@Calcium", SqlDbType.VarChar, 255));
                 cmd.Parameters["@Calcium"].Value = product.ProductMicronutrients.Quantity("Calcium");
 
+                cmd.Parameters.Add(new SqlParameter("@VitaminD", SqlDbType.VarChar, 255));
+                cmd.Parameters["@VitaminD"].Value = product.ProductMicronutrients.Quantity("Vitamin D");
+
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -173,6 +176,9 @@ namespace MyFoodDiary.Data.Concrete
 
                 cmd.Parameters.Add(new SqlParameter("@Calcium", SqlDbType.VarChar, 255));
                 cmd.Parameters["@Calcium"].Value = product.ProductMicronutrients.Quantity("Calcium");
+
+                cmd.Parameters.Add(new SqlParameter("@VitaminD", SqlDbType.VarChar, 255));
+                cmd.Parameters["@VitaminD"].Value = product.ProductMicronutrients.Quantity("Vitamin D");
 
                 connection.Open();
                 cmd.ExecuteNonQuery();

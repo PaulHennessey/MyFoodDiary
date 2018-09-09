@@ -220,7 +220,7 @@ namespace MyFoodDiary.Services.Concrete
                                            on g.Code equals p.Code
                                            select new
                                            {
-                                               TotalNutrient = GetTotalMacroNutrient(g.Total, p, nutrient)
+                                               TotalNutrient = GetTotalMicroNutrient(g.Total, p, nutrient)
                                            };
 
                 decimal totalNutrientByDay = actualNutrientValues.Sum(product => product.TotalNutrient);
@@ -342,14 +342,14 @@ namespace MyFoodDiary.Services.Concrete
 
         public List<string> GetMacronutrientTitle(string name)
         {
-            Nutrient nutrient = Macronutrients.Nutrients.Where(m => m.Name == name).First();
+            Nutrient nutrient = Macronutrients.Nutrient(name);
             return new List<string> { nutrient.Name + " in " + nutrient.MeasurementUnit };
         }
 
 
         public List<string> GetMicronutrientTitle(string name)
         {
-            Nutrient nutrient = Micronutrients.Nutrients.Where(m => m.Name == name).First();
+            Nutrient nutrient = Micronutrients.Nutrient(name);
             return new List<string> { nutrient.Name + " in " + nutrient.MeasurementUnit };
         }
 
@@ -380,10 +380,19 @@ namespace MyFoodDiary.Services.Concrete
         private decimal GetTotalAlcoholUnits(int total, Product product)
         {           
             decimal alcoholByWeight = product.ProductMacronutrients.Quantity("Alcohol");
-            //decimal alcoholByWeight = product.Nutrients["Alcohol"];
             decimal alcoholByVolume = alcoholByWeight / SpecificGravityOfAlcohol;
 
             return Math.Round((alcoholByVolume * total) / 1000, 1);
+        }
+
+        public decimal GetMacronutrientRDA(string name)
+        {
+            return Macronutrients.Nutrient(name).RDA;
+        }
+
+        public decimal GetMicronutrientRDA(string name)
+        {
+            return Micronutrients.Nutrient(name).RDA;
         }
     }
 }

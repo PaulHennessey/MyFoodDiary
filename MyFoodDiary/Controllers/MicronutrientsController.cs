@@ -44,6 +44,9 @@ namespace MyFoodDiary.Controllers
             viewModel.ChartTitle = _chartServices.GetMicronutrientTitle(nutrient);
             viewModel.BarData = _chartServices.CalculateMicroNutrientByProduct(days, products, nutrient);
 
+            viewModel.BarNames.Add("RDA");
+            viewModel.BarData.First().Add(_chartServices.GetMicronutrientRDA(nutrient));
+
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 

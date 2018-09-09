@@ -8,7 +8,6 @@ namespace MyFoodDiary.Models
     {        
         public int SelectedNutrientId { get; set; }
 
-        //private Micronutrients micronutrients = new Micronutrients();
         public IEnumerable<SelectListItem> Nutrients
         {
             get { return new SelectList(Micronutrients.Nutrients, "Id", "Name"); }

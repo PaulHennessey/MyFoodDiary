@@ -18,5 +18,7 @@ namespace MyFoodDiary.Services.Abstract
         List<string> GetMacronutrientRatioCategories();
         List<string> GetMacronutrientTitle(string nutrient);
         List<string> GetMicronutrientTitle(string nutrient);
+        decimal GetMacronutrientRDA(string nutrient);
+        decimal GetMicronutrientRDA(string nutrient);
     }
 }

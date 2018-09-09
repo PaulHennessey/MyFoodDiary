@@ -59,6 +59,9 @@ namespace MyFoodDiary.Controllers
                 viewModel.BarData = _chartServices.CalculateMacroNutrientByProduct(days, products, nutrient);
             }
 
+            viewModel.BarNames.Add("RDA");
+            viewModel.BarData.First().Add(_chartServices.GetMacronutrientRDA(nutrient));
+
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }
 
