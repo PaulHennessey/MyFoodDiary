@@ -47,6 +47,7 @@
     <Compile Include="Micronutrients.cs" />
     <Compile Include="Macronutrients.cs" />
     <Compile Include="Nutrient.cs" />
+    <Compile Include="Trackable.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProductMicronutrients.cs" />
     <Compile Include="ProductMacronutrients.cs" />

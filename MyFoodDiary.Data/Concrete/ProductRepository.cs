@@ -135,6 +135,12 @@ namespace MyFoodDiary.Data.Concrete
                 cmd.Parameters.Add(new SqlParameter("@VitaminD", SqlDbType.VarChar, 255));
                 cmd.Parameters["@VitaminD"].Value = product.ProductMicronutrients.Quantity("Vitamin D");
 
+                cmd.Parameters.Add(new SqlParameter("@VitaminC", SqlDbType.VarChar, 255));
+                cmd.Parameters["@VitaminC"].Value = product.ProductMicronutrients.Quantity("Vitamin C");
+
+                cmd.Parameters.Add(new SqlParameter("@Fibre", SqlDbType.VarChar, 255));
+                cmd.Parameters["@Fibre"].Value = product.ProductMacronutrients.Quantity("Fibre");
+
                 connection.Open();
                 cmd.ExecuteNonQuery();
             }
@@ -179,6 +185,12 @@ namespace MyFoodDiary.Data.Concrete
 
                 cmd.Parameters.Add(new SqlParameter("@VitaminD", SqlDbType.VarChar, 255));
                 cmd.Parameters["@VitaminD"].Value = product.ProductMicronutrients.Quantity("Vitamin D");
+
+                cmd.Parameters.Add(new SqlParameter("@VitaminC", SqlDbType.VarChar, 255));
+                cmd.Parameters["@VitaminC"].Value = product.ProductMicronutrients.Quantity("Vitamin C");
+
+                cmd.Parameters.Add(new SqlParameter("@Fibre", SqlDbType.VarChar, 255));
+                cmd.Parameters["@Fibre"].Value = product.ProductMacronutrients.Quantity("Fibre");
 
                 connection.Open();
                 cmd.ExecuteNonQuery();

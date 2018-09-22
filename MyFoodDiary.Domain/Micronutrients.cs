@@ -11,7 +11,8 @@ namespace MyFoodDiary.Domain
         public static List<Nutrient> Nutrients = new List<Nutrient>
         {
             new Nutrient { Name = "Calcium", MeasurementUnit = "mg", RDA = 1000 },
-            new Nutrient { Name = "Vitamin D", MeasurementUnit = "µg", RDA = 10 }
+            new Nutrient { Name = "Vitamin D", MeasurementUnit = "µg", RDA = 10 },
+            new Nutrient { Name = "Vitamin C", MeasurementUnit = "mg", RDA = 100 }
         };
 
         public static Nutrient Nutrient(string name)

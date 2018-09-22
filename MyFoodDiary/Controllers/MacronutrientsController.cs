@@ -51,16 +51,18 @@ namespace MyFoodDiary.Controllers
                 viewModel.BarNames = _chartServices.GetBarNames(days);
                 viewModel.ChartTitle = _chartServices.GetMacronutrientTitle(nutrient);
                 viewModel.BarData = _chartServices.CalculateAlcoholByProduct(days, products);
+                viewModel.BarNames.Add("RDA");
+                viewModel.BarData.First().Add(_chartServices.GetMacronutrientRDA(nutrient));
             }
             else
             {
                 viewModel.BarNames = _chartServices.GetBarNames(days);
                 viewModel.ChartTitle = _chartServices.GetMacronutrientTitle(nutrient);
                 viewModel.BarData = _chartServices.CalculateMacroNutrientByProduct(days, products, nutrient);
+                viewModel.BarNames.Add("RDA");
+                viewModel.BarData.First().Add(_chartServices.GetMacronutrientRDA(nutrient));
             }
 
-            viewModel.BarNames.Add("RDA");
-            viewModel.BarData.First().Add(_chartServices.GetMacronutrientRDA(nutrient));
 
             return Json(viewModel, JsonRequestBehavior.AllowGet);
         }

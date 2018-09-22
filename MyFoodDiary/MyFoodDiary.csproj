@@ -196,6 +196,7 @@
     <Compile Include="Controllers\CaloriesFirstController.cs" />
     <Compile Include="Controllers\DataEntryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TrackablesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -209,6 +210,8 @@
     <Compile Include="Models\CaloriesFirstFoodItemListViewModel.cs" />
     <Compile Include="Models\MicronutrientsViewModel.cs" />
     <Compile Include="Models\MacronutrientsViewModel.cs" />
+    <Compile Include="Models\TrackableViewModel.cs" />
+    <Compile Include="Models\TrackablesViewModel.cs" />
     <Compile Include="Models\WeightFirstFoodItemListViewModel.cs" />
     <Compile Include="Models\FoodItemListViewModel.cs" />
     <Compile Include="Models\CaloriesFirstFoodItemViewModel.cs" />
@@ -339,6 +342,7 @@
     <Content Include="Scripts\MyFoodDiaryCaloriesFirst.js" />
     <Content Include="Scripts\MyFoodDiaryDataEntry.js" />
     <Content Include="Scripts\MyFoodDiaryMicronutrients.js" />
+    <Content Include="Scripts\MyFoodDiaryTrackables.js" />
     <Content Include="Scripts\MyFoodDiaryProducts.js" />
     <Content Include="Scripts\MyFoodDiaryMacronutrients.js" />
     <Content Include="Scripts\MyFoodDiary.js" />
@@ -390,6 +394,9 @@
     <Content Include="Views\DataEntry\Index.cshtml" />
     <Content Include="Views\CaloriesFirst\Index.cshtml" />
     <Content Include="Views\Micronutrients\Index.cshtml" />
+    <Content Include="Views\Trackables\Index.cshtml" />
+    <Content Include="Views\Trackables\Create.cshtml" />
+    <Content Include="Views\Trackables\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

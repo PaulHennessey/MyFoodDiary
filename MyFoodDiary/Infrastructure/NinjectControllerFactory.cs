@@ -31,14 +31,17 @@ namespace MyFoodDiary.Infrastructure
             ninjectKernel.Bind<IFoodItemServices>().To<FoodItemServices>();
             ninjectKernel.Bind<IProductServices>().To<ProductServices>();
             ninjectKernel.Bind<IUserServices>().To<UserServices>();
+            ninjectKernel.Bind<ITrackablesServices>().To<TrackablesServices>();
             ninjectKernel.Bind<IProductMapper>().To<ProductMapper>();
             ninjectKernel.Bind<IFoodItemMapper>().To<FoodItemMapper>();
             ninjectKernel.Bind<IFavouriteMapper>().To<FavouriteMapper>();
             ninjectKernel.Bind<IUserMapper>().To<UserMapper>();
+            ninjectKernel.Bind<ITrackablesMapper>().To<TrackablesMapper>();
             ninjectKernel.Bind<IProductRepository>().To<ProductRepository>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["CoFIDS_ConnectionString"].ConnectionString);
             ninjectKernel.Bind<IFoodItemRepository>().To<FoodItemRepository>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["MyFoodDiary_ConnectionString"].ConnectionString);
             ninjectKernel.Bind<IUserRepository>().To<UserRepository>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["MyFoodDiary_ConnectionString"].ConnectionString);
             ninjectKernel.Bind<IFavouriteRepository>().To<FavouriteRepository>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["MyFoodDiary_ConnectionString"].ConnectionString);
+            ninjectKernel.Bind<ITrackablesRepository>().To<TrackablesRepository>().WithConstructorArgument("connectionString", ConfigurationManager.ConnectionStrings["MyFoodDiary_ConnectionString"].ConnectionString);
         }
     }
 }
