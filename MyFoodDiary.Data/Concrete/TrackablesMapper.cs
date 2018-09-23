@@ -14,6 +14,7 @@ namespace MyFoodDiary.Data.Concrete
         {
             return from DataRow row in dataTable.Rows select new Trackable
             {
+                Id = Convert.ToInt32(row["Id"]),
                 Name = row["Name"].ToString(),
             };
         }

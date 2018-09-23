@@ -20,8 +20,8 @@
             @Html.DisplayFor(modelItem => trackable.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { code = trackable.Id })
-            @Html.ActionLink("Delete", "Delete", new { code = trackable.Id }, new { @class = "DeleteTrackableLink" })
+            @Html.ActionLink("Edit", "Edit", new { id = trackable.Id })
+            @Html.ActionLink("Delete", "Delete", new { id = trackable.Id }, new { @class = "DeleteTrackableLink" })
         </td>
     </tr>
     }

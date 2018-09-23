@@ -9,10 +9,10 @@ namespace MyFoodDiary.Services.Abstract
         //IEnumerable<Product> GetProducts(List<FoodItem> foodItems);
         //IEnumerable<Product> GetProducts(List<Day> days);
         //List<Product> GetCustomProducts(int userId);
-        //Product GetProduct(string code);
+        Trackable GetTrackable(int id);
         void CreateTrackable(Trackable trackable, int userId);
-        //void UpdateProduct(Product product);
-        //void DeleteProduct(string code);
+        void UpdateTrackable(Trackable trackable);
+        void DeleteTrackable(int id);
         //Dictionary<string, decimal> GetNutrients(Product product);
         //ProductMacronutrients UpdateProductMacronutrients(Dictionary<string, decimal> nutrients);
         //ProductMicronutrients UpdateProductMicronutrients(Dictionary<string, decimal> nutrients);

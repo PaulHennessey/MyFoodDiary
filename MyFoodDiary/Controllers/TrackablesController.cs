@@ -73,44 +73,40 @@ namespace MyFoodDiary.Controllers
         }
 
 
-        //[HttpGet]
-        //public ActionResult Edit(string code)
-        //{
-        //    Product product = _productServices.GetProduct(code);
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Trackable trackable = _trackablesServices.GetTrackable(id);
 
-        //    ProductViewModel productViewModel = Mapper.Map<Product, ProductViewModel>(product);
+            TrackableViewModel trackableViewModel = Mapper.Map<Trackable, TrackableViewModel>(trackable);
 
-        //    productViewModel.Nutrients = _productServices.GetNutrients(product);
-
-        //    return View(productViewModel);
-        //}
+            return View(trackableViewModel);
+        }
 
 
-        //[HttpPost]
-        //public ActionResult Edit(ProductViewModel productViewModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        Product product = Mapper.Map<ProductViewModel, Product>(productViewModel);
-        //        product.ProductMacronutrients = _productServices.UpdateProductMacronutrients(productViewModel.Nutrients);
-        //        product.ProductMicronutrients = _productServices.UpdateProductMicronutrients(productViewModel.Nutrients);
+        [HttpPost]
+        public ActionResult Edit(TrackableViewModel trackableViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                Trackable trackable = Mapper.Map<TrackableViewModel, Trackable>(trackableViewModel);
 
-        //        _productServices.UpdateProduct(product);
+                _trackablesServices.UpdateTrackable(trackable);
 
-        //        return RedirectToAction("Index");
-        //    }
-        //    else
-        //    {
-        //        return View(productViewModel);
-        //    }
-        //}
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(trackableViewModel);
+            }
+        }
 
 
-        //public ActionResult Delete(string code)
-        //{
-        //    _productServices.DeleteProduct(code);
+        public ActionResult Delete(int id)
+        {
+            _trackablesServices.DeleteTrackable(id);
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Index");
+        }
     }
 }
