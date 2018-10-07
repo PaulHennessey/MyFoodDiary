@@ -19,5 +19,17 @@ namespace MyFoodDiary.Domain.Extensions
                 return value;
             }
         }
+
+        public static int? GetNullableInt(this DataRow row, string columnName)
+        {
+            if (row.IsNull(columnName))
+            {
+                return null;
+            }
+            else
+            {
+                return Convert.ToInt32(row[columnName]);
+            }
+        }
     }
 }

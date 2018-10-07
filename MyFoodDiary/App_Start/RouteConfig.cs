@@ -103,6 +103,26 @@ namespace MyFoodDiary
             //);
 
 
+            routes.MapRoute(
+                name: "SaveTrackableItem",
+                url: "TrackablesLog/Save/{id}/{quantity}",
+                defaults: new { controller = "TrackablesLog", action = "Save", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+               name: "TrackablesLogRefresh",
+               url: "TrackablesLog/Refresh/{date}",
+               defaults: new { controller = "TrackablesLog", action = "Refresh", date = UrlParameter.Optional }
+           );
+
+            routes.MapRoute(
+               name: "TrackablesLog",
+               url: "TrackablesLog/{date}",
+               defaults: new { controller = "TrackablesLog", action = "Index", date = UrlParameter.Optional }
+           );
+
+
+            
 
 
             routes.MapRoute(

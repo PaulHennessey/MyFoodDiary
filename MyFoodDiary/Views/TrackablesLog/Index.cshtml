@@ -1,0 +1,18 @@
+﻿@model  MyFoodDiary.Models.TrackableItemListViewModel
+
+@Scripts.Render("~/bundles/jqueryui")
+@Styles.Render("~/Content/myfooddiary")
+
+<link href="@Url.Content("~//Content/themes/vader/jquery-ui-1.10.3.custom.css")" rel="stylesheet" type="text/css" />
+
+<div>
+    <input id="dateselection" name="Date" type="text">
+</div>
+
+<div id="trackableTableDiv">
+    <table id="trackableItemTable"></table>
+</div>
+
+
+<script src="@Url.Content("~/Scripts/MyFoodDiaryTrackablesLog.js")" type="text/javascript"></script>
+

@@ -41,11 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IChartServices.cs" />
+    <Compile Include="Abstract\ITrackableItemServices.cs" />
     <Compile Include="Abstract\IFoodItemServices.cs" />
     <Compile Include="Abstract\ITrackablesServices.cs" />
     <Compile Include="Abstract\IProductServices.cs" />
     <Compile Include="Abstract\IUserServices.cs" />
     <Compile Include="Concrete\ChartServices.cs" />
+    <Compile Include="Concrete\TrackableItemServices.cs" />
     <Compile Include="Concrete\FoodItemServices.cs" />
     <Compile Include="Concrete\TrackablesServices.cs" />
     <Compile Include="Concrete\ProductServices.cs" />

@@ -43,6 +43,7 @@
     <Compile Include="Day.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Favourite.cs" />
+    <Compile Include="TrackableItem.cs" />
     <Compile Include="FoodItem.cs" />
     <Compile Include="Micronutrients.cs" />
     <Compile Include="Macronutrients.cs" />
