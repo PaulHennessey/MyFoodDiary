@@ -10,8 +10,7 @@ namespace MyFoodDiary.Domain
         public int? Id { get; set; }
         public int TrackableId { get; set; }
         public string Name { get; set; }
-        public int? Quantity { get; set; }
-        //public DateTime Date { get; set; }
+        public decimal? Quantity { get; set; }
 
         public override bool Equals(Object obj)
         {
@@ -41,7 +40,6 @@ namespace MyFoodDiary.Domain
                     hash = hash * 23 + Name.GetHashCode();
 
                 hash = hash * 23 + Quantity.GetHashCode();
-                //hash = hash * 23 + Date.GetHashCode();
 
                 return hash;
             }

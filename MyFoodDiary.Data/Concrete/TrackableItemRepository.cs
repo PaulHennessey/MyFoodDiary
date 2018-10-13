@@ -42,31 +42,49 @@ namespace MyFoodDiary.Data.Concrete
         }
 
 
-        //public void InsertFoodItem(string code, int quantity, DateTime dt, int userId)
-        //{
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        var cmd = new SqlCommand("InsertFoodItem", connection)
-        //        {
-        //            CommandType = CommandType.StoredProcedure
-        //        };
+        public void InsertTrackableItem(int? trackableId, DateTime dt, decimal? quantity)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var cmd = new SqlCommand("InsertTrackableItem", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
-        //        cmd.Parameters.Add(new SqlParameter("@Code", SqlDbType.VarChar, 255));
-        //        cmd.Parameters["@Code"].Value = code;
+                cmd.Parameters.Add(new SqlParameter("@trackableId", SqlDbType.Int));
+                cmd.Parameters["@trackableId"].Value = trackableId;
 
-        //        cmd.Parameters.Add(new SqlParameter("@quantity", SqlDbType.Int));
-        //        cmd.Parameters["@quantity"].Value = quantity;
+                cmd.Parameters.Add(new SqlParameter("@dt", SqlDbType.DateTime));
+                cmd.Parameters["@dt"].Value = dt;
 
-        //        cmd.Parameters.Add(new SqlParameter("@dt", SqlDbType.DateTime));
-        //        cmd.Parameters["@dt"].Value = dt;
+                cmd.Parameters.Add(new SqlParameter("@Amount", SqlDbType.Decimal));
+                cmd.Parameters["@Amount"].Value = quantity;
 
-        //        cmd.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
-        //        cmd.Parameters["@userId"].Value = userId;
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
-        //        connection.Open();
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //}
+
+        public void UpdateTrackableItem(int? id, decimal? quantity)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var cmd = new SqlCommand("UpdateTrackableItem", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                cmd.Parameters["@id"].Value = id;
+
+                cmd.Parameters.Add(new SqlParameter("@Amount", SqlDbType.VarChar));
+                cmd.Parameters["@Amount"].Value = quantity.ToString();
+
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
 
         //public void DeleteFoodItem(int id)

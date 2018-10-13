@@ -44,9 +44,12 @@ namespace MyFoodDiary.Controllers
         }
 
 
-        public ActionResult Save(int id, int quantity)
+        public ActionResult Save(int? id, int trackableId, decimal? quantity, DateTime date)
         {
-          //  _trackableItemServices.UpdateFoodItem(id, quantity);
+            if(id == null)
+                _trackableItemServices.InsertTrackableItem(trackableId, date, quantity);
+            else
+                _trackableItemServices.UpdateTrackableItem(id, quantity);
 
             return RedirectToAction("Index");
         }

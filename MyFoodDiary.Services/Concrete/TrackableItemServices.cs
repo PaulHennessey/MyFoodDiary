@@ -30,13 +30,22 @@ namespace MyFoodDiary.Services.Concrete
 
         public IEnumerable<TrackableItem> GetTrackableItems(DateTime dt, int userId)
         {
-            //DataTable trackablesTable = _trackablesRepository.GetTrackables(userId);
-            //IEnumerable<Trackable> trackables = _trackablesMapper.HydrateTrackables(trackablesTable);
-
-
             DataTable trackableItems = _trackableItemRepository.GetTrackableItems(dt, userId);
             return _trackableItemMapper.HydrateTrackableItems(trackableItems);
         }
+
+
+        public void InsertTrackableItem(int? trackableId, DateTime dt, decimal? quantity)
+        {
+            _trackableItemRepository.InsertTrackableItem(trackableId, dt, quantity);
+        }
+
+
+        public void UpdateTrackableItem(int? id, decimal? quantity)
+        {
+            _trackableItemRepository.UpdateTrackableItem(id, quantity);
+        }
+
 
         //public Day GetDay(DateTime dt, int userId)
         //{
@@ -59,10 +68,6 @@ namespace MyFoodDiary.Services.Concrete
         //    return days;
         //}
 
-        //public void InsertFoodItem(string code, int quantity, DateTime dt, int userId)
-        //{
-        //    _foodItemRepository.InsertFoodItem(code, quantity, dt, userId);
-        //}
 
 
         //public void UpdateFoodItem(int id, int quantity)

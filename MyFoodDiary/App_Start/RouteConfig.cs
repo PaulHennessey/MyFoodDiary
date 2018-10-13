@@ -105,8 +105,8 @@ namespace MyFoodDiary
 
             routes.MapRoute(
                 name: "SaveTrackableItem",
-                url: "TrackablesLog/Save/{id}/{quantity}",
-                defaults: new { controller = "TrackablesLog", action = "Save", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
+                url: "TrackablesLog/Save/{id}/{trackableId}/{quantity}/{date}",
+                defaults: new { controller = "TrackablesLog", action = "Save", id = UrlParameter.Optional, trackableId = UrlParameter.Optional, quantity = UrlParameter.Optional, date = UrlParameter.Optional }
             );
 
             routes.MapRoute(

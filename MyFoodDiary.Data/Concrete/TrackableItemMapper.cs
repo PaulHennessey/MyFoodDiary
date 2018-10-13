@@ -18,8 +18,7 @@ namespace MyFoodDiary.Data.Concrete
                        Id = row.GetNullableInt("Id"),
                        TrackableId = Convert.ToInt32(row["TrackableId"]),
                        Name = row["Name"].ToString(),
-                       Quantity = row.GetNullableInt("Quantity")
-                       //Date = Convert.ToDateTime(row["Date"]),
+                       Quantity = Convert.ToDecimal(row["Quantity"])
                    };
         }
     }
