@@ -31,5 +31,18 @@ namespace MyFoodDiary.Domain.Extensions
                 return Convert.ToInt32(row[columnName]);
             }
         }
+
+
+        public static decimal? GetNullableDecimal(this DataRow row, string columnName)
+        {
+            if (row.IsNull(columnName))
+            {
+                return null;
+            }
+            else
+            {
+                return Convert.ToDecimal(row[columnName]);
+            }
+        }
     }
 }

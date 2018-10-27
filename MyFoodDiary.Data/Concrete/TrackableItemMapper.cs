@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace MyFoodDiary.Data.Concrete
                        Id = row.GetNullableInt("Id"),
                        TrackableId = Convert.ToInt32(row["TrackableId"]),
                        Name = row["Name"].ToString(),
-                       Quantity = Convert.ToDecimal(row["Quantity"])
+                       Quantity = row.GetNullableDecimal("Quantity")
                    };
         }
     }

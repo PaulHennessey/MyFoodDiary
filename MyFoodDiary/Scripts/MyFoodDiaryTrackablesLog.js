@@ -40,9 +40,11 @@
 
         var id = $(this).data('id');
         var trackableId = $(this).data('trackableid');
+        var name = "#" + $(this).data('name');
 
         // Now get the quantity - the fooditemid is used as the id of the quantity input field
-        var quantity = $("#Weight").val();
+        var quantity = $(name).val();
+        //var quantity = $("#Weight").val();
 
         $.ajax({
             type: "POST",
@@ -95,7 +97,7 @@
         $("#trackableItemTable").append(row);
         row.append($("<td>" + rowData.Name + "</td>"));
         row.append($("<td><input class='input-quantity' id=" + rowData.Name + " type='text' value=" + isNull(rowData.Quantity) + "></td>"));
-        row.append($("<td><a href='#' data-id=" + rowData.Id + " data-trackableid=" + rowData.TrackableId + " class= 'SaveLink' onclick = 'SaveLinkClick(this);' > Save</a > "));
+        row.append($("<td><a href='#' data-id=" + rowData.Id + " data-trackableid=" + rowData.TrackableId + " data-name=" + rowData.Name + " class= 'SaveLink' onclick = 'SaveLinkClick(this);' > Save</a > "));
     }
 
     function isNull(str) {
