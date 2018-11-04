@@ -42,9 +42,8 @@
         var trackableId = $(this).data('trackableid');
         var name = "#" + $(this).data('name');
 
-        // Now get the quantity - the fooditemid is used as the id of the quantity input field
+        // Now get the quantity - the name is used as the id of the quantity input field
         var quantity = $(name).val();
-        //var quantity = $("#Weight").val();
 
         $.ajax({
             type: "POST",

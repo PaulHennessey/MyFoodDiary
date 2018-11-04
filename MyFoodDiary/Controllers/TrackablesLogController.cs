@@ -33,7 +33,7 @@ namespace MyFoodDiary.Controllers
         {
             User user = _userServices.GetUser(User.Identity.Name);
         
-            List<TrackableItem> trackableItems = _trackableItemServices.GetTrackableItems(date, user.Id).OrderByDescending(x => x.Id).ToList();
+            List<TrackableItem> trackableItems = _trackableItemServices.GetTrackableItems(date, user.Id).OrderBy(x => x.Name).ToList();
 
             var viewModel = new TrackableItemListViewModel()
             {
