@@ -29,16 +29,16 @@
                         <ul class="navbar-nav" id="menu">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Data
+                                    Log
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    @Html.ActionLink("Log food", "Index", "DataEntry", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("Log trackables", "Index", "TrackablesLog", null, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Food", "Index", "DataEntry", null, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Trackables", "Index", "TrackablesLog", null, new { @class = "dropdown-item" })
                                 </div>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Charts
+                                    View
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     @Html.ActionLink("Macronutrients", "Index", "Macronutrients", null, new { @class = "dropdown-item" })
@@ -47,7 +47,7 @@
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Maintenance
+                                    Maintain
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     @Html.ActionLink("Products", "Index", "Products", null, new { @class = "dropdown-item" })

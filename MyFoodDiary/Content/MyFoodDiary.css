@@ -1,5 +1,5 @@
 ﻿.input-quantity {
-    width: 40px;
+    width: 45px;
     margin: 0;
     padding: 3px 5px 3px 5px;
 }
@@ -24,4 +24,14 @@
     /*border: 1px solid #000000;*/
     width: 60%;
     float: left;
+}
+
+#macroTableDiv {
+    width: 60%;
+    float: left;
+}
+
+#microTableDiv {
+    width: 40%;
+    float: right;
 }

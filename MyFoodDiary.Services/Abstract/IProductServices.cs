@@ -14,6 +14,8 @@ namespace MyFoodDiary.Services.Abstract
         void UpdateProduct(Product product);
         void DeleteProduct(string code);
         Dictionary<string, decimal> GetNutrients(Product product);
+        Dictionary<string, decimal> GetMacroNutrients(Product product);
+        Dictionary<string, decimal> GetMicroNutrients(Product product);
         ProductMacronutrients UpdateProductMacronutrients(Dictionary<string, decimal> nutrients);
         ProductMicronutrients UpdateProductMicronutrients(Dictionary<string, decimal> nutrients);
     }

@@ -7,6 +7,7 @@ namespace MyFoodDiary.Models
     { 
         public string Code { get; set; }    
         public string Name { get; set; }
-        public Dictionary<string, decimal> Nutrients { get; set; }
+        public Dictionary<string, decimal> MacroNutrients { get; set; }
+        public Dictionary<string, decimal> MicroNutrients { get; set; }
     }
 }

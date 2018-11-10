@@ -90,6 +90,30 @@ namespace MyFoodDiary.Services.Concrete
             return nutrients;
         }
 
+        public Dictionary<string, decimal> GetMacroNutrients(Product product)
+        {
+            var nutrients = new Dictionary<string, decimal>();
+
+            foreach (ProductNutrient productNutrient in product.ProductMacronutrients.ProductNutrients)
+            {
+                nutrients.Add(productNutrient.Name, productNutrient.Quantity);
+            }
+
+            return nutrients;
+        }
+
+        public Dictionary<string, decimal> GetMicroNutrients(Product product)
+        {
+            var nutrients = new Dictionary<string, decimal>();
+
+            foreach (ProductNutrient productNutrient in product.ProductMicronutrients.ProductNutrients)
+            {
+                nutrients.Add(productNutrient.Name, productNutrient.Quantity);
+            }
+
+            return nutrients;
+        }
+
         public ProductMacronutrients UpdateProductMacronutrients(Dictionary<string, decimal> nutrients)
         {
             var productMacronutrients = new ProductMacronutrients().InitialiseList();

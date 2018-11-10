@@ -51,7 +51,8 @@ namespace MyFoodDiary.Controllers
 
             ProductViewModel productViewModel = Mapper.Map<Product, ProductViewModel>(product);
 
-            productViewModel.Nutrients = _productServices.GetNutrients(product);
+            productViewModel.MacroNutrients = _productServices.GetMacroNutrients(product);
+            productViewModel.MicroNutrients = _productServices.GetMicroNutrients(product);
 
             return View(productViewModel);
         }
@@ -65,8 +66,8 @@ namespace MyFoodDiary.Controllers
                 User user = _userServices.GetUser(User.Identity.Name);
 
                 Product product = Mapper.Map<ProductViewModel, Product>(productViewModel);
-                product.ProductMacronutrients = _productServices.UpdateProductMacronutrients(productViewModel.Nutrients);
-                product.ProductMicronutrients = _productServices.UpdateProductMicronutrients(productViewModel.Nutrients);
+                product.ProductMacronutrients = _productServices.UpdateProductMacronutrients(productViewModel.MacroNutrients);
+                product.ProductMicronutrients = _productServices.UpdateProductMicronutrients(productViewModel.MicroNutrients);
 
                 _productServices.CreateProduct(product, user.Id);
 
@@ -86,7 +87,8 @@ namespace MyFoodDiary.Controllers
 
             ProductViewModel productViewModel = Mapper.Map<Product, ProductViewModel>(product);
 
-            productViewModel.Nutrients = _productServices.GetNutrients(product);
+            productViewModel.MacroNutrients = _productServices.GetMacroNutrients(product);
+            productViewModel.MicroNutrients = _productServices.GetMicroNutrients(product);
 
             return View(productViewModel);
         }
@@ -98,8 +100,8 @@ namespace MyFoodDiary.Controllers
             if (ModelState.IsValid)
             {
                 Product product = Mapper.Map<ProductViewModel, Product>(productViewModel);
-                product.ProductMacronutrients = _productServices.UpdateProductMacronutrients(productViewModel.Nutrients);
-                product.ProductMicronutrients = _productServices.UpdateProductMicronutrients(productViewModel.Nutrients);
+                product.ProductMacronutrients = _productServices.UpdateProductMacronutrients(productViewModel.MacroNutrients);
+                product.ProductMicronutrients = _productServices.UpdateProductMicronutrients(productViewModel.MicroNutrients);
 
                 _productServices.UpdateProduct(product);
 
