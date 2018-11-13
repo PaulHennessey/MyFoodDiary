@@ -6,9 +6,9 @@
 
 <table id="productTable">
     <tr>
-        <th>
+        @*<th>
             Name
-        </th>
+        v</th>
         <th>
             Calories
         </th>
@@ -32,7 +32,7 @@
         </th>
         <th>
             Vitamin D
-        </th>
+        </th>*@
         <th>
         </th>
     </tr>
@@ -43,7 +43,7 @@
         <td>
             @Html.DisplayFor(modelItem => product.Name)
         </td>
-        <td>
+        @*<td>
             @{var calories = product.ProductMacronutrients.Quantity("Calories");}
             @Html.DisplayFor(m => calories)
         </td>
@@ -74,7 +74,7 @@
         <td>
             @{var vitamind = product.ProductMicronutrients.Quantity("Vitamin D");}
             @Html.DisplayFor(m => vitamind)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Edit", "Edit", new { code = product.Code })
             @Html.ActionLink("Delete", "Delete", new { code = product.Code }, new { @class = "DeleteProductLink" })
@@ -83,6 +83,7 @@
     }
 </table>
 
+<br />
 <p>
     @Html.ActionLink("Add a new Product", "Create")
 </p>
