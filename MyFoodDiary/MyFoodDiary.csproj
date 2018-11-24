@@ -191,6 +191,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MealsController.cs" />
     <Compile Include="Controllers\TrackablesLogController.cs" />
     <Compile Include="Controllers\MicronutrientsController.cs" />
     <Compile Include="Controllers\MacronutrientsController.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="Models\CaloriesFirstFoodItemListViewModel.cs" />
     <Compile Include="Models\MicronutrientsViewModel.cs" />
     <Compile Include="Models\MacronutrientsViewModel.cs" />
+    <Compile Include="Models\MealsViewModel.cs" />
     <Compile Include="Models\TrackableViewModel.cs" />
     <Compile Include="Models\TrackablesViewModel.cs" />
     <Compile Include="Models\TrackableItemListViewModel.cs" />
@@ -343,6 +345,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\MyFoodDiaryCaloriesFirst.js" />
+    <Content Include="Scripts\MyFoodDiaryMeals.js" />
     <Content Include="Scripts\MyFoodDiaryTrackablesLog.js" />
     <Content Include="Scripts\MyFoodDiaryDataEntry.js" />
     <Content Include="Scripts\MyFoodDiaryMicronutrients.js" />
@@ -402,6 +405,7 @@
     <Content Include="Views\Trackables\Create.cshtml" />
     <Content Include="Views\Trackables\Edit.cshtml" />
     <Content Include="Views\TrackablesLog\Index.cshtml" />
+    <Content Include="Views\Meals\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

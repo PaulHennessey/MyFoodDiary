@@ -27,7 +27,7 @@ namespace MyFoodDiary.Domain
             new Nutrient { Name = "Vitamin B6", MeasurementUnit = "mg", RDA = 1.7M },
             new Nutrient { Name = "Vitamin B12", MeasurementUnit = "µg", RDA = 2.4M },
             new Nutrient { Name = "Vitamin A", MeasurementUnit = "µg", RDA = 900 },
-            //new Nutrient { Name = "Carotene", MeasurementUnit = "µg", RDA = 2.4M }
+            new Nutrient { Name = "Carotene", MeasurementUnit = "µg", RDA = 2.4M },
             new Nutrient { Name = "Pantothenic Acid", MeasurementUnit = "mg", RDA = 5 },
             new Nutrient { Name = "Thiamin", MeasurementUnit = "mg", RDA = 1.1M },
             new Nutrient { Name = "Riboflavin", MeasurementUnit = "mg", RDA = 1.3M },
