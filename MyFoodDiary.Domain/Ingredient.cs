@@ -4,21 +4,22 @@ using System.Linq;
 
 namespace MyFoodDiary.Domain
 {
-    public class Meal
+    public class Ingredient
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
-        
+        public int MealId { get; set; }
+        public string Code { get; set; }
+        public int Quantity { get; set; }
+
         public override bool Equals(Object obj)
         {
-            Meal other = obj as Meal;
+            Ingredient other = obj as Ingredient;
 
             if (other == null)
                 return false;
 
             return (this.Id == other.Id) &&
-                   (this.Name == other.Name);
+                   (this.Code == other.Code);
         }
 
         public override int GetHashCode()
@@ -28,8 +29,8 @@ namespace MyFoodDiary.Domain
                 int hash = 17;
                 hash = hash * 23 + Id.GetHashCode();
 
-                if (Name != null)
-                    hash = hash * 23 + Name.GetHashCode();
+                if (Code != null)
+                    hash = hash * 23 + Code.GetHashCode();
 
                 return hash;
             }

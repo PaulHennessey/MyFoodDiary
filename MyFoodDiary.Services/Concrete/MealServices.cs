@@ -46,21 +46,21 @@ namespace MyFoodDiary.Services.Concrete
         //    return _productMapper.HydrateProducts(dataTable);
         //}
 
-        //public void CreateProduct(Product product, int userId)
-        //{
-        //    _productRepository.CreateProduct(product, userId);
-        //}
+        public void CreateMeal(Meal meal, int userId)
+        {
+            _mealRepository.CreateMeal(meal, userId);
+        }
 
-        //public void UpdateProduct(Product product)
-        //{
-        //    _productRepository.UpdateProduct(product);
-        //}
+        public void UpdateMeal(Meal meal)
+        {
+            _mealRepository.UpdateMeal(meal);
+        }
 
-        //public Product GetProduct(string code)
-        //{
-        //    DataTable dataTable = _productRepository.GetProduct(code);
-        //    return _productMapper.HydrateProducts(dataTable).FirstOrDefault();
-        //}
+        public Meal GetMeal(int id)
+        {
+            DataTable dataTable = _mealRepository.GetMeal(id);
+            return _mealMapper.HydrateMeals(dataTable).FirstOrDefault();
+        }
 
         //public List<Product> GetCustomProducts(int userId)
         //{

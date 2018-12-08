@@ -163,8 +163,6 @@ namespace MyFoodDiary.Controllers
         {
             User user = _userServices.GetUser(User.Identity.Name);
 
-            Product product = _productServices.GetProduct(Code);
-
             _foodItemServices.InsertFoodItem(Code, 0, date, user.Id);
 
             return RedirectToAction("Index");

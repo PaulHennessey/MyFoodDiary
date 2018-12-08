@@ -213,6 +213,7 @@
     <Compile Include="Models\MicronutrientsViewModel.cs" />
     <Compile Include="Models\MacronutrientsViewModel.cs" />
     <Compile Include="Models\MealsViewModel.cs" />
+    <Compile Include="Models\MealViewModel.cs" />
     <Compile Include="Models\TrackableViewModel.cs" />
     <Compile Include="Models\TrackablesViewModel.cs" />
     <Compile Include="Models\TrackableItemListViewModel.cs" />
@@ -406,6 +407,8 @@
     <Content Include="Views\Trackables\Edit.cshtml" />
     <Content Include="Views\TrackablesLog\Index.cshtml" />
     <Content Include="Views\Meals\Index.cshtml" />
+    <Content Include="Views\Meals\Create.cshtml" />
+    <Content Include="Views\Meals\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\IFavouriteMapper.cs" />
+    <Compile Include="Abstract\IIngredientRepository.cs" />
+    <Compile Include="Abstract\IIngredientMapper.cs" />
     <Compile Include="Abstract\IMealRepository.cs" />
     <Compile Include="Abstract\IMealMapper.cs" />
     <Compile Include="Abstract\ITrackableItemMapper.cs" />
@@ -56,6 +58,8 @@
     <Compile Include="Abstract\IUserRepository.cs" />
     <Compile Include="Concrete\FavouriteRepository.cs" />
     <Compile Include="Concrete\FavouriteMapper.cs" />
+    <Compile Include="Concrete\IngredientRepository.cs" />
+    <Compile Include="Concrete\IngredientMapper.cs" />
     <Compile Include="Concrete\MealRepository.cs" />
     <Compile Include="Concrete\MealMapper.cs" />
     <Compile Include="Concrete\TrackableItemMapper.cs" />

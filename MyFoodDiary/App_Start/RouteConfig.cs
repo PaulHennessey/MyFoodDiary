@@ -177,6 +177,12 @@ namespace MyFoodDiary
 
 
             routes.MapRoute(
+                name: "CreateMeal",
+                url: "Meals/Create",
+                defaults: new { controller = "Meals", action = "Create" }
+            );
+
+            routes.MapRoute(
                 name: "CreateProduct",
                 url: "Products/Create",
                 defaults: new { controller = "Products", action = "Create" }

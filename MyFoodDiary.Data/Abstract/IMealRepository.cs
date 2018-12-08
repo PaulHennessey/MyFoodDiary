@@ -8,10 +8,10 @@ namespace MyFoodDiary.Data.Abstract
     {
         DataTable GetMeals(int userId);
         //DataTable GetCustomProducts(int userId);
-        //DataTable GetProduct(string code);
+        DataTable GetMeal(int id);
         //DataTable GetProducts(IEnumerable<FoodItem> foodItems);
-        //void CreateProduct(Product product, int userId);
-        //void UpdateProduct(Product product);
+        void CreateMeal(Meal meal, int userId);
+        void UpdateMeal(Meal meal);
         //void DeleteProduct(string code);
     }
 }
