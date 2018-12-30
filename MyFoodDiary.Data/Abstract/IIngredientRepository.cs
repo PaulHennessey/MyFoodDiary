@@ -9,6 +9,7 @@ namespace MyFoodDiary.Data.Abstract
         DataTable GetIngredients(int userId);
         DataTable GetIngredient(int id);
         void CreateIngredient(string code, int mealId);
-        void UpdateIngredient(Ingredient ingredient);
+        void UpdateIngredient(int id, int quantity);
+        void DeleteIngredient(int id);
     }
 }

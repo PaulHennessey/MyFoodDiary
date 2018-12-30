@@ -18,7 +18,7 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id = meal.Id })
-            @Html.ActionLink("Delete", "Delete", new { id = meal.Id }, new { @class = "DeleteMealLink" })
+            @Html.ActionLink("Delete", "DeleteMeal", new { mealId = meal.Id }, new { @class = "DeleteMealLink" })
         </td>
     </tr>
     }

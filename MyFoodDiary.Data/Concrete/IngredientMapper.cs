@@ -16,6 +16,7 @@ namespace MyFoodDiary.Data.Concrete
             {
                 Id = Convert.ToInt32(row["Id"]),
                 Code = row["Code"].ToString(),
+                Name = row["Name"].ToString()
             };
         }
 

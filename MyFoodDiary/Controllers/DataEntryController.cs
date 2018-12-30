@@ -14,16 +14,18 @@ namespace MyFoodDiary.Controllers
     {
         private readonly IFoodItemServices _foodItemServices;
         private readonly IProductServices _productServices;
+        private readonly IMealServices _mealServices;
         private readonly IUserServices _userServices;
 
         public DataEntryController()
         { }
 
-        public DataEntryController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices)
+        public DataEntryController(IFoodItemServices foodItemServices, IProductServices productServices, IUserServices userServices, IMealServices mealServices)
         {
             _productServices = productServices;
             _foodItemServices = foodItemServices;
             _userServices = userServices;
+            _mealServices = mealServices;
         }
 
         public ActionResult Index()
@@ -44,10 +46,15 @@ namespace MyFoodDiary.Controllers
             List<Product> products = _productServices.GetProducts(foodItems).ToList();
             var foodItemsViewModel = CalculateCaloriesByFoodItem(foodItems, products);
 
+            // Meals
+            List<Meal> meals = _mealServices.GetMeals(user.Id).OrderBy(x => x.Name).ToList();
+            var mealsViewModel = Mapper.Map<IEnumerable<Meal>, IEnumerable<MealViewModel>>(meals);
+
             var viewModel = new WeightFirstFoodItemListViewModel()
             {
                 Favourites = favouritesViewModel,
                 FoodItems = foodItemsViewModel,
+                Meals = mealsViewModel,
                 TotalCalories = CalculateTotalCalories(foodItemsViewModel)
             };
 
@@ -75,7 +82,6 @@ namespace MyFoodDiary.Controllers
                 Product product = products.Where(p => p.Code == item.Code).First();
                 decimal calories = product.ProductMacronutrients.Quantity("Calories");
 
-                //decimal calories = products.Where(p => p.Code == item.Code).First().Nutrients["Calories"];
                 item.Calories = Convert.ToInt32(Math.Round(item.Quantity * (calories / 100), 0));
             }
 
@@ -124,6 +130,20 @@ namespace MyFoodDiary.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult UseMeal(int id, DateTime date)
+        {
+            User user = _userServices.GetUser(User.Identity.Name);
+
+            Meal meal = _mealServices.GetMeal(id);
+
+            foreach(Ingredient ingredient in meal.Ingredients)
+            {
+                _foodItemServices.InsertFoodItem(ingredient.Code, ingredient.Quantity, date, user.Id);
+            }
+
+            return RedirectToAction("Index");
+        }
 
         public ActionResult DeleteFavourite(string Code)
         {

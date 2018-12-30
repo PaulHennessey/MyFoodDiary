@@ -47,62 +47,6 @@ namespace MyFoodDiary
                 defaults: new { controller = "Micronutrients", action = "Index", date = UrlParameter.Optional }
             );
 
-
-            //routes.MapRoute(
-            //    name: "RefreshHome",
-            //    url: "Home/Refresh/{date}",
-            //    defaults: new { controller = "Home", action = "Refresh", date = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Search",
-            //    url: "Home/Search/{term}",
-            //    defaults: new { controller = "Home", action = "Search", term = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Delete",
-            //    url: "Home/Delete/{id}",
-            //    defaults: new { controller = "Home", action = "Delete", id = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Save",
-            //    url: "Home/Save/{id}/{quantity}",
-            //    defaults: new { controller = "Home", action = "Save", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Favourite",
-            //    url: "Home/Favourite/{id}/{quantity}",
-            //    defaults: new { controller = "Home", action = "Favourite", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "SelectFood",
-            //    url: "Home/SelectFood/{Code}/{date}",
-            //    defaults: new { controller = "Home", action = "SelectFood", Code = UrlParameter.Optional, date = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "UseFavourite",
-            //    url: "Home/UseFavourite/{Code}/{date}",
-            //    defaults: new { controller = "Home", action = "UseFavourite", Code = UrlParameter.Optional, date = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "DeleteFavourite",
-            //    url: "Home/DeleteFavourite/{Code}",
-            //    defaults: new { controller = "Home", action = "DeleteFavourite", Code = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "Home",
-            //    url: "Home/{date}",
-            //    defaults: new { controller = "Home", action = "Index", date = UrlParameter.Optional }
-            //);
-
-
             routes.MapRoute(
                 name: "SaveTrackableItem",
                 url: "TrackablesLog/Save/{id}/{trackableId}/{quantity}/{date}",
@@ -120,11 +64,7 @@ namespace MyFoodDiary
                url: "TrackablesLog/{date}",
                defaults: new { controller = "TrackablesLog", action = "Index", date = UrlParameter.Optional }
            );
-
-
-            
-
-
+          
             routes.MapRoute(
                 name: "SaveWeightFirst",
                 url: "DataEntry/Save/{id}/{quantity}",
@@ -150,36 +90,34 @@ namespace MyFoodDiary
             );
 
 
-
-            //routes.MapRoute(
-            //    name: "SaveCaloriesFirst",
-            //    url: "CaloriesFirst/Save/{id}/{code}/{calories}",
-            //    defaults: new { controller = "CaloriesFirst", action = "Save", id = UrlParameter.Optional, code = UrlParameter.Optional, calories = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "FavouriteCaloriesFirst",
-            //    url: "CaloriesFirst/Favourite/{id}/{quantity}",
-            //    defaults: new { controller = "CaloriesFirst", action = "Favourite", id = UrlParameter.Optional, quantity = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "UseFavouriteCaloriesFirst",
-            //    url: "CaloriesFirst/UseFavourite/{Code}/{date}",
-            //    defaults: new { controller = "CaloriesFirst", action = "UseFavourite", Code = UrlParameter.Optional, date = UrlParameter.Optional }
-            //);
-
-            //routes.MapRoute(
-            //    name: "DeleteFavouriteCaloriesFirst",
-            //    url: "CaloriesFirst/DeleteFavourite/{Code}",
-            //    defaults: new { controller = "CaloriesFirst", action = "DeleteFavourite", Code = UrlParameter.Optional }
-            //);
-
+            routes.MapRoute(
+                name: "UseMealWeightFirst",
+                url: "DataEntry/UseMeal/{id}/{date}",
+                defaults: new { controller = "DataEntry", action = "UseMeal", id = UrlParameter.Optional, date = UrlParameter.Optional }
+            );
 
             routes.MapRoute(
                 name: "CreateMeal",
                 url: "Meals/Create",
                 defaults: new { controller = "Meals", action = "Create" }
+            );
+
+            routes.MapRoute(
+                name: "DeleteMeal",
+                url: "Meals/DeleteMeal/{mealId}",
+                defaults: new { controller = "Meals", action = "DeleteMeal", mealId = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "DeleteIngredient",
+                url: "Meals/DeleteIngredient/{id}/{mealId}",
+                defaults: new { controller = "Meals", action = "DeleteIngredient",  id = UrlParameter.Optional, mealId = UrlParameter.Optional}
+            );
+
+            routes.MapRoute(
+                name: "SaveIngredient",
+                url: "Meals/SaveIngredient/{id}/{mealId}/{quantity}",
+                defaults: new { controller = "Meals", action = "SaveIngredient", id = UrlParameter.Optional, mealId = UrlParameter.Optional, quantity = UrlParameter.Optional }
             );
 
             routes.MapRoute(
@@ -205,12 +143,6 @@ namespace MyFoodDiary
                 url: "Products/{date}",
                 defaults: new { controller = "Products", action = "Index", date = UrlParameter.Optional }
             );
-
-
-
-
-
-
 
             routes.MapRoute(
                 name: "Default",

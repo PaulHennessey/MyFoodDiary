@@ -44,58 +44,6 @@ namespace MyFoodDiary.Data.Concrete
             return dataTable;
         }
 
-
-        ///// <summary>
-        ///// Note that the stored procedure will ignore duplicate fooditems, and
-        ///// only return a single product.
-        ///// </summary>
-        ///// <param name="foodItems"></param>
-        ///// <returns></returns>
-        //public DataTable GetProducts(IEnumerable<FoodItem> foodItems)
-        //{
-        //    var dataTable = new DataTable();
-
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        SqlCommand command = new SqlCommand("GetProducts", connection);
-        //        command.CommandType = CommandType.StoredProcedure;
-
-        //        command.Parameters.Add(new SqlParameter("@Food_Codes", SqlDbType.Structured));
-        //        command.Parameters["@Food_Codes"].Value = CreateCodeTable(foodItems);
-
-        //        SqlDataAdapter da = new SqlDataAdapter(command);
-        //        da.Fill(dataTable);
-        //    }
-
-        //    return dataTable;
-        //}
-
-        ///// <summary>
-        ///// This is used by the ProductsController Index.
-        ///// </summary>
-        ///// <param name="userId"></param>
-        ///// <returns></returns>
-        //public DataTable GetCustomProducts(int userId)
-        //{
-        //    var dataTable = new DataTable();
-
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        var command = new SqlCommand("GetCustomProducts", connection)
-        //        {
-        //            CommandType = CommandType.StoredProcedure
-        //        };
-
-        //        command.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
-        //        command.Parameters["@userId"].Value = userId;
-
-        //        var da = new SqlDataAdapter(command);
-        //        da.Fill(dataTable);
-        //    }
-
-        //    return dataTable;
-        //}
-
         public void CreateMeal(Meal meal, int userId)
         {
             using (var connection = new SqlConnection(_connectionString))
@@ -136,51 +84,22 @@ namespace MyFoodDiary.Data.Concrete
             }
         }
 
+        public void DeleteMeal(int id)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var cmd = new SqlCommand("DeleteMeal", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
+                cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
+                cmd.Parameters["@Id"].Value = id;
 
-
-        //public void DeleteProduct(string code)
-        //{
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        var cmd = new SqlCommand("DeleteProduct", connection)
-        //        {
-        //            CommandType = CommandType.StoredProcedure
-        //        };
-
-        //        cmd.Parameters.Add(new SqlParameter("@Code", SqlDbType.VarChar, 255));
-        //        cmd.Parameters["@Code"].Value = code;
-
-        //        connection.Open();
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //}
-
-
-        //private string GenerateCode(int userId)
-        //{
-        //    var dataTable = new DataTable();
-
-        //    using (var connection = new SqlConnection(_connectionString))
-        //    {
-        //        var command = new SqlCommand("GetCustomProductCount", connection)
-        //        {
-        //            CommandType = CommandType.StoredProcedure
-        //        };
-
-        //        command.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
-        //        command.Parameters["@userId"].Value = userId;
-
-        //        var da = new SqlDataAdapter(command);
-        //        da.Fill(dataTable);
-        //    }
-
-        //    DataRow row = dataTable.Rows[0];
-        //    int count = Convert.ToInt32(row["ProductCount"]);
-        //    count++;
-
-        //    return "99-" + userId.ToString() + "-" + count.ToString();
-        //}
+                connection.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
 
         public DataTable GetMeal(int id)
         {
@@ -202,18 +121,6 @@ namespace MyFoodDiary.Data.Concrete
 
             return dataTable;
         }
-
-
-        //private DataTable CreateCodeTable(IEnumerable<FoodItem> foodItems)
-        //{
-        //    var table = new DataTable();
-        //    table.Columns.Add("Food Code", typeof(String));
-        //    foreach (FoodItem foodItem in foodItems)
-        //    {
-        //        table.Rows.Add(foodItem.Code);
-        //    }
-        //    return table;
-        //}
 
     }
 }

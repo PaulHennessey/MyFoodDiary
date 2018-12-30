@@ -23,7 +23,7 @@ namespace MyFoodDiary.Data.Concrete
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public DataTable GetIngredients(int userId)
+        public DataTable GetIngredients(int mealId)
         {
           var dataTable = new DataTable();
 
@@ -34,8 +34,8 @@ namespace MyFoodDiary.Data.Concrete
                     CommandType = CommandType.StoredProcedure
                 };
 
-                command.Parameters.Add(new SqlParameter("@userId", SqlDbType.Int));
-                command.Parameters["@userId"].Value = userId;
+                command.Parameters.Add(new SqlParameter("@mealId", SqlDbType.Int));
+                command.Parameters["@mealId"].Value = mealId;
 
                 var da = new SqlDataAdapter(command);
                 da.Fill(dataTable);
@@ -65,7 +65,7 @@ namespace MyFoodDiary.Data.Concrete
             }
         }
 
-        public void UpdateIngredient(Ingredient meal)
+        public void UpdateIngredient(int id, int quantity)
         {
             using (var connection = new SqlConnection(_connectionString))
             {
@@ -75,10 +75,10 @@ namespace MyFoodDiary.Data.Concrete
                 };
 
                 cmd.Parameters.Add(new SqlParameter("@Id", SqlDbType.Int));
-                cmd.Parameters["@Id"].Value = meal.Id;
+                cmd.Parameters["@Id"].Value = id;
 
-                cmd.Parameters.Add(new SqlParameter("@Code", SqlDbType.VarChar, 255));
-                cmd.Parameters["@Code"].Value = meal.Code;
+                cmd.Parameters.Add(new SqlParameter("@Quantity", SqlDbType.Int));
+                cmd.Parameters["@Quantity"].Value = quantity;
 
                 connection.Open();
                 cmd.ExecuteNonQuery();
@@ -107,5 +107,24 @@ namespace MyFoodDiary.Data.Concrete
 
             return dataTable;
         }
+
+
+        public void DeleteIngredient(int id)
+        {
+            using (var connection = new SqlConnection(_connectionString))
+            {
+                var command = new SqlCommand("DeleteIngredient", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+
+                command.Parameters.Add(new SqlParameter("@id", SqlDbType.Int));
+                command.Parameters["@id"].Value = id;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }

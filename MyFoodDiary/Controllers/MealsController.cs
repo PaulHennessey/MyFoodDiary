@@ -137,23 +137,33 @@ namespace MyFoodDiary.Controllers
         /// <returns></returns>
         public ActionResult SelectFood(string code, int mealId)
         {
-            //User user = _userServices.GetUser(User.Identity.Name);
-
-            //Product product = _productServices.GetProduct(Code);
-
             _ingredientServices.CreateIngredient(code, mealId);
-            //_foodItemServices.InsertFoodItem(Code, 0, date, user.Id);
+         
+            return RedirectToAction("Edit", new { id = mealId });
+        }
+
+
+        public ActionResult DeleteMeal(int mealId)
+        {
+            Meal meal = _mealServices.GetMeal(mealId);
+
+            _mealServices.DeleteMeal(meal);
 
             return RedirectToAction("Index");
         }
 
+        public ActionResult DeleteIngredient(int id, int mealId)
+        {
+            _ingredientServices.DeleteIngredient(id);
 
+            return RedirectToAction("Edit", new { id = mealId });
+        }
 
-        //public ActionResult Delete(string code)
-        //{
-        //    _mealServices.DeleteProduct(code);
+        public ActionResult SaveIngredient(int id, int mealId, int quantity)
+        {
+            _ingredientServices.UpdateIngredient(id, quantity);
 
-        //    return RedirectToAction("Index");
-        //}
+            return RedirectToAction("Edit", new { id = mealId });
+        }
     }
 }

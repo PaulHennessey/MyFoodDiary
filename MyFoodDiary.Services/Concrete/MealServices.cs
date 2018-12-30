@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿//public void DeleteProduct(string code)
+//{
+//    _productRepository.DeleteProduct(code);
+//}
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using MyFoodDiary.Data.Abstract;
@@ -10,15 +14,17 @@ namespace MyFoodDiary.Services.Concrete
     public class MealServices : IMealServices
     {
         private readonly IMealRepository _mealRepository;
+        private readonly IIngredientRepository _ingredientRepository;
         private readonly IMealMapper _mealMapper;
 
         public MealServices()
         { }
 
-        public MealServices(IMealRepository mealRepository, IMealMapper mealMapper)
+        public MealServices(IMealRepository mealRepository, IMealMapper mealMapper, IIngredientRepository ingredientRepository)
         {
             _mealRepository = mealRepository;
             _mealMapper = mealMapper;
+            _ingredientRepository = ingredientRepository;
         }
 
         public IEnumerable<Meal> GetMeals(int userId)
@@ -26,25 +32,6 @@ namespace MyFoodDiary.Services.Concrete
             DataTable dataTable = _mealRepository.GetMeals(userId);
             return _mealMapper.HydrateMeals(dataTable);
         }
-
-        //public IEnumerable<Product> GetProducts(List<FoodItem> foodItems)
-        //{
-        //    DataTable dataTable = _productRepository.GetProducts(foodItems);
-        //    return _productMapper.HydrateProducts(dataTable);
-        //}
-
-        //public IEnumerable<Product> GetProducts(List<Day> days)
-        //{
-        //    IEnumerable<FoodItem> foodItems = new List<FoodItem>();
-
-        //    foreach (var day in days)
-        //    {
-        //        foodItems = foodItems.Concat(day.Food);
-        //    }
-
-        //    DataTable dataTable = _productRepository.GetProducts(foodItems);
-        //    return _productMapper.HydrateProducts(dataTable);
-        //}
 
         public void CreateMeal(Meal meal, int userId)
         {
@@ -56,88 +43,22 @@ namespace MyFoodDiary.Services.Concrete
             _mealRepository.UpdateMeal(meal);
         }
 
-        public Meal GetMeal(int id)
+        public Meal GetMeal(int mealId)
         {
-            DataTable dataTable = _mealRepository.GetMeal(id);
-            return _mealMapper.HydrateMeals(dataTable).FirstOrDefault();
+            DataTable mealTable = _mealRepository.GetMeal(mealId);
+            DataTable ingredientsTable = _ingredientRepository.GetIngredients(mealId);
+
+            return _mealMapper.HydrateMeal(mealTable, ingredientsTable).FirstOrDefault();
         }
 
-        //public List<Product> GetCustomProducts(int userId)
-        //{
-        //    DataTable dataTable = _productRepository.GetCustomProducts(userId);
-        //    return _productMapper.HydrateProducts(dataTable).ToList();
-        //}
+        public void DeleteMeal(Meal meal)
+        {
+            foreach (Ingredient ingredient in meal.Ingredients)
+            {
+                _ingredientRepository.DeleteIngredient(ingredient.Id);
+            }
 
-        //public void DeleteProduct(string code)
-        //{
-        //    _productRepository.DeleteProduct(code);
-        //}
-
-        //public Dictionary<string, decimal> GetNutrients(Product product)
-        //{
-        //    var nutrients = new Dictionary<string, decimal>();
-
-        //    foreach(ProductNutrient productNutrient in product.ProductMacronutrients.ProductNutrients)
-        //    {
-        //        nutrients.Add(productNutrient.Name, productNutrient.Quantity);
-        //    }
-
-        //    foreach (ProductNutrient productNutrient in product.ProductMicronutrients.ProductNutrients)
-        //    {
-        //        nutrients.Add(productNutrient.Name, productNutrient.Quantity);
-        //    }
-
-        //    return nutrients;
-        //}
-
-        //public Dictionary<string, decimal> GetMacroNutrients(Product product)
-        //{
-        //    var nutrients = new Dictionary<string, decimal>();
-
-        //    foreach (ProductNutrient productNutrient in product.ProductMacronutrients.ProductNutrients)
-        //    {
-        //        nutrients.Add(productNutrient.Name, productNutrient.Quantity);
-        //    }
-
-        //    return nutrients;
-        //}
-
-        //public Dictionary<string, decimal> GetMicroNutrients(Product product)
-        //{
-        //    var nutrients = new Dictionary<string, decimal>();
-
-        //    foreach (ProductNutrient productNutrient in product.ProductMicronutrients.ProductNutrients)
-        //    {
-        //        nutrients.Add(productNutrient.Name, productNutrient.Quantity);
-        //    }
-
-        //    return nutrients;
-        //}
-
-        //public ProductMacronutrients UpdateProductMacronutrients(Dictionary<string, decimal> nutrients)
-        //{
-        //    var productMacronutrients = new ProductMacronutrients().InitialiseList();
-
-        //    foreach (var key in nutrients.Keys)
-        //    {               
-        //        if (productMacronutrients.ProductNutrients.Exists(n => n.Name == key))
-        //            productMacronutrients.Update(key, nutrients[key]);
-        //    }
-
-        //    return productMacronutrients;
-        //}
-
-        //public ProductMicronutrients UpdateProductMicronutrients(Dictionary<string, decimal> nutrients)
-        //{
-        //    var productMicronutrients = new ProductMicronutrients().InitialiseList();
-
-        //    foreach (var key in nutrients.Keys)
-        //    {
-        //        if (productMicronutrients.ProductNutrients.Exists(n => n.Name == key))
-        //            productMicronutrients.Update(key, nutrients[key]);
-        //    }
-
-        //    return productMicronutrients;
-        //}
+            _mealRepository.DeleteMeal(meal.Id);
+        }
     }
 }

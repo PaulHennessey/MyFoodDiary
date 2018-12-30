@@ -32,17 +32,27 @@ namespace MyFoodDiary.Services.Concrete
             _ingredientRepository.CreateIngredient(code, mealId);
         }
 
-        //public void UpdateIngredient(Ingredient meal)
-        //{
-        //    _ingredientRepository.UpdateIngredient(meal);
-        //}
+        public void DeleteIngredient(int id)
+        {
+            _ingredientRepository.DeleteIngredient(id);
+        }
 
-        //public Ingredient GetIngredient(int id)
-        //{
-        //    DataTable dataTable = _ingredientRepository.GetIngredient(id);
-        //    return _ingredientRepository.HydrateIngredients(dataTable).FirstOrDefault();
-        //}
+        public void UpdateIngredient(int id, int quantity)
+        {
+            _ingredientRepository.UpdateIngredient(id, quantity);
+        }
+
+    //public void UpdateIngredient(Ingredient meal)
+    //{
+    //    _ingredientRepository.UpdateIngredient(meal);
+    //}
+
+    //public Ingredient GetIngredient(int id)
+    //{
+    //    DataTable dataTable = _ingredientRepository.GetIngredient(id);
+    //    return _ingredientRepository.HydrateIngredients(dataTable).FirstOrDefault();
+    //}
 
 
-    }
+}
 }

@@ -24,7 +24,29 @@
     </div>
 
     <div id="ingredientsTableDiv">
-        <table id="ingredientsTable"></table>
+
+        <table id="ingredientsTable">
+            <tr>
+                <th>
+                </th>
+            </tr>
+            @foreach (var ingredient in Model.Ingredients)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => ingredient.Name)
+                </td>
+                <td>
+                    <input class='input-quantity' id=@ingredient.Id name=@ingredient.Quantity type='text' value=@ingredient.Quantity>
+                </td>
+                <td>
+                    @Html.ActionLink("Save", "SaveIngredient", new { id = ingredient.Id, mealId = Model.Id }, new { @class = "SaveIngredientLink" })
+                    @Html.ActionLink("Delete", "DeleteIngredient", new { id = ingredient.Id, mealId = Model.Id }, new { @class = "DeleteIngredientLink" })
+                </td>
+            </tr>
+            }
+        </table>
+
     </div>
 
     <p>

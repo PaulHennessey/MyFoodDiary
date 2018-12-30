@@ -8,6 +8,7 @@
     var FavouriteUrl = "/dataentry/favourite";
     var UseFavouriteUrl = "/dataentry/usefavourite";
     var DeleteFavouriteUrl = "/dataentry/deletefavourite";
+    var UseMealUrl = "/dataentry/usemeal";
 
     // This rather dense code is explained here: http://blogs.msdn.com/b/stuartleeks/archive/2012/04/23/asp-net-mvc-amp-jquery-ui-autocomplete.aspx
     $('*[data-autocomplete-url]')
@@ -85,6 +86,12 @@
                 drawFavouriteRow(favourite);
             });
 
+            var mealsTable = $("#mealsTable");
+            mealsTable.empty();
+            $(json.Meals).each(function (index, meal) {
+                drawMealRow(meal);
+            });
+
             $('.DeleteLink').on('click', DeleteLinkClick);
             $(".SaveLink").on("click", SaveLinkClick);
             $('.FavouriteLink').on('click', FavouriteLinkClick);
@@ -95,7 +102,7 @@
     });
 
     function drawFoodItemRow(rowData) {
-        var row = $("<tr />")
+        var row = $("<tr />");
         $("#foodItemTable").append(row);
         row.append($("<td>" + rowData.Name + "</td>"));
         row.append($("<td><input class='input-quantity' id=" + rowData.Id + " name=" + rowData.Quantity + " type='text' value=" + rowData.Quantity + "></td>"));
@@ -106,7 +113,7 @@
     }
 
     function drawTotalCaloriesRow(totalCalories) {
-        var row = $("<tr />")
+        var row = $("<tr />");
         $("#foodItemTable").append(row);
         row.append($("<td>" + "Total calories" + "</td>"));
         row.append($("<td></td>"));
@@ -114,7 +121,7 @@
     }
 
     function drawFavouriteRow(rowData) {
-        var row = $("<tr />")
+        var row = $("<tr />");
         $("#favouritesTable").append(row);
         row.append($("<td><a class='UseFavouriteLink' href=" + UseFavouriteUrl + "/" + rowData.Code +
                     "/" + ConvertDateToISO8601(sessionStorage["currentDate"]) +
@@ -122,6 +129,14 @@
         row.append($("<td><a class='DeleteFavouriteLink' href=" + DeleteFavouriteUrl + "/" + rowData.Code + ">Delete</a></td>"));
     }
 
+    function drawMealRow(rowData) {
+        var row = $("<tr />");
+        $("#mealsTable").append(row);
+
+        row.append($("<td><a class='UseMealLink' href=" + UseMealUrl + "/" + rowData.Id +
+            "/" + ConvertDateToISO8601(sessionStorage["currentDate"]) +
+            ">" + rowData.Name + "</td>"));
+    }
 
     function SetDateOnLoad() {
 
