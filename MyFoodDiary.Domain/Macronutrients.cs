@@ -17,7 +17,6 @@ namespace MyFoodDiary.Domain
             new Nutrient { Id = 5, Name = "Fat", MeasurementUnit = "grams", RDA = 100 },
             new Nutrient { Id = 6, Name = "Alcohol", MeasurementUnit = "units", RDA = 2 },
             new Nutrient { Id = 7, Name = "Fibre", MeasurementUnit = "grams", RDA = 25 }
-            //new Nutrient { Id = 7, Name = "Macronutrient Ratios", MeasurementUnit = "%" }
         };
 
         public static Nutrient Nutrient(string name)
